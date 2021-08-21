@@ -24,6 +24,7 @@ from syscore.objects import (
     missing_order,
     missing_contract,
     missing_data,
+	no_market_permissions,
 )
 from syscore.dateutils import Frequency, listOfOpeningTimes, openingTimes
 
@@ -291,6 +292,9 @@ class dataBroker(productionDataLayerGeneric):
             offside_qty,
         ) = self.get_current_size_for_contract_order_by_leg(contract_order)
 
+        if offside_qty is no_market_permissions:
+            return no_market_permissions
+
         new_qty = (
             contract_order.trade.reduce_trade_size_proportionally_to_abs_limit_per_leg(
                 offside_qty
@@ -308,6 +312,9 @@ class dataBroker(productionDataLayerGeneric):
         if market_conditions is missing_data:
             side_qty = offside_qty = len(contract_order.trade) * [0]
             return side_qty, offside_qty
+
+        if market_conditions is no_market_permissions:
+            return (no_market_permissions, no_market_permissions)
 
         side_qty = [x.side_qty for x in market_conditions]
         offside_qty = [x.offside_qty for x in market_conditions]
@@ -331,6 +338,8 @@ class dataBroker(productionDataLayerGeneric):
             )
             if market_conditions_this_contract is missing_data:
                 return missing_data
+            if market_conditions_this_contract is no_market_permissions:
+                return no_market_permissions
 
             market_conditions.append(market_conditions_this_contract)
 
@@ -354,6 +363,9 @@ class dataBroker(productionDataLayerGeneric):
         """
 
         tick_data = self.get_recent_bid_ask_tick_data_for_contract_object(contract)
+        if tick_data is no_market_permissions:
+            return no_market_permissions
+
         analysis_of_tick_data = analyse_tick_data_frame(
             tick_data, qty, forward_fill=True, replace_qty_nans=True
         )

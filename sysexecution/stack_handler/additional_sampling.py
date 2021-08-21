@@ -1,6 +1,6 @@
 from sysexecution.stack_handler.stackHandlerCore import stackHandlerCore
 from sysobjects.contracts import futuresContract
-from syscore.objects import missing_data
+from syscore.objects import missing_data, no_market_permissions
 
 
 class stackHandlerAdditionalSampling(stackHandlerCore):
@@ -61,6 +61,8 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
         tick_data = data_broker.get_recent_bid_ask_tick_data_for_contract_object(
             contract
         )
+        if tick_data is no_market_permissions:
+            return missing_data
 
         average_spread = tick_data.average_bid_offer_spread(remove_negative=True)
 

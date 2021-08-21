@@ -2,6 +2,7 @@ from copy import copy
 from syscore.objects import (
     missing_order,
     resolve_function,
+    no_market_permissions
 )
 from sysproduction.data.controls import dataTradeLimits
 
@@ -13,9 +14,11 @@ from sysexecution.orders.broker_orders import brokerOrder
 from sysexecution.order_stacks.instrument_order_stack import instrumentOrder
 from sysexecution.order_stacks.broker_order_stack import orderWithControls
 from sysexecution.algos.algo import Algo
+from sysexecution.algos.allocate_algo_to_order import reallocate_to_market_algo
 from sysexecution.stack_handler.fills import stackHandlerForFills
 from sysproduction.data.controls import dataLocks
 from sysproduction.data.broker import dataBroker
+from sysexecution.orders.instrument_orders import market_order_type
 
 
 class stackHandlerCreateBrokerOrders(stackHandlerForFills):
@@ -194,6 +197,18 @@ class stackHandlerCreateBrokerOrders(stackHandlerForFills):
                 contract_order_after_trade_limits
             )
         )
+
+        # if no market permissions for this contract, just prepare for market order
+        if liquid_qty is no_market_permissions:
+            log.msg("No market data permissions! Assume there is enough liquidity...")
+            liquid_qty = contract_order_after_trade_limits.trade
+
+            if contract_order_after_trade_limits.order_type != market_order_type:
+                log.msg("Convert to market order because no market data permissions")
+                new_order = contract_order_after_trade_limits.replace_required_trade_size_only_use_for_unsubmitted_trades(
+                    liquid_qty)
+                new_order = reallocate_to_market_algo(log, new_order)
+                return new_order
 
         if liquid_qty != contract_order_after_trade_limits.trade:
             log.msg(
