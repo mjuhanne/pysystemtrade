@@ -15,6 +15,7 @@ class named_object:
 
 missing_contract = named_object("missing contract")
 missing_instrument = named_object("missing instrument")
+no_market_permissions = named_object("no market permissions")
 
 missing_order = named_object("missing order")
 locked_order = named_object("locked order")

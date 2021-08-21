@@ -18,8 +18,11 @@ PACING_INTERVAL_SECONDS = 0.5
 
 STALE_SECONDS_ALLOWED_ACCOUNT_SUMMARY = 600
 
-IB_ERROR_TYPES = {200: "invalid_contract"}
-IB_IS_ERROR = [200]
+IB_ERROR__NO_MARKET_PERMISSIONS = 10187
+IB_ERROR__INVALID_CONTRACT      = 200
+
+IB_ERROR_TYPES = {IB_ERROR__INVALID_CONTRACT: "invalid_contract", IB_ERROR__NO_MARKET_PERMISSIONS: "no market permissions"}
+IB_IS_ERROR = [IB_ERROR__INVALID_CONTRACT, IB_ERROR__NO_MARKET_PERMISSIONS]
 
 
 class ibClient(object):
@@ -44,6 +47,7 @@ class ibClient(object):
 
         self._ib_connnection = ibconnection
         self._log = log
+        self._last_errors = dict()
 
     @property
     def ib_connection(self) -> connectionIB:
@@ -81,6 +85,7 @@ class ibClient(object):
                 contract.symbol,
                 contract.lastTradeDateOrContractMonth,
             )
+            self._last_errors[contract.conId] = error_code
 
         msg = "Reqid %d: %d %s %s" % (reqid, error_code, error_string, contract_str)
 
@@ -93,6 +98,13 @@ class ibClient(object):
         else:
             # just a warning / general message
             self.broker_message(msg)
+
+
+    def get_last_error(self, contract:Contract):
+        if contract.conId in self._last_errors:
+            return self._last_errors[contract.conId]
+        else:
+            return None
 
     def broker_error(self, msg, myerror_type):
         self.log.warn(msg)
