@@ -122,3 +122,10 @@ def allocate_for_best_execution_no_limit(
         contract_order.algo_to_use = ORIGINAL_BEST
 
     return contract_order
+
+
+def reallocate_to_market_algo(data: dataBlob,
+       contract_order: contractOrder) -> contractOrder:
+    contract_order.algo_to_use = MARKET_ALGO
+    contract_order.order_type = market_order_type
+

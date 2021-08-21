@@ -22,6 +22,7 @@ from sysexecution.orders.contract_orders import contractOrder
 from sysexecution.order_stacks.broker_order_stack import orderWithControls
 
 from sysproduction.data.broker import dataBroker
+from numpy import NaN
 
 limit_price_from_input = "input"
 limit_price_from_side_price = "side_price"
@@ -95,17 +96,19 @@ class Algo(object):
         if ticker_object is None:
             ticker_object = self.data_broker.get_ticker_object_for_order(contract_order)
 
-        collected_prices = self.get_market_data_for_order_modifies_ticker_object(
+        _collected_prices = self.get_market_data_for_order_modifies_ticker_object(
             ticker_object, contract_order
         )
-        if collected_prices is missing_data:
-            # no data available, no can do
-            return missing_order
 
         ## We want to preserve these otherwise there is a danger they will dynamically change
-        collected_prices = copy(collected_prices)
+        collected_prices = copy(_collected_prices)
 
         if order_type == limit_order_type:
+
+            if _collected_prices is missing_data:
+                # no data available, no can do
+                return missing_order
+
             limit_price = self.set_limit_price(
                 contract_order=contract_order,
                 collected_prices=collected_prices,
@@ -120,17 +123,31 @@ class Algo(object):
 
             return missing_order
 
-        broker_order = create_new_broker_order_from_contract_order(
-            contract_order,
-            order_type=order_type,
-            side_price=collected_prices.side_price,
-            mid_price=collected_prices.mid_price,
-            offside_price=collected_prices.offside_price,
-            broker=broker,
-            broker_account=broker_account,
-            broker_clientid=broker_clientid,
-            limit_price=limit_price,
-        )
+        if _collected_prices is missing_data and order_type == market_order_type:
+            # allow market orders if no price data is available
+            broker_order = create_new_broker_order_from_contract_order(
+                contract_order,
+                order_type=order_type,
+                side_price=NaN,
+                mid_price=NaN,
+                offside_price=NaN,
+                broker=broker,
+                broker_account=broker_account,
+                broker_clientid=broker_clientid,
+                limit_price=limit_price,
+            )
+        else:
+            broker_order = create_new_broker_order_from_contract_order(
+                contract_order,
+                order_type=order_type,
+                side_price=collected_prices.side_price,
+                mid_price=collected_prices.mid_price,
+                offside_price=collected_prices.offside_price,
+                broker=broker,
+                broker_account=broker_account,
+                broker_clientid=broker_clientid,
+                limit_price=limit_price,
+            )
 
         log.msg(
             "Created a broker order %s (not yet submitted or written to local DB)"

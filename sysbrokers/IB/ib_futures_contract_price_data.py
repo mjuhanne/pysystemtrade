@@ -1,5 +1,5 @@
 from syscore.dateutils import Frequency, DAILY_PRICE_FREQ
-from syscore.objects import missing_contract, missing_data, failure
+from syscore.objects import missing_contract, missing_data, failure, no_market_permissions
 
 from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
 from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
@@ -301,6 +301,8 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
 
         if tick_data is missing_contract:
             return missing_data
+        if tick_data is no_market_permissions:
+            return no_market_permissions
 
         tick_data_as_df = from_ib_bid_ask_tick_data_to_dataframe(tick_data)
 
