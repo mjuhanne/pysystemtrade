@@ -134,3 +134,43 @@ class csvFuturesContractPriceData(futuresContractPriceData):
         list_of_contracts = listOfFuturesContracts(list_of_contracts)
 
         return list_of_contracts
+              
+
+    def contracts_with_price_data_for_instrument_code(self,
+                                                      instrument_code: str,
+                                                      allow_expired = True) -> listOfFuturesContracts:
+        """
+        Valid contracts
+
+        :param instrument_code: str
+        :return: list of contract_date
+        """
+
+        list_of_contracts_with_price_data = self.get_contracts_with_price_data()
+        list_of_contracts_for_instrument = \
+            list_of_contracts_with_price_data.contracts_in_list_for_instrument_code(instrument_code)
+
+        if len(list_of_contracts_for_instrument) == 0:
+            return missing_instrument
+
+        # remove expired contracts if needed
+        if allow_expired == False:
+            
+            contracts = listOfFuturesContracts()
+
+            for contract_date in  list_of_contracts_for_instrument.list_of_dates():
+
+                fc = futuresContract.from_two_strings(instrument_code=instrument_code,contract_date_str=contract_date )
+
+                # we don't actually know if the contract is expired, but we
+                # can try to guess this from the contract date
+
+                e_date = fc.expiry_date # derived automatically from contract date
+                if e_date + datetime.timedelta(days=31) > datetime.datetime.now():
+                    contracts.append(fc)
+
+            list_of_contracts_for_instrument = contracts
+
+        return list_of_contracts_for_instrument
+
+

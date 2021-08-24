@@ -1,7 +1,7 @@
 from copy import copy
 
 from sysbrokers.IB.ib_connection import connectionIB
-from syscore.objects import arg_not_supplied, get_class_name
+from syscore.objects import arg_not_supplied, get_class_name, missingData
 from syscore.text import camel_case_split
 from sysdata.config.production_config import get_production_config, Config
 from sysdata.mongodb.mongo_connection import mongoDb
@@ -17,6 +17,7 @@ class dataBlob(object):
         class_list: list = arg_not_supplied,
         log_name: str = "",
         csv_data_paths: dict = arg_not_supplied,
+        csv_configs: dict = arg_not_supplied,
         ib_conn: connectionIB = arg_not_supplied,
         mongo_db: mongoDb = arg_not_supplied,
         log: logger = arg_not_supplied,
@@ -26,9 +27,9 @@ class dataBlob(object):
         Set up of a data pipeline with standard attribute names, logging, links to DB etc
 
         Class names we know how to handle are:
-        'ib*', 'mongo*', 'arctic*', 'csv*'
+        'ib*', 'mongo*', 'arctic*', 'csv*', 'norgate*'
 
-            data = dataBlob([arcticFuturesContractPriceData, arcticFuturesContractPriceData, mongoFuturesContractData])
+            data = dataBlob([ibFuturesContractPriceData, arcticFuturesContractPriceData, mongoFuturesContractData])
 
         .... sets up the following equivalencies:
 
@@ -44,7 +45,7 @@ class dataBlob(object):
         :param log_name: logger type to set
         :param keep_original_prefix: bool. If True then:
 
-            data = dataBlob([arcticFuturesContractPriceData, arcticFuturesContractPriceData, mongoFuturesContractData])
+            data = dataBlob([ibFuturesContractPriceData, arcticFuturesContractPriceData, mongoFuturesContractData])
 
         .... sets up the following equivalencies. This is useful if you are copying from one source to another
 
@@ -63,6 +64,7 @@ class dataBlob(object):
         self._log = log
         self._log_name = log_name
         self._csv_data_paths = csv_data_paths
+        self._csv_configs = csv_configs
         self._keep_original_prefix = keep_original_prefix
 
         self._attr_list = []
@@ -102,6 +104,7 @@ class dataBlob(object):
             csv=self._add_csv_class,
             arctic=self._add_arctic_class,
             mongo=self._add_mongo_class,
+            norgate = self._add_norgate_class
         )
 
         method_to_add_with = class_dict.get(prefix, None)
@@ -132,6 +135,19 @@ class dataBlob(object):
                 % (str(e), class_name, class_name)
             )
             self._raise_and_log_error(msg)
+
+        return resolved_instance
+
+    def _add_norgate_class(self, class_object):
+        log = self._get_specific_logger(class_object)
+        try:
+            resolved_instance = class_object(log = log)
+        except Exception as e:
+                class_name = get_class_name(class_object)
+                msg = (
+                        "Error %s couldn't evaluate %s(log = self.log.setup(component = %s)) This might be because import is missing\
+                         or arguments don't follow pattern" % (str(e), class_name, class_name))
+                self._raise_and_log_error(msg)
 
         return resolved_instance
 
@@ -169,10 +185,11 @@ class dataBlob(object):
 
     def _add_csv_class(self, class_object):
         datapath = self._get_csv_paths_for_class(class_object)
+        config = self._get_csv_configs_for_class(class_object)
         log = self._get_specific_logger(class_object)
 
         try:
-            resolved_instance = class_object(datapath=datapath, log=log)
+            resolved_instance = class_object(datapath=datapath, log=log, config=config)
         except Exception as e:
             class_name = get_class_name(class_object)
             msg = (
@@ -204,11 +221,35 @@ class dataBlob(object):
 
         return datapath
 
+    def _get_csv_configs_for_class(self, class_object) -> str:
+        class_name = get_class_name(class_object)
+        csv_configs = self.csv_configs
+        if csv_configs is arg_not_supplied:
+            self.log.warn("No csv configs provided for .csv, will use defaults  (may break in production, should be fine in sim)")
+            return arg_not_supplied
+
+        csv_config = csv_configs.get(class_name, arg_not_supplied)
+        if csv_config is arg_not_supplied:
+            self.log.warn(
+                "No key for %s in csv_configs, will use defaults (may break in production, should be fine in sim)" %
+                class_name)
+            return arg_not_supplied
+
+        return csv_config
+
+
     @property
     def csv_data_paths(self) -> dict:
         csv_data_paths = getattr(self, "_csv_data_paths", arg_not_supplied)
 
         return csv_data_paths
+
+    @property
+    def csv_configs(self) -> dict:
+        csv_configs = getattr(self, "_csv_configs", arg_not_supplied)
+
+        return csv_configs
+
 
     def _get_specific_logger(self, class_object):
         class_name = get_class_name(class_object)
@@ -342,7 +383,7 @@ class dataBlob(object):
         return log_name
 
 
-source_dict = dict(arctic="db", mongo="db", csv="db", ib="broker")
+source_dict = dict(arctic="db", mongo="db", csv="db", ib="broker", norgate="broker")
 
 
 def identifying_name(split_up_name: list, keep_original_prefix=False) -> str:
