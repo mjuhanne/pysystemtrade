@@ -5,34 +5,54 @@ from sysdata.arctic.arctic_futures_per_contract_prices import (
     arcticFuturesContractPriceData,
 )
 from sysobjects.contracts import futuresContract
+from sysdata.data_blob import dataBlob
 
+# Keeping the csvFuturesContractPriceData inside datablob means that we
+# don't have to scan the folder tree and re-create the data structure containing 
+# possibly tens of thousands contracts, again and again for every iterated instrument
+def create_arctic_csv_datablob(
+	datapath: str, csv_config = arg_not_supplied,
+    name = "Init-arctic-with-csv-futures-contract-prices"
+):
+    data = dataBlob(log_name=name, 
+                class_list=[arcticFuturesContractPriceData, csvFuturesContractPriceData ],
+                csv_configs={"csvFuturesContractPriceData":csv_config},
+                csv_data_paths={"csvFuturesContractPriceData":datapath},
+                keep_original_prefix=True)
+    return data
 
 def init_arctic_with_csv_futures_contract_prices(
-    datapath: str, csv_config=arg_not_supplied
+	datapath: str, csv_config=arg_not_supplied
 ):
-    csv_prices = csvFuturesContractPriceData(datapath, config=csv_config)
-    input(
-        "WARNING THIS WILL ERASE ANY EXISTING ARCTIC PRICES WITH DATA FROM %s ARE YOU SURE?! (CTRL-C TO STOP)"
-        % csv_prices.datapath
-    )
+    data = create_arctic_csv_datablob(datapath, csv_config)
+    init_arctic_with_csv_datablob(data)
 
-    instrument_codes = csv_prices.get_list_of_instrument_codes_with_price_data()
+
+def init_arctic_with_csv_datablob(data: dataBlob):
+    input("WARNING THIS WILL ERASE ANY EXISTING ARCTIC PRICES WITH DATA FROM %s ARE YOU SURE?! (CTRL-C TO STOP)" % csv_prices.datapath)
+
+    instrument_codes = data.csv_futures_contract_price.get_list_of_instrument_codes_with_price_data()
     instrument_codes.sort()
     for instrument_code in instrument_codes:
-        init_arctic_with_csv_futures_contract_prices_for_code(
-            instrument_code, datapath, csv_config=csv_config
+        init_arctic_with_csv_datablob_for_code(
+        	instrument_code, data
         )
 
 
 def init_arctic_with_csv_futures_contract_prices_for_code(
-    instrument_code: str, datapath: str, csv_config=arg_not_supplied
+	instrument_code: str, datapath: str, csv_config=arg_not_supplied
+):
+    data = create_arctic_csv_datablob(datapath, csv_config)
+    init_arctic_with_csv_datablob_for_code(instrument_code, data)
+
+
+def init_arctic_with_csv_datablob_for_code(
+	instrument_code: str, data: dataBlob
 ):
     print(instrument_code)
-    csv_prices = csvFuturesContractPriceData(datapath, config=csv_config)
-    arctic_prices = arcticFuturesContractPriceData()
 
     print("Getting .csv prices may take some time")
-    csv_price_dict = csv_prices.get_all_prices_for_instrument(instrument_code)
+    csv_price_dict = data.csv_futures_contract_price.get_all_prices_for_instrument(instrument_code)
 
     print("Have .csv prices for the following contracts:")
     print(str(csv_price_dict.keys()))
@@ -43,11 +63,11 @@ def init_arctic_with_csv_futures_contract_prices_for_code(
         contract = futuresContract(instrument_code, contract_date_str)
         print("Contract object is %s" % str(contract))
         print("Writing to arctic")
-        arctic_prices.write_prices_for_contract_object(
-            contract, prices_for_contract, ignore_duplication=True
+        data.arctic_futures_contract_price.write_prices_for_contract_object(
+        	contract, prices_for_contract, ignore_duplication=True
         )
         print("Reading back prices from arctic to check")
-        written_prices = arctic_prices.get_prices_for_contract_object(contract)
+        written_prices = data.arctic_futures_contract_price.get_prices_for_contract_object(contract)
         print("Read back prices are \n %s" % str(written_prices))
 
 
