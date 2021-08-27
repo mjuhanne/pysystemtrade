@@ -37,7 +37,6 @@ def csv_config_factory():
     csv_config.input_date_index_name = "Date"
     csv_config.input_column_mapping = input_column_mapping                                                    
     csv_config.broker_symbols = db.get_id_map()
-    csv_config.append_default_daily_time = True
     csv_config.instrument_price_multiplier = db.get_unit_multipliers()
     return csv_config
 
