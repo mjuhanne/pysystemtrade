@@ -1,0 +1,41 @@
+CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
+118,0,118,HAU,HAU,,HKEX,"Gold-Hong Kong",,Settlement,"",0,10,100,USD,"100 oz troy","USD/oz troy",1,10,VVVVVVVVVVVV,1981-04-07,1997-12-05,"","08:30 - 17:00",,"",1,0,0,0,1,
+119,0,119,HSI,HSI,HSI,HKEX,"Hang Seng Index",RTH,Settlement,"HSI,HIC,HIN",1,50,50,HKD,"HKD 50 x Index","points",1,50,SSVSSVSSVSSV,1986-05-06,2021-07-30,"","09:15 - 16:30",,"",0,0,1,0,1,113622
+489,0,489,HRI,HRI,,HKEX,"Hang Seng Red China Index",,Settlement,"",0,50,500,USD,"HKD50 x Index","points",1,50,VVVVVVVVVVVV,1997-09-12,2001-08-30,"","10:00 - 16:00",,"",1,0,1,0,1,
+500,0,500,HIR,HIR,,HKEX,"3-Month HIBOR",,Settlement,"",1,125,12500,HKD,"HKD 5000000","percent",1,125,SSVSSVSSVSSV,1997-09-26,2021-07-30,"","08:30 - 17:00",,"",2,0,1,0,1,0
+544,0,544,HHI,HHI,,HKEX,"Index-Hang Seng 100",,Settlement,"",0,10,1000,HKD,"HKD 1000 x Index","points",1,10,VVVVVVVVVVVV,1998-09-23,2001-08-16,"","10:00 - 16:00",,"",2,0,1,0,1,
+649,0,649,HMH,HMH,MHI,HKEX,"mini Hang Seng Index",RTH,Settlement,"HMH,HSN,HS2",1,10,10,HKD,"HKD10 x Index","points",1,10,SSVSSVSSVSSV,2000-10-09,2021-07-30,"HSI starts at 1986-05-06","09:15 - 16:30",,"",0,0,1,0,1,97917
+795,0,795,HCE,HCE,HHI,HKEX,"Hang Seng China Enterprises Index",RTH,Settlement,"HCE,HCM,HCN",1,50,50,HKD,"HKD50 x Index","points",1,50,SSVSSVSSVSSV,2004-01-05,2021-07-30,"","09:15 - 16:30",,"",0,0,1,0,1,97605
+815,0,815,HMC,HMC,MCH,HKEX,"mini H-Shares Index",RTH,Settlement,"HMC,HMN,HM2",1,10,10,HKD,"HKD 10 x Index","points",1,10,SSVSSVSSVSSV,2008-09-05,2021-07-30,"","09:45 - 16:15",,"",0,0,1,0,1,13890
+100550,0,1550,HUN,HUN,CUS,HKEX,"USD/CNH",ETH,Last,"HUN,HUC,HCU",1,10,100000,CNY,"USD100000","CNY/USD",1,10,SSVSSVSSVSSV,2014-12-05,2021-07-30,"","17:00 - 23:45",,"",4,0,1,0,1,1314
+100551,0,1551,HUC,HUC,CUS,HKEX,"USD/CNH",Combined,Settlement,"HUN,HUC,HCU",1,10,100000,CNY,"USD100000","CNY/USD",1,10,SSVSSVSSVSSV,2014-12-05,2021-07-30,"","17:00 - 16:15",,"",4,0,1,0,1,12787
+100780,0,1780,HSV,HSV,VHS,HKEX,"HSI Volatility Index",,Settlement,"",1,50,5000,HKD,"HK$5000 x Index","Points",5,250,VVVVVVVVVVVV,2012-03-29,2021-07-30,"","09:30 - 16:15",,"",2,0,1,0,1,0
+100823,0,1823,HSD,HSD,,HKEX,"HSI Dividend Index",,Settlement,"",1,0.5,50,HKD,"HK$50 x Index","points",1,0.5,IIIIIIIIIIIV,2012-10-18,2021-07-30,"","09:15 - 16:15",,"",2,0,1,0,1,0
+100824,0,1824,HHD,HHD,,HKEX,"HSCEI Dividend Index",,Settlement,"",1,0.5,50,HKD,"HK$50 x Index","points",1,0.5,IIIIIIIIIIIV,2012-10-18,2021-07-30,"","09:15 - 16:15",,"",2,0,1,0,1,3300
+100853,0,1853,HCU,HCU,CUS,HKEX,"USD/CNH",RTH,Settlement,"HUN,HUC,HCU",1,10,100000,CNY,"USD100000","CNY/USD",1,10,SSVSSVSSVSSV,2013-02-25,2021-07-30,"","09:00 - 16:15",,"",4,0,1,0,1,7877
+100864,0,1864,HIC,HIC,HSI,HKEX,"Hang Seng Index",Combined,Settlement,"HSI,HIC,HIN",1,50,50,HKD,"HK$50 x Index","points",1,50,SSVSSVSSVSSV,1986-05-06,2021-07-30,"","17:15 - 16:30",,"",0,0,1,0,1,194530
+100865,0,1865,HCM,HCM,HHI,HKEX,"Hang Seng China Enterprises Index",Combined,Settlement,"HCE,HCM,HCN",1,50,50,HKD,"HK$50 x Index","points",1,50,SSVSSVSSVSSV,2004-01-05,2021-07-30,"","17:15 - 16:30",,"",0,0,1,0,1,194948
+100867,0,1867,HIN,HIN,HSI,HKEX,"Hang Seng Index",ETH,Last,"HSI,HIC,HIN",1,50,50,HKD,"HK$50 x Index","points",1,50,SSVSSVSSVSSV,2013-04-19,2021-07-30,"","17:15 - 01:00",,"",0,0,1,0,1,20202
+100868,0,1868,HCN,HCN,HHI,HKEX,"Hang Seng China Enterprises Index",ETH,Last,"HCE,HCM,HCN",1,50,50,HKD,"HK$50 x Index","points",1,50,SSVSSVSSVSSV,2013-04-19,2021-07-30,"","17:15 - 01:00",,"",0,0,1,0,1,22584
+100942,0,1942,HMN,HMN,MCH,HKEX,"Mini H-Shares Index",ETH,Last,"HMC,HMN,HM2",1,10,10,HKD,"HK$10 x Index","points",1,10,SSVSSVSSVSSV,2014-01-14,2021-07-30,"","17:00 - 23:00",,"",0,0,1,0,1,4339
+100943,0,1943,HM2,HM2,MCH,HKEX,"Mini H-Shares Index",Combined,Settlement,"HMC,HMN,HM2",1,10,10,HKD,"HK$10 x Index","points",1,10,SSVSSVSSVSSV,2014-01-14,2021-07-30,"","09:15 - 23:00",,"",0,0,1,0,1,22728
+100944,0,1944,HSN,HSN,MHI,HKEX,"Mini Hang Seng Index",ETH,Last,"HMH,HSN,HS2",1,10,10,HKD,"HKD10 x Index","points",1,10,SSVSSVSSVSSV,2014-01-14,2021-07-30,"","17:15 - 01:00",,"",0,0,1,0,1,23988
+100945,0,1945,HS2,HS2,MHI,HKEX,"Mini Hang Seng Index",Combined,Settlement,"HMH,HSN,HS2",1,10,10,HKD,"HKD10 x Index","points",1,10,SSVSSVSSVSSV,2014-01-14,2021-07-30,"HMH starts at 2000-10-09","17:15 - 16:30",,"",0,0,1,0,1,133070
+200026,0,0,HC1,,,HKEX,"HSCEI Week 1",,Settlement,"",1,,,,"","",,,VVVVVVVVVVVV,,,"","",,"",0,0,0,0,0,
+200027,0,0,HC2,,,HKEX,"HSCEI Week 2",,Settlement,"",1,,,,"","",,,VVVVVVVVVVVV,,,"","",,"",0,0,0,0,0,
+200028,0,0,HC3,,,HKEX,"HSCEI Week 3",,Settlement,"",1,,,,"","",,,VVVVVVVVVVVV,,,"","",,"",0,0,0,0,0,
+200029,0,0,HC4,,,HKEX,"HSCEI Week 4",,Settlement,"",1,,,,"","",,,VVVVVVVVVVVV,,,"","",,"",0,0,0,0,0,
+200030,0,0,HC5,,,HKEX,"HSCEI Week 5",,Settlement,"",1,,,,"","",,,VVVVVVVVVVVV,,,"","",,"",0,0,0,0,0,
+200069,0,20069,HTF,HTF,HTF,HKEX,"5-year China Ministry of Finance Treasury Bond Futures",,Settlement,"",0,1,1000,CNY,"CNY 500000 @ 3%","percent",2,2,IIVIIVIIVIIV,2017-04-10,2017-12-08,"","09:00 - 16:30",,"",3,0,0,0,1,
+200525,0,20525,HTW,HTW,MTW,HKEX,"MSCI Taiwan Index",Combined,Settlement,"HTW,HT2,HT1",1,1,100,USD,"USD 100 x Index","points",10,10,SSVSSVSSVSSV,2020-08-03,2021-07-30,"STW starts at 1997-01-09","17:15 - 16:30",,"",2,0,1,0,1,4173
+200526,0,20526,HT2,HT2,MTW,HKEX,"MSCI Taiwan Index",RTH,Settlement,"HTW,HT2,HT1",1,1,100,USD,"USD 100 x Index","points",10,10,SSVSSVSSVSSV,2020-08-03,2021-07-30,"ST2 starts at 2003-07-02","09:00 - 16:30",,"",2,0,1,0,1,1916
+200527,0,20527,HT1,HT1,MTW,HKEX,"MSCI Taiwan Index",ETH,Last,"HTW,HT2,HT1",1,1,100,USD,"USD 100 x Index","points",10,10,SSVSSVSSVSSV,2020-08-03,2021-07-30,"ST1 starts at 2007-04-18","17:15 - 03:00",,"",2,0,1,0,1,275
+200528,0,20528,THN,THN,TWP,HKEX,"MSCI Taiwan 25/50 USD Index",Combined,Settlement,"THN,TH2,TH1",1,0.5,50,USD,"USD 50 x Index","points",10,5,SSVSSVSSVSSV,2020-09-28,2021-07-30,"","17:15 - 16:30",,"",2,0,1,0,1,35
+200529,0,20529,TH2,TH2,TWP,HKEX,"MSCI Taiwan 25/50 USD Index",RTH,Settlement,"THN,TH2,TH1",1,0.5,50,USD,"USD 50 x Index","points",10,5,SSVSSVSSVSSV,2020-09-28,2021-07-30,"","08:45 - 16:30",,"",2,0,1,0,1,0
+200530,0,20530,TH1,TH1,TWP,HKEX,"MSCI Taiwan 25/50 USD Index",ETH,Last,"THN,TH2,TH1",1,0.5,50,USD,"USD 50 x Index","points",10,5,SSVSSVSSVSSV,2020-09-28,2021-07-30,"","17:15 - 03:00",,"",2,0,1,0,1,0
+200531,0,20531,TNN,TNN,TWN,HKEX,"MSCI Taiwan 25/50 NTR Index",Combined,Settlement,"TNN,TN2,TN1",1,0.1,10,USD,"USD 10 x Index","points",1,0.1,SSVSSVSSVSSV,2020-09-28,2021-07-30,"","17:15 - 16:30",,"",2,0,1,0,1,0
+200532,0,20532,TN2,TN2,TWN,HKEX,"MSCI Taiwan 25/50 NTR Index",RTH,Settlement,"TNN,TN2,TN1",1,0.1,10,USD,"USD 10 x Index","points",1,0.1,SSVSSVSSVSSV,2020-09-28,2021-07-30,"","08:45 - 16:30",,"",2,0,1,0,1,0
+200533,0,20533,TN1,TN1,TWN,HKEX,"MSCI Taiwan 25/50 NTR Index",ETH,Last,"TNN,TN2,TN1",1,0.1,10,USD,"USD 10 x Index","points",1,0.1,SSVSSVSSVSSV,2020-09-29,2021-07-30,"","17:15 - 03:00",,"",2,0,1,0,1,0
+200555,0,20555,HEI,HEI,HTI,HKEX,"Hang Seng TECH Index",Combined,Settlement,"HEI,HE2,HE1",1,0.5,50,HKD,"HKD 50 x Index","points",100,50,SSVSSVSSVSSV,2020-11-23,2021-07-30,"","17:15 - 16:30",,"",2,0,1,0,1,33717
+200556,0,20556,HE2,HE2,HTI,HKEX,"Hang Seng TECH Index",RTH,Settlement,"HEI,HE2,HE1",1,0.5,50,HKD,"HKD 50 x Index","points",100,50,SSVSSVSSVSSV,2020-12-14,2021-07-30,"","09:15 - 16:30",,"",2,0,1,0,1,24898
+200557,0,20557,HE1,HE1,HTI,HKEX,"Hang Seng TECH Index",ETH,Last,"HEI,HE2,HE1",1,0.5,50,HKD,"HKD 50 x Index","points",100,50,SSVSSVSSVSSV,2020-12-14,2021-07-30,"","17:15 - 03:00",,"",2,0,1,0,1,988

@@ -1,0 +1,248 @@
+Enabled,Id,CSI,UnitMultiplier,Exchange,Currency,OurDescription,CSI_Description
+1,AEX,320,1,EURONEXT-AMSTERDAM,EUR,Netherlands equity index AEX,AEX Index
+1,AUD,66,1,CME,USD,AUDUSD currency,Australian Dollar
+1,BITCOIN,20394,1,CME,USD,Micro Bitcoin,micro Bitcoin
+1,BOBL,553,1,EUREX,EUR,German 5 year bond Bobl,Euro German Bobl
+1,BTP,1490,1,EUREX,EUR,Italian 10 year bond BTP,Long-Term Italian Govt Bond-BTP
+1,BUND,552,1,EUREX,EUR,German 10 year bond Bund,Euro German Bund
+1,CAC,79,1,EURONEXT-PARIS,EUR,French equity index CAC40,CAC 40 Index
+1,COPPER,809,0.01,COMEX,USD,Copper,Copper
+1,CORN,412,1,CBT,USD,Corn,Corn
+1,CRUDE_W,856,1,NYMEX,USD,Light sweet crude Winter,Crude Oil
+1,EDOLLAR,141,1,CME,USD,US STIR Eurodollar,Eurodollar
+1,EUR,524,1,CME,USD,EURUSD currency,Euro
+1,EUROSTX,530,1,EUREX,EUR,European equity index EUROSTOXX50,Euro STOXX 50 Index
+1,GAS_US,869,1,NYMEX,USD,Natural gas US,Henry Hub Natural Gas
+1,GBP,26,1,CME,USD,GBPUSD currency,British Pound
+1,GOLD,867,1,COMEX,USD,Gold,Gold
+1,JPY,65,0.01,CME,USD,JPYUSD currency,Japanese Yen
+1,KOSPI,501,1,KRX,KRW,Korean equity index KOSPI,KOSPI 200 Index-KRX
+1,KR10,1589,1,KRX,KRW,Korean 10 year bond,10-year Korea Treasury Bond
+1,KR3,603,1,KRX,KRW,Korean 3 year bond,3-year Korea Treasury Bond -KRX
+1,LEANHOG,4,1,CME,USD,Lean hogs,Lean Hogs
+1,LIVECOW,2,1,CME,USD,Live cattle,Live Cattle
+1,MXP,23,1,CME,USD,MEXUSD currency,Mexican Peso
+1,NASDAQ,497,1,CME,USD,US equity index Nasdaq ,e-mini Nasdaq 100 Index
+1,NZD,1063,1,CME,USD,NZDUSD currency,New Zealand Dollar
+1,OAT,1752,1,EUREX,EUR,French 10 year bond OAT,Euro-OAT (10yr)
+1,PALLAD,849,1,NYMEX,USD,Palladium,Palladium
+1,PLAT,859,1,NYMEX,USD,Platinum,Platinum
+1,SHATZ,554,1,EUREX,EUR,German 2 year bond Schatz,Euro German Schatz
+1,SMI,214,1,EUREX,CHF,Swiss equity index SMI,Swiss Market Index
+1,SOYBEAN,409,1,CBT,USD,Soybean,Soybeans
+1,SP500,487,1,CME,USD,US equity index S&P500 ,e-mini S&P 500 Index
+1,US10,150,1,CBT,USD,US 10 year bond note,10-Year U.S. T-Note
+1,US2,382,1,CBT,USD,US 2 year bond note,2-Year U.S. T-Note
+1,US20,801,1,CBT,USD,US 20 year bond,Treasury Bonds
+1,US5,803,1,CBT,USD,US 5 year bond note,5-Year U.S. T-Note
+1,USIRS5,1839,1,CBT,USD,US 5 year swap,5yr Deliverable Interest Rate Swap
+1,USIRS10,1836,1,CBT,USD,US 10 year swap,10yr Deliverable Interest Rate Swap
+1,US-REALESTATE,1138,1,CBT,USD,US Real estate,DJ Real Estate Index
+1,V2X,1521,1,EUREX,EUR,Vol European equity V2X,VSTOXX Mini
+1,VIX,919,1,CFE,USD,Vol US equity VIX,CBOE Volatility Index (VIX)
+1,WHEAT,413,1,CBT,USD,Wheat,Wheat
+1,EU-BASIC,1320,1,EUREX,EUR,Dow Jones STOXX 600 Basic Resources Index,STOXX Europe 600 Basic Resources
+1,EU-DIV30,1337,1,EUREX,EUR,Dow Jones Euro STOXX Select Dividend 30 Index,DJ Euro STOXX Select Dividend 30 Index
+1,EU-AUTO,1314,1,EUREX,EUR,Dow Jones STOXX 600 Automobiles & Parts,STOXX Europe 600 Automobiles & Parts
+1,EU-FOOD,1630,1,EUREX,EUR,Dow Jones STOXX 600 Food & Beverage Index,STOXX Europe 600 Food & Beverage
+1,EU-HEALTH,1401,1,EUREX,EUR,Dow Jones STOXX 600 Healthcare,STOXX Europe 600 Healthcare
+1,EU-OIL,1085,1,EUREX,EUR,Dow Jones STOXX 600 Oil & Gas,STOXX Europe 600 Oil & Gas
+1,EU-RETAIL,1632,1,EUREX,EUR,Dow Jones STOXX 600 Retail,STOXX Europe 600 Retail
+1,EU-TECH,1245,1,EUREX,EUR,Dow Jones STOXX 600 Technology,STOXX Europe 600 Technology
+1,EU-TRAVEL,1636,1,EUREX,EUR,Dow Jones STOXX 600 Travel & Leisure,STOXX Europe 600 Travel & Leisure
+1,EU-UTILS,1322,1,EUREX,EUR,Dow Jones STOXX 600 Utilities,STOXX Europe 600 Utilities
+1,US-DISCRETE,1663,1,CME,USD,Consumer Discretionary Select Sector Index,Emini S&P Select Sector Consumer Discrectionary
+1,US-STAPLES,1664,1,CME,USD,Consumer Staples Select Sector Index,Emini S&P Select Sector Consumer Staples
+1,US-ENERGY,1665,1,CME,USD,Energy Select Sector Index,Emini S&P Select Sector Energy
+1,US-FINANCE,1666,1,CME,USD,Financial Select Sector Index,Emini S&P Select Sector Financial
+1,US-HEALTH,1667,1,CME,USD,Health Care Select Sector Index,Emini S&P Select Sector Health Care
+1,US-INDUSTRY,1668,1,CME,USD,Industrial Select Sector Index,Emini S&P Select Sector Industrial
+1,US-MATERIAL,1669,1,CME,USD,Materials Select Sector Index,Emini S&P Select Sector Materials
+1,US-PROPERTY,20293,1,CME,USD,Real Estate Select Sector Index,e-mini S&P Real Estate Select Sector
+1,US-TECH,1670,1,CME,USD,Technology Select Sector Index -,Emini S&P Select Sector Technology
+1,US-UTILS,1671,1,CME,USD,Utilities Select Sector Index,Emini S&P Select Sector Utilities
+1,FEEDCOW,33,1,CME,USD,Feeder cattle,Feeder Cattle
+1,BBCOMM,1081,1,CBT,USD,Bloomberg Commodity Index,Bloomberg Commodity Index (DJ UBS Commodity Index)
+1,SOYMEAL,410,1,CBT,USD,Soybean Meal,Soybean Meal
+1,REDWHEAT,1066,1,CBT,USD,Hard Red Winter Wheat -KCBOT-,Kansas City HRW Wheat
+1,OATIES,414,1,CBT,USD,Oat Futures,Oats
+1,RICE,415,1,CBT,USD,Rough Rice,Rough Rice
+1,MILK,404,1,CME,USD,Milk class III,Class III Milk
+1,SOYOIL,411,1,CBT,USD,Soybean oil,Soybean Oil
+1,GASOILINE,976,1,NYMEX,USD,RBOB Gasoline US,Gasoline-Reformulated Blendstock
+1,HEATOIL,857,1,NYMEX,USD,Heating oil,NY Harbor ULSD
+1,ALUMINIUM,20388,1,COMEX,USD,NYMEX Aluminum Index,Aluminum
+1,SILVER,868,0.01,COMEX,USD,NYMEX Silver Index,Silver
+1,CAD,64,1,CME,USD,CADUSD currency,Canadian Dollar
+1,CHF,25,1,CME,USD,CHFUSD currency,Swiss Franc
+1,SEK,711,1,CME,USD,SEKUSD currency,Swedish Krona/US Dollar
+1,NOK,712,1,CME,USD,NOKUSD currency,Norwegian Krone/US Dollar
+1,BRE,821,1,CME,USD,BREUSD currency,Brazilian Real
+1,RUR,1064,1,CME,USD,RURUSD currency,RX-Russian Ruble
+1,BONO,20113,1,EUREX,EUR,ES 10 year bonds,Long-Term Euro-BONO
+1,MSCIASIA,20456,1,EUREX,USD,MSCI Emerging Markets Asia,MSCI Emerging Markets Asia Index
+1,EURO600,1759,1,EUREX,EUR,Dow Jones STOXX 600 Index,STOXX Europe 600 Index
+1,DAX,993,1,EUREX,EUR,DAX 30 Index (Deutsche Aktien Xchange 30),DAX Index
+1,DOW,20336,1,CBT,USD,Micro E-Mini Dow Jones Industrial Average Index,Micro E-mini Dow Jones Industrial Average Index
+1,RUSSELL,20335,1,CME,USD,Micro E-Mini Russell 2000 Index,Micro E-mini Russell 2000 Index
+1,SP400,684,1,CME,USD,E-mini S&P Midcap 400 Futures,e-mini S&P Midcap 400 Index
+1,GBPEUR,450,1,CME,GBP,GBPEUR currency,Euro/British Pound
+1,YENEUR,451,1,CME,JPY,YENEUR currency,Euro/Japanese Yen
+1,BUXL,551,1,EUREX,EUR,German Buxl 15 to 30 year bond,Euro Buxl (4%)
+1,BTP3,1640,1,EUREX,EUR,Short-Term Euro-BTP Italian Government Bond,Short Euro BTP
+1,US3,1407,1,CBT,USD,US 3 year bond note,3-Year Treasury Note
+1,US10U,20273,1,CBT,USD,Ultra 10-Year US Treasury Note,Ultra 10-Year U.S. Treasury Note
+1,US30,1507,1,CBT,USD,Ultra Treasury Bond,Ultra T-Bonds
+1,KOSDAQ,20093,1,KRX,KRW,KOSDAQ 150 Index,KOSDAQ 150 Index
+1,BRENT-LAST,1211,1,CLEAR,USD,Brent Crude Oil - Last Day,Brent Crude Last Day
+1,GAS-LAST,837,1,NYMEX,USD,Natural Gas Last Day Financial Futures Index,Natural Gas Financial (Last Day)
+1,NIKKEI400,20007,1,OSE,JPY,JPX-Nikkei Index 400,JPX-Nikkei Index 400
+1,CNH,20034,1,SGX,CNH,SGX US Dollar in offshore Chinese Renminbi (CNH),USD/CNH
+1,DJSTX-SMALL,20119,1,EUREX,EUR,Dow Jones STOXX Small 200 Index,STOXX Europe Small 200 Index
+1,EU-BANKS,1315,1,EUREX,EUR,Dow Jones Euro STOXX Banks Index,Euro STOXX Banks
+1,EU-CHEM,1622,1,EUREX,EUR,Dow Jones STOXX 600 Chemicals,STOXX Europe 600 Chemicals
+1,EU-INSURE,1422,1,EUREX,EUR,Dow Jones STOXX 600 Insurance,STOXX Europe 600 Insurance
+1,FTSECHINAA,1576,1,SGX,USD,FTSE/Xinhua China A50,China A50 Index
+0,FTSECHINAH,,1,,,,
+1,FTSETAIWAN,20522,1,SGX,USD,FTSE Taiwan RIC Capped Price Return TWD Index,FTSE Taiwan Index
+1,INR-SGX,1940,1,SGX,USD,SGX Indian Rupee in US Dollar Futures,INR/USD
+1,IRON,1931,1,SGX,USD,SGX TSI Iron Ore Futures,TSI Iron Ore CFR China (62% Fe Fines) Index
+1,JGB,1238,1,OSE,JPY,Standardized 6% 10-Year Japanese Government Bond,10-Year Japanese Govt Bond
+1,KRWUSD_mini,20543,1,SGX,USD,SGX Korean Won in US Dollar Futures (Mini),mini KRW/USD
+1,MSCISING,539,1,SGX,SGD,MSCI Singapore Free Index,MSCI Singapore Stock Index
+1,MUMMY,20010,1,OSE,JPY,TSE Mothers Index,TSE Mothers Index
+1,NIFTY,643,1,SGX,USD,CNX Nifty Index,S&P CNX Nifty Index
+1,NIKKEI,1059,1,OSE,JPY,Nikkei 225 Mini,mini Nikkei 225 Index
+1,R1000,20307,1,CME,USD,E-Mini Russell 1000 Value Index Futures,e-mini Russell 1000 Value Index
+1,SGD,20552,1,SGX,SGD,SGX US Dollar in Singapore Dollar Futures (Full-Sized),SGD/USD
+1,SOFR,20319,1,CME,USD,Secured Overnight Financing Rate 3-month average of rates,3-Month SOFR
+1,TOPIX,1334,1,OSE,JPY,Japan Mini Topix,mini TOPIX Index
+1,CRUDE_W_mini,725,1,NYMEX,USD,Light sweet crude Winter mini,e-mini Crude Oil
+1,WTI_micro,20395,1,NYMEX,USD,micro WTI crude oil,micro WTI Crude Oil
+1,GAS_US_mini,724,1,NYMEX,USD,Natural gas US mini,e-mini Henry Hub Natural Gas
+1,GOLD_micro,1572,1,COMEX,USD,Gold micro,E-Micro Gold
+1,KOSPI_mini,20094,1,KRX,KRW,KOSPI mini,mini KOSPI 200
+1,NASDAQ_micro,20334,1,CME,USD,NASDAQ micro,Micro E-mini Nasdaq 100 Index
+1,SP500_micro,20333,1,CME,USD,S&P 500 micro,Micro E-mini S&P 500 Index
+1,LUMBER,27,1,CME,USD,Random Length Lumber,Lumber
+1,Ethereum,20390,1,CME,USD,CME CF Ether-Dollar Reference Rate,Ethereum (ETH/USD)
+1,EU-Construction,1628,1,EUREX,EUR,Dow Jones STOXX 600 Construction & Materials,STOXX Europe 600 Construction
+1,EU-DIV50,1426,1,EUREX,EUR,Dow Jones EURO STOXX 50 Index-Dividenden,DJ Euro STOXX 50 Index Dividend
+1,FED,74,1,CBT,USD,30 Day Fed Funds,30 Day Federal Funds
+1,MID-DAX,443,1,EUREX,EUR,Midcap DAX,DAX Midcap Index
+1,FTSEINDO,20537,1,SGX,USD,FTSE Indonesia Index,FTSE Indonesia Index
+1,EURCHF,452,1,CME,CHF,Euro/chf,Euro/Swiss Franc
+0,USIRS5ERIS,,1,,,,
+1,EU-DJ-UTIL,1321,1,EUREX,EUR,Dow Jones Euro STOXX Utilities Index,Euro STOXX Utilities
+1,EU-DJ-OIL,1084,1,EUREX,EUR,Dow Jones Euro STOXX Oil & Gas,Euro STOXX Oil & Gas
+1,EU-MID,20102,1,EUREX,EUR,Dow Jones STOXX MID 200 Index,STOXX Europe Mid 200
+1,EU-MEDIA,1403,1,EUREX,EUR,Dow Jones STOXX 600 Media,STOXX Europe 600 Media
+0,EUROSTX-PRICE,,1,,,,
+1,JP-REALESTATE,20013,1,OSE,JPY,TSE REIT Index,TSE REIT Index
+0,EUROSTX-SMALL,,1,,,,
+1,SMI-MID,1099,1,EUREX,CHF,Swiss Mid-cap Index,Swiss Mid-cap Index
+1,EU-FINANCE,1624,1,EUREX,EUR,Dow Jones STOXX 600 Financial Services Index,STOXX Europe 600 Financial Services
+1,EU-DJ-INSURE,1421,1,EUREX,EUR,Dow Jones Euro STOXX Insurance,Euro STOXX Insurance
+1,EU-DJ-TELECOM,1635,1,EUREX,EUR,Dow Jones Euro STOXX Telecommunications,Euro STOXX Telcom
+1,JGB-SGX-mini,337,1,,,,
+1,EUROSTX-MID,20120,1,EUREX,EUR,Euro Stoxx Mid,EURO STOXX Mid Index
+1,EU-REALESTATE,1626,1,EUREX,EUR,Dow Jones STOXX 600 Real Estate,STOXX Europe 600 Real Estate
+0,EUROSTX200-LARGE,,1,,,,
+1,VNKI,1784,1,OSE,JPY,Nikkei 225 Volatility Index,Nikkei 225 Volatility Index
+1,EU-DJ-TECH,1244,1,EUREX,EUR,Dow Jones Euro STOXX Technology,Euro STOXX Technology
+1,DIVDAX,20101,1,EUREX,EUR,DivDAX Price Index,DivDAX
+1,SILVER-mini,1103,1,COMEX,USD,COMEX MINY Silver,miNY Silver
+1,EU-BANKS-DIVI,20467,1,EUREX,EUR,EURO STOXX Banks Index Dividend Futures,Euro STOXX Banks Dividend Index
+1,EU-HOUSE,1638,1,EUREX,EUR,Dow Jones STOXX 600 Personal & Household Goods,STOXX Europe 600 Personal & Househould Goods
+1,CH10,299,1,EUREX,CHF,Swiss Federal Long-Term Bonds,10-Year Swiss Govt Bond
+0,SGX,,1,,,,
+1,CHEESE,1556,1,CME,USD,Cheese,Cash Settled Cheese
+1,EURIBOR,546,1,EUREX,EUR,Three Month EURIBOR,3-Month EURIBOR
+1,COPPER-mini,1104,1,COMEX,USD,COMEX MINY Copper,miNY Copper
+1,MILKDRY,1226,1,CME,USD,NON FAT DRY MILK INDEX,Non-Fat Dry Milk
+1,EU-DJ-FOOD,1631,1,EUREX,EUR,Dow Jones Euro STOXX Food&Beverages,Euro STOXX Food & Beverage
+1,R1000GROWTH-mini,20308,1,CME,USD,E-mini Russell 1000 Growth Index Futures,e-mini Russell 1000 Growth Index
+1,EU-DJ-HEALTH,1400,1,EUREX,EUR,Dow Jones Euro STOXX Healthcare,Euro STOXX Healthcare
+1,TWD-mini,20549,1,SGX,USD,SGX Taiwan Dollar in US Dollar Futures (Mini),mini TWD/USD
+1,R1000mini,1032,1,CME,USD,E-mini Russell 1000 Index Futures,e-mini Russell 1000 Index
+1,INR,1851,1,CME,USD,Indian Rupee,Indian Rupee
+1,EUROSTX-LARGE,20122,1,EUREX,EUR,Euro Stoxx Large,EURO STOXX Large Index
+1,INR-mini,1852,1,CME,USD,Indian Rupee,E-Micro INR / USD
+0,USIRS2ERIS,,1,,,,
+1,BUTTER,973,1,CME,USD,CME Cash-Settled Butter Futures,Cash Settled Butter
+1,STEEL,1362,1,COMEX,USD,Hot-Rolled Coil Steel Index,US Midwest Domestic Hot Rolled Coil Steel
+1,HIGHYIELD,20344,1,CFE,USD,iBoxx iShares $ High Yield Corporate Bond Index TR,iBoxx iShares High Yield Corporate Bond Index
+1,OMX,600,1,EUREX,EUR,OMX Helsinki 25 Index,OMX Helsinki 25
+1,GICS,266,1,CME,USD,S&P-GSCI Index,Goldman Sachs Commodity Index
+1,EU-DJ-MEDIA,1402,1,EUREX,EUR,Dow Jones Euro STOXX Media Index,Euro STOXX Media
+1,KRWUSD,1058,0.001,CME,USD,Korean Won,Korean Won
+1,TWD,20546,1,SGX,USD,SGX Taiwan Dollar in US Dollar Futures (Full-Sized),TWD/USD
+1,EU-DJ-CHEM,1623,1,EUREX,EUR,Dow Jones Euro STOXX Chemicals,Euro STOXX Chemicals
+0,MSCIRUSSIA,,1,,,,
+1,EU-DJ-INDUSTRY,1317,1,EUREX,EUR,Dow Jones Euro STOXX Industrial Goods&Services,Euro STOXX Industrial Goods & Services
+1,NASBIO-mini,1030,1,CME,USD,CME E-Mini NASDAQ Biotechnology,e-mini Nasdaq Bio Index
+0,CNH-onshore,,1,,,,
+1,EU-DJ-RETAIL,1633,1,EUREX,EUR,Dow Jones Euro STOXX Retail,Euro STOXX Retail
+1,MILKWET,403,1,CME,USD,Class IV Milk - 200k lbs,Class IV Milk
+1,IG,20345,1,CFE,USD,iBoxx iShares $ Investment Grade Corporate Bond Index TR,iBoxx iShares Investment Grade Corporate Bond Index
+1,GAS-PEN,838,1,NYMEX,USD,Natural Gas Penultimate Financial Futures Index,Natural Gas Financial (Penultimate)
+1,EU-DJ-FINANCE,1625,1,EUREX,EUR,Dow Jones Euro STOXX Financial Services Index,Euro STOXX Financial Services
+1,BEL20,342,1,EURONEXT-BRUSSELS,EUR,BEL 20 Index (BFX@),Belgian 20 Index
+1,BOVESPA,1825,1,CME,USD,Bovespa Index - USD,Ibovespa (USD Denominated)
+1,PLN,950,1,CME,USD,Polish zloty,Polish Zloty/US Dollar
+1,JGB-mini,1783,1,OSE,JPY,Mini 10 Year JGB,10-Year Japanese Govt Bond Mini
+0,GOLD-CHINA,,1,,,,
+1,GASOILINE-mini,988,1,NYMEX,USD,NYMEX MINY Gasoline RBOB Index,mini Gasoline-Reformulated Blendstock
+1,ETHANOL,962,1,CBT,USD,Ethanol CME,Ethanol
+1,HOUSE-US,1018,1,CME,USD,Housing Index Composite,Composite Housing Index
+1,HOUSE-SD,1026,1,CME,USD,San Diego Housing Index,San Diego Housing Index
+1,HOUSE-SF,1027,1,CME,USD,San Francisco Housing Index,San Francisco Housing Index
+1,HEATOIL-mini,989,1,NYMEX,USD,NYMEX MINY Heating Oil Index,e-mini NY Harbor ULSD
+1,HOUSE-CG,1020,1,CME,USD,Chicago Housing Index,Chicago Housing Index
+1,HOUSE-DN,1021,1,CME,USD,Denver Housing Index,Denver Housing Index
+1,HOUSE-LV,1022,1,CME,USD,Las Vegas Housing Index,Las Vegas Housing Index
+1,HOUSE-LA,1023,1,CME,USD,Los Angeles Housing Index,Las Angeles Housing Index
+1,HUF,1122,0.01,CME,USD,Hungarian forint,Hungarian Forint
+1,USIRS30,1833,1,CBT,USD,30-Year Deliverable Interest Rate Swap Futures,30yr Deliverable Interest Rate Swap
+1,USIRS2,1842,1,CBT,USD,2-Year Deliverable Interest Rate Swap Futures,2yr Deliverable Interest Rate Swap
+1,HOUSE-BO,1019,1,CME,USD,Boston Housing Index,Boston Housing Index
+1,CLP,20294,1,CME,USD,Chilean peso,Chilean Peso
+1,CZK,1120,0.01,CME,USD,Czech koruna,Czech Koruna
+1,LIBOR1,142,1,CME,USD,1 Month LIBOR (Int. Rate),1-Month Eurodollar
+1,PLZEUR,951,1,CME,EUR,Polish zloty EURO,Polish Zloty/Euro
+1,IRS,1119,1,CME,USD,Israeli shekel,Isreali Shekel
+1,HOUSE-MI,1024,1,CME,USD,Miami Housing Index,Miami Housing Index
+1,NIKKEI-JPY,913,1,CME,JPY,Yen Denominated Nikkei 225 Index,Nikkei 225 Index (Yen)
+1,HOUSE-NY,1025,1,CME,USD,New York Housing Index,New York Housing Index
+1,SP500-GROWTH,401,1,CME,USD,S&P 500 / Citigroup Growth Index,S&P 500 BARRA Growth Index
+1,SP600-SMALL,736,1,CME,USD,E-Mini S&P SmallCap 600 Futures,e-mini S&P 600 Smallcap Index
+1,BRENT,1078,1,CLEAR,USD,NYMEX Brent Financial Futures Index,Brent Crude Financ.
+1,PIPELINE,1346,1,CLEAR,USD,Gulf Coast ULSD (Platts) Up-Down Futures,Up-Down GC USLD vs NYMEX HO Spread
+1,COTTON,1115,1,CLEAR,USD,NYMEX Cotton index,Cotton
+1,URANIUM,1174,1,COMEX,USD,NYMEX Uranium Index,UxC Uranium U3O8
+0,TOPIX30,,1,,,,
+0,DIVDAX-DIVI,,1,,,,
+0,AUDJPY,,1,,,,
+0,AUD-SGX,,1,,,,
+0,KRWJPY,,1,,,,
+0,JPY-SGX-TITAN,,1,,,,
+0,JPY-SGX,,1,,,,
+1,COTTON2,1144,0.01,ICE-US,USD,Cotton #2,Cotton #2
+1,SUGAR11,1140,0.01,ICE-US,USD,Sugar #11,Sugar #11
+1,OJ,1150,0.01,ICE-US,USD,Orange Juice (FCOJ-A),Frozen Orange Juice
+1,EUA,980,1,ICE-EU,EUR,ECX EU carbon emissions allowance futures,ECX EUA Emissions
+1,STERLING3,173,1,ICE-EU-FIN,GBP,3 month Sterling interest rate,3 Month Sterling
+1,FTSE100,209,1,ICE-EU-FIN,GBP,FTSE100 Index,FTSE 100 Index
+1,DX,1205,1,ICE-US,USD,US Dollar Index,U.S. Dollar Index
+1,GASOIL,134,1,ICE-EU,USD,ICE-EU Low Sulphur Gasoil,Low Sulphur Gasoil
+1,COCOA,1148,1,ICE-US,USD,Cocoa NY,Cocoa
+1,COFFEE,1146,0.01,ICE-US,USD,Coffee,Coffee
+1,ROBUSTA,816,1,ICE-EU-AGS,USD,Robusta Coffee,Robusta Coffee
+1,SPI200,728,1,ASX,AUD,ASX SPI200 Index,SPI 200 Index
+1,CORN_mini,1192,1
+1,SOYBEAN_mini,1194,1
+1,WHEAT_mini,1190,1
+1,JPY_micro,1817,1
+1,RUBBER,486,1
+1,VIX_mini,20382,1
+1,CANOLA,58,1
