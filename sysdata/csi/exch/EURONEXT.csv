@@ -1,0 +1,23 @@
+CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
+75,0,75,PTB,PTB,,EURONEXT-PARIS,"Euro Notionel Bond",,Settlement,"",0,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1986-02-20,2004-09-13,"","09:00 - 16:30",,"",2,0,1,0,0,
+79,0,79,FCH,FCH,FCE,EURONEXT-PARIS,"CAC 40 Index",,Settlement,"",1,1,10,EUR,"EUR10 x Index","points",5,5,SSVSSVSSVSSV,1988-08-18,2021-07-30,"","08:00 - 18:30",,"",1,0,1,0,1,59067
+320,0,320,AEX,AEX,FTI,EURONEXT-AMSTERDAM,"AEX Index",,Settlement,"",1,2,200,EUR,"EUR 200 x Index","points",1,2,SSVSSVSSVSSV,1992-10-09,2021-07-30,"","08:00 - 18:30",,"",2,0,1,0,1,19020
+338,0,338,OBX,OBX,,EURONEXT-OSLO,"OBX Index",,Settlement,"",1,1,100,NOK,"NOK100 x Index","points",5,5,SSVSSVSSVSSV,1993-09-17,2021-07-30,"","08:30 - 16:20",,"",2,0,1,1,1,1036
+342,0,342,BFX,BFX,,EURONEXT-BRUSSELS,"Belgian 20 Index",,Settlement,"",1,1,10,EUR,"EUR 10 x Index","points",1,1,VVVVVVVVVVVV,1993-10-29,2021-07-30,"","09:00 - 16:00",,"",1,0,1,0,1,1
+357,0,357,ETC,ETC,RSM,EURONEXT-PARIS,"Rapeseed Meal",,Settlement,"",1,0.3,30,EUR,"30 metric tons","EUR/metric ton",25,7.5,IIVIIVIIVIIV,1999-10-29,2021-07-30,"","10:45 - 18:30",,"",2,0,1,0,1,0
+358,0,358,COM,COM,ECO,EURONEXT-PARIS,"Rapeseed",,Settlement,"",1,5,50,EUR,"50 metric tons","EUR/tonne",2.5,12.5,IVIIVIIVIIVI,1994-10-28,2021-07-30,"","10:45 - 19:00",,"",1,1,1,0,1,9915
+488,0,488,YR5,YR5,,EURONEXT-PARIS,"French 5 Year Govt Bond",,Settlement,"",0,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1997-09-10,2004-06-14,"","08:30 - 16:30",,"",2,0,1,0,0,
+491,0,491,PSI,PSI,,EURONEXT-LISBON,"PSI 20 Index",,Settlement,"",1,1,1,EUR,"EUR 1 x Index","points",1,1,IIVIIVIIVIIV,1997-09-03,2021-07-30,"","09:30 - 16:30",,"",0,0,1,1,1,0
+517,0,517,BL2,BL2,EBM,EURONEXT-PARIS,"Milling Wheat",,Settlement,"",1,0.5,50,EUR,"50 tonnes","EUR/tonne",25,12.5,IIVIVIIIVIIV,1998-03-27,2021-07-30,"","11:15 - 18:00",,"",2,0,1,0,1,90135
+548,0,548,EVL,EVL,,EURONEXT-PARIS,"Euro Bond 30-Yr",,Settlement,"",0,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1998-09-28,2003-03-17,"","08:00 - 16:30",,"",2,0,0,0,1,
+578,0,578,EST,EST,,EURONEXT-PARIS,"EURIBOR-3 Mth",,Settlement,"",0,2.5,2500,EUR,"EUR1000000","percent",5,12.5,SSVSSVSSVSSV,1998-11-27,2003-03-19,"","08:30 - 16:00",,"",3,0,0,0,1,
+579,0,579,YR2,YR2,,EURONEXT-PARIS,"Euro Note-2 Yr(3.5%)",,Settlement,"",0,10,1000,EUR,"EUR100000","percent",1,10,IIVIIVIIVIIV,1999-01-29,2003-03-17,"","08:30 - 16:30",,"",2,0,0,0,1,
+589,0,589,EMA,EMA,,EURONEXT-PARIS,"Corn",,Settlement,"",1,0.5,50,EUR,"50 metric tons","EUR/metric ton",25,12.5,VIVIIVIVIIVI,1999-10-01,2021-07-30,"","10:45 - 18:30",,"",2,0,1,0,1,1801
+687,0,687,EGT,EGT,,EURONEXT-PARIS,"Sunflower Seeds",,Settlement,"",0,0.01,1,EUR,"50 tonnes","EUR/tonne",25,0.25,IVIVIVIVIVIV,2002-02-18,2003-04-09,"","10:30 - 18:30",,"",2,0,0,0,1,
+100131,0,1131,EHC,EHC,,EURONEXT-PARIS,"Rapeseed Oil-EURONEXT Paris",,Settlement,"",0,0.5,50,EUR,"50 tonnes","EUR/tonne",50,25,IVIIVIIVIIVI,2007-01-23,2010-03-15,"","10:45 - 18:30",,"",2,0,1,0,1,
+100389,0,1389,F2H,F2H,,EURONEXT-PARIS,"CAC 40 Index",,Last,"",1,1,10,EUR,"EUR 10 x Index","points",5,5,SSVSSVSSVSSV,2008-12-22,2021-07-30,"","08:00 - 18:30",,"",1,0,1,0,1,59067
+100539,0,1539,EOB,EOB,EOB,EURONEXT-PARIS,"Malting Barley",,Settlement,"",0,50,5000,EUR,"50 tonnes","EUR/tonne",25,1250,VIVIVIIVIIVI,2010-05-13,2015-04-03,"","05:45 - 13:30",,"",2,0,1,0,1,
+100820,0,1820,C4X,C4X,XFC,EURONEXT-PARIS,"CAC 40 Dividend Index",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",10,1,IISIISIISIIV,2012-10-15,2021-07-30,"","08:00 - 18:15",,"",2,0,1,0,1,0
+100821,0,1821,AFX,AFX,AXF,EURONEXT-AMSTERDAM,"AEX Dividend Index",,Settlement,"",1,2,200,EUR,"EUR 200 x Index","points",1,2,IIIIIIIIIIIV,2012-10-15,2021-07-30,"","08:00 - 18:15",,"",2,0,1,0,1,0
+100993,0,1993,EPR,EPR,EPR,EURONEXT-PARIS,"FTSE EPRA/NAREIT EUROPE INDEX",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",50,5,IIVIIVIIVIIV,2007-10-01,2021-07-30,"","08:00 - 20:00",,"",2,0,1,0,1,105
+200109,0,20109,BMS,BMS,BMS,EURONEXT-PARIS,"Premium Milling Wheat No. 3",,Settlement,"",0,0.5,50,EUR,"50 tonnes","EUR/tonne",25,12.5,IIVIVIIIVIIV,2015-02-12,2016-04-12,"","10:45 - 18:30",,"",2,0,0,0,1,
