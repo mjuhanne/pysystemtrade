@@ -87,7 +87,7 @@ def write_portfolio_csv(filename):
 
     print("Saving", instr_count, "instruments...")
     f = open(filename,"w")
-    df.to_csv(f, index=False)
+    df.to_csv(f, index=False, header=False)
     f.close()
 
 
