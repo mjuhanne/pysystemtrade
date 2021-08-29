@@ -107,6 +107,23 @@ def from_config_frequency_to_frequency(freq_as_str: str) -> Frequency:
 
     return frequency
 
+def from_frequency_to_config_frequency(freq: Frequency) -> str:
+    LOOKUP_TABLE = {
+    	Frequency.Year: 'Y',
+		Frequency.Month: 'm',
+		Frequency.Week: 'W',
+		Frequency.Day: 'D',
+		Frequency.BDay: 'B',
+		Frequency.Hour: 'H',
+		Frequency.Minutes_15: '15M',
+		Frequency.Minutes_5: '5M',
+		Frequency.Minute: 'M',
+		Frequency.Seconds_10: '10S',
+		Frequency.Second: 'S',
+	}
+    config_freq = LOOKUP_TABLE.get(freq, missing_data)
+
+    return config_freq
 
 def month_from_contract_letter(contract_letter: str) -> int:
     """
