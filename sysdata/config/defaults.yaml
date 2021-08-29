@@ -32,6 +32,14 @@ echo_directory: 'data.echos'
 ib_ipaddress: 127.0.0.1
 ib_port: 4001
 ib_idoffset: 100
+
+# Configuration of different data sources for historical price data
+# See alternative_data_sources.md for more information on how to configure this section
+historical_data_sources:
+  IB:
+    func: "sysproduction.update_historical_prices_from_ib.update_historical_prices"
+    enabled: True
+
 #
 # Mongo DB
 mongo_host: 127.0.0.1
