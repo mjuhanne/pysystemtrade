@@ -1,7 +1,7 @@
 import datetime
 from ib_insync import ContractDetails as ibContractDetails
 
-from syscore.dateutils import adjust_trading_hours_conservatively
+from syscore.dateutils import adjust_trading_hours_conservatively, convert_utc_datetime_to_local
 
 
 def get_conservative_trading_hours(ib_contract_details: ibContractDetails):
@@ -22,7 +22,7 @@ def get_conservative_trading_hours(ib_contract_details: ibContractDetails):
 def get_trading_hours(ib_contract_details: ibContractDetails) -> list:
     try:
         time_zone_id = ib_contract_details.timeZoneId
-        time_zone_adjustment = get_time_difference(time_zone_id)
+        time_zone_adjustment = get_time_difference(time_zone_id) # exchange local time to UTC+0
         one_off_adjustment = one_off_adjustments(ib_contract_details.contract.symbol)
 
         trading_hours_string = ib_contract_details.tradingHours
@@ -95,8 +95,8 @@ def parse_phrase(phrase: str, adjustment_hours: int = 0, additional_adjust: int 
     total_adjustment = adjustment_hours + additional_adjust
     original_time = datetime.datetime.strptime(phrase, "%Y%m%d:%H%M")
     adjustment = datetime.timedelta(hours=total_adjustment)
-
-    return original_time + adjustment
+    adjusted_time = original_time + adjustment
+    return convert_utc_datetime_to_local( adjusted_time )
 
 
 def get_conservative_trading_time_UTC(time_zone_id: str) -> tuple:
@@ -114,6 +114,8 @@ def get_conservative_trading_time_UTC(time_zone_id: str) -> tuple:
 
 
 def get_time_difference(time_zone_id: str) -> int:
+    # Gets time difference between exchange's local time and UTC+0
+    #
     # Doesn't deal with DST. We will be conservative and only trade 1 hour
     # after and 1 hour before
     # confusingly, IB seem to have changed their time zone codes in 2020
