@@ -10,6 +10,8 @@ import calendar
 import pandas as pd
 import numpy as np
 
+from dateutil.tz import tz
+from syscore.genutils import sign
 from syscore.objects import missing_data, arg_not_supplied
 
 """
@@ -351,6 +353,16 @@ def adjust_timestamp_to_include_notional_close_and_time_offset(
         new_datetime = timestamp + time_offset
 
     return new_datetime
+
+
+def convert_utc_datetime_to_local( dt:datetime.datetime ) -> datetime.datetime:
+    """
+    Converts naive datetime (without tz attached but which is actually in UTC+0) to local time 
+    """
+    dt_tz = dt.replace(tzinfo=tz.UTC) # make the tz-unaware datetime as UTC+0
+    dt_local = dt_tz.astimezone(tz.tzlocal())  # convert to local time
+    dt_stripped = strip_timezone_fromdatetime(dt_local)
+    return dt_stripped
 
 
 def strip_timezone_fromdatetime(timestamp_with_tz_info) -> datetime.datetime:
