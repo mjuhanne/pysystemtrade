@@ -270,3 +270,9 @@ WHEAT_mini,10,0,2.9,0,Ags,USD,Wheat mini,0.25
 WTI_micro,100,0,0.7,0,OilGas,USD,micro WTI crude oil,0.01
 XINA,1,,,,Equity,USD,Chinese equity index,
 YENEUR,125000,0,1.5,0,FX,JPY,YENEUR currency,0.01
+EUR_micro,12500,0,0.33,0,FX,USD,Micro EURUSD currency,5E-05
+AUD_micro,10000,0,0.33,0,FX,USD,Micro AUDUSD currency,5E-05
+CAD_micro,10000,0,0.33,0,FX,USD,Micro CADUSD currency,5E-05
+CHF_micro,12500,0,0.33,0,FX,USD,Micro CHFUSD currency,5E-05
+GBP_micro,6250,0,0.33,0,FX,USD,Micro GBPUSD currency,5E-05
+BITCOIN5,0.1,0,5,0,Metals,USD,Bitcoin (5 coins),50
