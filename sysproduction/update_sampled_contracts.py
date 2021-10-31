@@ -418,3 +418,6 @@ def check_and_stop_expired_contract_sampling(contract: futuresContract, data: da
             "Contract %s has expired so now stopped sampling" % str(contract),
             contract_date=contract.date_str,
         )
+
+if __name__ == "__main__":
+    update_sampled_contracts()
