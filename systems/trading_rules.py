@@ -104,6 +104,9 @@ class TradingRule(object):
         """
 
         list_of_data_for_call = self._get_data_from_system(system, instrument_code)
+        if 'instrument_code' in self._function.__code__.co_varnames:
+            self.other_args['instrument_code'] = instrument_code
+
         result = self._call_with_data(list_of_data_for_call)
 
         # Check for all zeros
