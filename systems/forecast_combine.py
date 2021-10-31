@@ -1343,12 +1343,15 @@ def _get_fixed_weights_from_config(
             % (instrument_code, str(fixed_weights))
         )
     else:
-        # assume it's a non nested dict
-        fixed_weights = forecast_weights_config
-        log.msg(
-            "Non-nested dict of forecast weights for %s %s: weights the same for all instruments"
-            % (instrument_code, str(fixed_weights))
-        )
+        if 'ALL' in forecast_weights_config:
+            fixed_weights = forecast_weights_config['ALL']
+        else:
+            # assume it's a non nested dict
+            fixed_weights = forecast_weights_config
+            log.msg(
+            	"Non-nested dict of forecast weights for %s %s: weights the same for all instruments"
+            	% (instrument_code, str(fixed_weights))
+            )
 
     return fixed_weights
 
@@ -1405,15 +1408,16 @@ def _get_list_of_rules_from_config_for_instrument(
             # nested dict
             rules = config.forecast_weights[instrument_code].keys()
         else:
-            # seems it's a non nested dict (weights same across instruments), but let's check
-            # that just in case it IS nested dict but instrument weight is missing
-            for val in config.forecast_weights.values():
-                if isinstance(val, dict):
-                    # so it is a nested dict..
-                    raise Exception(
-                        "Missing forecast weight for instrument ", instrument_code
-                    )
-            rules = config.forecast_weights.keys()
+            if 'ALL' in config.forecast_weights:
+                rules = config.forecast_weights['ALL'].keys()
+            else:
+                # seems it's a non nested dict (weights same across instruments), but let's check
+                # that just in case it IS nested dict but instrument weight is missing
+                for val in config.forecast_weights.values():
+                    if isinstance(val, dict):
+                        # so it is a nested dict..
+                        raise Exception("Missing forecast weight for instrument ", instrument_code)
+                rules = config.forecast_weights.keys()
     else:
         ## forecast weights not supplied as a config item, use the name of the rules
         rules = (
