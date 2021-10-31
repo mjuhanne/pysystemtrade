@@ -1,3 +1,4 @@
+import collections
 from syscore.objects import arg_not_supplied
 
 from sysdata.csv.csv_futures_contract_prices import csvFuturesContractPriceData
@@ -33,6 +34,7 @@ def init_arctic_with_csv_futures_contract_prices_for_code(
 
     print("Getting .csv prices may take some time")
     csv_price_dict = csv_prices.get_all_prices_for_instrument(instrument_code)
+    csv_price_dict = collections.OrderedDict(sorted(csv_price_dict.items()))
 
     print("Have .csv prices for the following contracts:")
     print(str(csv_price_dict.keys()))
