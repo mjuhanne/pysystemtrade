@@ -125,8 +125,8 @@ Enabled,Id,CSI,UnitMultiplier,Exchange,Currency,OurDescription,CSI_Description
 1,NASDAQ_micro,20334,1,CME,USD,NASDAQ micro,Micro E-mini Nasdaq 100 Index
 1,SP500_micro,20333,1,CME,USD,S&P 500 micro,Micro E-mini S&P 500 Index
 1,LUMBER,27,1,CME,USD,Random Length Lumber,Lumber
-1,Ethereum,20390,1,CME,USD,CME CF Ether-Dollar Reference Rate,Ethereum (ETH/USD)
-1,EU-Construction,1628,1,EUREX,EUR,Dow Jones STOXX 600 Construction & Materials,STOXX Europe 600 Construction
+1,ETHEREUM,20390,1,CME,USD,CME CF Ether-Dollar Reference Rate,Ethereum (ETH/USD)
+1,EU-CONSTRUCTION,1628,1,EUREX,EUR,Dow Jones STOXX 600 Construction & Materials,STOXX Europe 600 Construction
 1,EU-DIV50,1426,1,EUREX,EUR,Dow Jones EURO STOXX 50 Index-Dividenden,DJ Euro STOXX 50 Index Dividend
 1,FED,74,1,CBT,USD,30 Day Fed Funds,30 Day Federal Funds
 1,MID-DAX,443,1,EUREX,EUR,Midcap DAX,DAX Midcap Index
@@ -253,3 +253,4 @@ Enabled,Id,CSI,UnitMultiplier,Exchange,Currency,OurDescription,CSI_Description
 1,CHF_micro,1818,1
 1,COCOA_LDN,49,1
 1,BITCOIN5,20310,1
+1,MILLINGWHEAT,517,1
