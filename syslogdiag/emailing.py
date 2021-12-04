@@ -18,9 +18,7 @@ def send_mail_file(textfile, subject):
     msg = MIMEText(fp.read())
     fp.close()
 
-    msg["Subject"] = subject
-
-    _send_msg(msg)
+    _send_msg(msg, subject)
 
 
 def send_mail_msg(body, subject):
@@ -32,10 +30,9 @@ def send_mail_msg(body, subject):
     # Create a text/plain message
     msg = MIMEMultipart()
 
-    msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
 
-    _send_msg(msg)
+    _send_msg(msg, subject)
 
 
 def send_mail_pdfs(preamble, filelist, subject):
@@ -46,7 +43,6 @@ def send_mail_pdfs(preamble, filelist, subject):
 
     # Create a text/plain message
     msg = MIMEMultipart()
-    msg["Subject"] = subject
     msg.preamble = preamble
 
     for file in filelist:
@@ -56,21 +52,25 @@ def send_mail_pdfs(preamble, filelist, subject):
         attach.add_header("Content-Disposition", "attachment", filename="file.pdf")
         msg.attach(attach)
 
-    _send_msg(msg)
+    _send_msg(msg, subject)
 
 
-def _send_msg(msg):
+def _send_msg(msg, subject):
     """
     Send a message composed by other things
 
     """
 
-    email_server, email_address, email_pwd, email_to, email_port = get_email_details()
+    email_server, email_address, email_pwd, email_to, email_port, email_prefix = get_email_details()
 
     me = email_address
     you = email_to
     msg["From"] = me
     msg["To"] = you
+    if email_prefix != "":
+        msg["Subject"] = email_prefix + ": " + subject
+    else:
+        msg["Subject"] = subject
 
     # Send the message via our own SMTP server, but don't include the
     # envelope header.
@@ -100,4 +100,10 @@ def get_email_details():
             "email_port",
         )
 
-    return email_server, email_address, email_pwd, email_to, email_port
+    email_prefix = ""
+    try:
+        email_prefix = production_config.email_prefix
+    except:
+        pass
+
+    return email_server, email_address, email_pwd, email_to, email_port, email_prefix
