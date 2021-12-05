@@ -43,6 +43,8 @@ def from_ib_positions_to_dict(
     position_methods = dict(
         STK=resolve_ib_stock_position,
         FUT=resolve_ib_future_position,
+        OPT=resolve_ib_option_position,
+        FOP=resolve_ib_future_option_position,
         CASH=resolve_ib_cash_position,
     )
     for position in raw_positions:
@@ -83,6 +85,28 @@ def resolve_ib_future_position(position):
     return dict(
         account=position.account,
         symbol=position.contract.symbol,
+        expiry=position.contract.lastTradeDateOrContractMonth,
+        multiplier=float(position.contract.multiplier),
+        currency=position.contract.currency,
+        position=position.position,
+    )
+
+def resolve_ib_option_position(position):
+
+    return dict(
+        account=position.account,
+        symbol=position.contract.localSymbol,
+        expiry=position.contract.lastTradeDateOrContractMonth,
+        multiplier=float(position.contract.multiplier),
+        currency=position.contract.currency,
+        position=position.position,
+    )
+
+def resolve_ib_future_option_position(position):
+
+    return dict(
+        account=position.account,
+        symbol=position.contract.localSymbol,
         expiry=position.contract.lastTradeDateOrContractMonth,
         multiplier=float(position.contract.multiplier),
         currency=position.contract.currency,
