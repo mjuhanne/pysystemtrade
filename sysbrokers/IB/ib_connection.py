@@ -7,8 +7,8 @@ import time
 
 from ib_insync import IB
 
-from sysbrokers.IB.ib_connection_defaults import ib_defaults
-from syscore.objects import missing_data, arg_not_supplied
+from sysbrokers.IB.ib_connection_defaults import ib_defaults, alternative_ib_defaults
+from syscore.objects import missing_data,arg_not_supplied
 
 from syslogdiag.log_to_screen import logtoscreen
 
@@ -28,6 +28,7 @@ class connectionIB(object):
         ib_port: int = arg_not_supplied,
         account: str = arg_not_supplied,
         log=logtoscreen("connectionIB"),
+        alternative_connection=False
     ):
         """
         :param client_id: client id
@@ -40,7 +41,10 @@ class connectionIB(object):
 
         # resolve defaults
 
-        ipaddress, port, __ = ib_defaults(ib_ipaddress=ib_ipaddress, ib_port=ib_port)
+        if alternative_connection:
+            ipaddress, port, __ = alternative_ib_defaults(ib_ipaddress=ib_ipaddress, ib_port=ib_port)
+        else:
+            ipaddress, port, __ = ib_defaults(ib_ipaddress=ib_ipaddress, ib_port=ib_port)
 
         # The client id is pulled from a mongo database
         # If for example you want to use a different database you could do something like:
@@ -57,19 +61,21 @@ class connectionIB(object):
 
         ib = IB()
 
-        if account is arg_not_supplied:
-            ## not passed get from config
-            account = get_broker_account()
-
-        ## that may still return missing data...
-        if account is missing_data:
-            self.log.error(
-                "Broker account ID not found in private config - may cause issues"
-            )
+        if alternative_connection:
+            # connect without account id
             ib.connect(ipaddress, port, clientId=client_id)
         else:
-            ## conncect using account
-            ib.connect(ipaddress, port, clientId=client_id, account=account)
+            if account is arg_not_supplied:
+                ## not passed get from config
+                account = get_broker_account()
+
+            ## that may still return missing data...
+            if account is missing_data:
+                self.log.error("Broker account ID not found in private config - may cause issues")
+                ib.connect(ipaddress, port, clientId=client_id)
+            else:
+                ## connect using account
+                ib.connect(ipaddress, port, clientId=client_id, account=account)
 
         # Sometimes takes a few seconds to resolve... only have to do this once per process so no biggie
         time.sleep(5)

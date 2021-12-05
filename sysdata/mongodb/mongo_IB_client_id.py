@@ -2,10 +2,12 @@ from sysbrokers.IB.client.ib_client_id import ibBrokerClientIdData
 from syscore.objects import arg_not_supplied
 from sysdata.mongodb.mongo_generic import mongoDataWithSingleKey
 from syslogdiag.log_to_screen import logtoscreen
+from sysbrokers.IB.ib_connection_defaults import alternative_ib_defaults
+
 
 IB_CLIENT_COLLECTION = "IBClientTracker"
-IB_ID_REF = "client_id"
-
+IB_ALT_CLIENT_COLLECTION = "IBAltClientTracker"
+IB_ID_REF = 'client_id'
 
 class mongoIbBrokerClientIdData(ibBrokerClientIdData):
     """
@@ -46,3 +48,20 @@ class mongoIbBrokerClientIdData(ibBrokerClientIdData):
         """
         self.mongo_data.delete_data_without_any_warning(clientid)
         self.log.msg("Released IB client ID %d" % clientid)
+
+
+class mongoIbBrokerAlternativeClientIdData(mongoIbBrokerClientIdData):
+    def __init__(
+        self,
+        mongo_db=arg_not_supplied,
+        idoffset=arg_not_supplied,
+        log=logtoscreen("mongoAltIDTracker"),
+    ):
+
+        if idoffset is arg_not_supplied:
+            _notused_ipaddress, _notused_port, idoffset = alternative_ib_defaults()
+
+        super().__init__(log=log, idoffset=idoffset)
+        self._mongo_data = mongoDataWithSingleKey(IB_ALT_CLIENT_COLLECTION, IB_ID_REF, mongo_db)
+
+

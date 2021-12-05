@@ -8,7 +8,7 @@ from sysdata.mongodb.mongo_connection import mongoDb
 from sysdata.mongodb.mongo_log import logToMongod
 from syslogdiag.logger import logger
 
-from sysdata.mongodb.mongo_IB_client_id import mongoIbBrokerClientIdData
+from sysdata.mongodb.mongo_IB_client_id import mongoIbBrokerClientIdData, mongoIbBrokerAlternativeClientIdData
 
 
 class dataBlob(object):
@@ -18,6 +18,7 @@ class dataBlob(object):
         log_name: str = "",
         csv_data_paths: dict = arg_not_supplied,
         ib_conn: connectionIB = arg_not_supplied,
+        ib_alt_conn: connectionIB=arg_not_supplied,
         mongo_db: mongoDb = arg_not_supplied,
         log: logger = arg_not_supplied,
         keep_original_prefix: bool = False,
@@ -60,6 +61,7 @@ class dataBlob(object):
 
         self._mongo_db = mongo_db
         self._ib_conn = ib_conn
+        self._ib_alt_conn = ib_alt_conn
         self._log = log
         self._log_name = log_name
         self._csv_data_paths = csv_data_paths
@@ -123,7 +125,16 @@ class dataBlob(object):
     def _add_ib_class(self, class_object):
         log = self._get_specific_logger(class_object)
         try:
-            resolved_instance = class_object(self.ib_conn, log=log)
+            alternative_connection = False
+            class_name = get_class_name(class_object)
+            if hasattr(self.config,"alternative_ib_connection_classes"):
+                if class_name in getattr(self.config,"alternative_ib_connection_classes"):
+                    alternative_connection = True
+
+            if alternative_connection:
+                resolved_instance = class_object(self.ib_alt_conn, log = log)
+            else:
+                resolved_instance = class_object(self.ib_conn, log = log)
         except Exception as e:
             class_name = get_class_name(class_object)
             msg = (
@@ -265,6 +276,11 @@ class dataBlob(object):
             self.ib_conn.close_connection()
             self.db_ib_broker_client_id.release_clientid(self.ib_conn.client_id())
 
+        if self._ib_alt_conn is not arg_not_supplied:
+            self.ib_alt_conn.close_connection()
+            self.db_ib_broker_alternative_client_id.release_clientid(
+                self.ib_alt_conn.client_id())
+
         # No need to explicitly close Mongo connections; handled by Python garbage collection
 
     @property
@@ -276,30 +292,51 @@ class dataBlob(object):
 
         return ib_conn
 
-    def _get_new_ib_connection(self) -> connectionIB:
+    @property
+    def ib_alt_conn(self) -> connectionIB:
+        ib_alt_conn = getattr(self, "_ib_alt_conn", arg_not_supplied)
+        if ib_alt_conn is arg_not_supplied:
+            ib_alt_conn = self._get_new_ib_connection(alternative_connection=True)
+            self._ib_alt_conn = ib_alt_conn
+
+        return ib_alt_conn
+
+
+    def _get_new_ib_connection(self, alternative_connection=False) -> connectionIB:
         # Try this 5 times...
         attempts = 0
         failed_ids = []
-        client_id = self._get_next_client_id_for_ib()
+        client_id = self._get_next_client_id_for_ib(alternative_connection=alternative_connection)
         while True:
             try:
-                ib_conn = connectionIB(client_id, log=self.log)
+                ib_conn = connectionIB(client_id, log=self.log, alternative_connection=alternative_connection)
                 for id in failed_ids:
-                    self.db_ib_broker_client_id.release_clientid(id)
+                    if alternative_connection:
+                        self.db_ib_broker_alternative_client_id.release_clientid(id)
+                    else:
+                        self.db_ib_broker_client_id.release_clientid(id)
                 return ib_conn
             except Exception as e:
                 failed_ids.append(client_id)
-                client_id = self._get_next_client_id_for_ib()
+                client_id = self._get_next_client_id_for_ib(alternative_connection=alternative_connection)
                 attempts += 1
                 if attempts > 5:
                     for id in failed_ids:
-                        self.db_ib_broker_client_id.release_clientid(id)
+                        if alternative_connection:
+                            self.db_ib_broker_alternative_client_id.release_clientid(id)
+                        else:
+                            self.db_ib_broker_client_id.release_clientid(id)
                     raise e
 
-    def _get_next_client_id_for_ib(self) -> int:
+
+    def _get_next_client_id_for_ib(self, alternative_connection=False) -> int:
         ## default to tracking ID through mongo change if required
-        self.add_class_object(mongoIbBrokerClientIdData)
-        client_id = self.db_ib_broker_client_id.return_valid_client_id()
+        if alternative_connection:
+            self.add_class_object(mongoIbBrokerAlternativeClientIdData)
+            client_id = self.db_ib_broker_alternative_client_id.return_valid_client_id()
+        else:    
+            self.add_class_object(mongoIbBrokerClientIdData)
+            client_id = self.db_ib_broker_client_id.return_valid_client_id()
 
         return int(client_id)
 
