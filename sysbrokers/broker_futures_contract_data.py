@@ -36,7 +36,8 @@ class brokerFuturesContractData(futuresContractData):
         self, contract_object: futuresContract, N_hours: float = 1.0
     ) -> bool:
         trading_hours = self.get_trading_hours_for_contract(contract_object)
-
+        if trading_hours is missing_contract:
+            return False
         return trading_hours.less_than_N_hours_left(N_hours=N_hours)
 
     def get_trading_hours_for_contract(self, futures_contract: futuresContract) -> \
