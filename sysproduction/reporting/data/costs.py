@@ -234,12 +234,15 @@ def get_average_half_spread_from_sampling(data, start_date, end_date):
     diag_prices = diagPrices(data)
     list_of_instruments = diag_prices.get_list_of_instruments_with_spread_data()
 
+    if len(list_of_instruments) == 0:
+        return pd.Series([]), pd.Series([])
+
     spreads_and_counts_as_list = [
-        get_average_sampled_half_spread_and_count_for_instrument(
-            data, instrument_code, start_date=start_date, end_date=end_date
-        )
+    	get_average_sampled_half_spread_and_count_for_instrument(
+    		data, instrument_code, start_date=start_date, end_date=end_date
+    	)
         for instrument_code in list_of_instruments
-    ]
+	]
 
     spreads_as_df = pd.DataFrame(spreads_and_counts_as_list, index=list_of_instruments)
 
