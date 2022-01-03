@@ -5,7 +5,7 @@ A strategy report is highly specific to a strategy, and will delve into the inte
 
 """
 
-from syscore.objects import arg_not_supplied
+from syscore.objects import arg_not_supplied, missing_data
 
 from sysdata.data_blob import dataBlob
 from sysproduction.data.backtest import dataBacktest
@@ -62,6 +62,9 @@ def get_output_for_single_strategy(data, strategy_name, timestamp=arg_not_suppli
         backtest = data_backtest.get_most_recent_backtest(strategy_name)
     else:
         backtest = data_backtest.load_backtest(strategy_name, timestamp)
+
+    if backtest is missing_data:
+        return []
 
     strategy_format_output_list = strategy_reporting_function(data, backtest)
 

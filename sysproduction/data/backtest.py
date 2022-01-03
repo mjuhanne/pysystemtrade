@@ -76,6 +76,9 @@ class dataBacktest(productionDataLayerGeneric):
         list_of_timestamps = sorted(
             self.get_list_of_timestamps_for_strategy(strategy_name)
         )
+        if len(list_of_timestamps) == 0:
+            return missing_data
+        
         # most recent last
         timestamp_to_use = list_of_timestamps[-1]
 
