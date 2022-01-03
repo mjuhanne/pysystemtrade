@@ -32,6 +32,7 @@ exchange_groups = [
                     ["KSE","KRX"],
                     ["ECBOT","CBT"],
                     ["FTA" , "EURONEXT-AMSTERDAM", "EOE"],
+                    ["MATIF" , "EURONEXT"],
                     ["MONEP" , "EURONEXT-PARIS", "EURONEXT"],
                     ["BELFOX","EURONEXT-BRUSSELS", "EURONEXT"],
                     ["OSE.JPN" , "OSE"],
@@ -114,7 +115,7 @@ class csiValidator(object):
             print(" - Error! Instrument %s (%d) not found in CSI database!" % (instrument, csi_id))
             return False
 
-        print("Processing instrument %s (%d)" % (instrument, csi_id))
+        print("Processing instrument %s (%s)" % (instrument, csi_id))
 
         valid = True
 

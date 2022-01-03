@@ -168,7 +168,7 @@ class csiInstrumentDatabase(object):
             return missing_instrument
         if pd.isnull(res.iloc[-1].at[CSI_ID_COLUMN]):
             return missing_instrument
-        return res.iloc[-1].at[CSI_ID_COLUMN]
+        return str(int(res.iloc[-1].at[CSI_ID_COLUMN])) # drop annoying trailing .0
 
     def get_csi_instrument_metadata(self, csi_id:str) -> pd.Series:
         if self.markets is None:
