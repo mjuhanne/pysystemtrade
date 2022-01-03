@@ -200,9 +200,12 @@ class RawData(SystemStage):
         """
 
         # UGLY
-        denom_price = self.daily_denominator_price(instrument_code)
-        num_returns = self.daily_returns(instrument_code)
-        perc_returns = num_returns / denom_price.ffill()
+        try:
+            denom_price = self.daily_denominator_price(instrument_code)
+            num_returns = self.daily_returns(instrument_code)
+            perc_returns = num_returns / denom_price.ffill()
+        except:
+            return pd.Series([])
 
         return perc_returns
 
@@ -264,9 +267,12 @@ class RawData(SystemStage):
             instrument_code=instrument_code,
         )
 
-        returnvol = self.daily_returns_volatility(instrument_code).shift(1)
-        dailyreturns = self.daily_returns(instrument_code)
-        norm_return = dailyreturns / returnvol
+        try:
+            returnvol = self.daily_returns_volatility(instrument_code).shift(1)
+            dailyreturns = self.daily_returns(instrument_code)
+            norm_return = dailyreturns / returnvol
+        except:
+            return pd.Series([])
 
         return norm_return
 
@@ -534,11 +540,14 @@ class RawData(SystemStage):
         :return: Tx1 pd.DataFrame
         """
 
-        daily_ann_roll = self.daily_annualised_roll(instrument_code)
-        vol = self.daily_returns_volatility(instrument_code)
+        try:
+            daily_ann_roll = self.daily_annualised_roll(instrument_code)
+            vol = self.daily_returns_volatility(instrument_code)
 
-        ann_stdev = vol * ROOT_BDAYS_INYEAR
-        raw_carry = daily_ann_roll / ann_stdev
+            ann_stdev = vol * ROOT_BDAYS_INYEAR
+            raw_carry = daily_ann_roll / ann_stdev
+        except:
+            return pd.Series([])
 
         return raw_carry
 
