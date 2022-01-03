@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 
 from syscore.objects import get_methods, missing_data
-from syscore.dateutils import ARBITRARY_START
+from syscore.dateutils import ARBITRARY_START, ARBITRARY_END
 from syscore.pdutils import prices_to_daily_prices
 from sysdata.base_data import baseData
 
@@ -74,19 +74,26 @@ class simData(baseData):
     def parent(self):
         return self._parent
 
-    def start_date_for_data(self):
+    def date_range_for_data(self):
         start_date = getattr(self, "_start_date_for_data_from_config", missing_data)
+        end_date = getattr(self, "_end_date_for_data_from_config", missing_data)
 
+        if start_date is missing_data or end_date is missing_data:
+            (start_date, end_date) = self._get_and_set_date_range_for_data_from_config()
+
+        return (start_date, end_date)
+
+    def _get_and_set_date_range_for_data_from_config(self) -> datetime:
+        start_date = _resolve_date(self, "start_date")
         if start_date is missing_data:
-            start_date = self._get_and_set_start_date_for_data_from_config()
-
-        return start_date
-
-    def _get_and_set_start_date_for_data_from_config(self) -> datetime:
-        start_date = _resolve_start_date(self)
+            start_date = ARBITRARY_START
         self._start_date_for_data_from_config = start_date
+        end_date = _resolve_date(self, "end_date")
+        if end_date is missing_data:
+            end_date = ARBITRARY_END
+        self._end_date_for_data_from_config = end_date
 
-        return start_date
+        return (start_date, end_date)
 
     def methods(self) -> list:
         return get_methods(self)
@@ -149,15 +156,13 @@ class simData(baseData):
         :returns: pd.Series
 
         """
-        start_date = self.start_date_for_data()
+        (start_date, end_date) = self.date_range_for_data()
 
-        return self.get_raw_price_from_start_date(
-            instrument_code, start_date=start_date
-        )
+        return self.get_raw_price_for_date_range(instrument_code,
+                                                  start_date=start_date, end_date=end_date)
 
-    def get_raw_price_from_start_date(
-        self, instrument_code: str, start_date: datetime.datetime
-    ) -> pd.Series:
+    def get_raw_price_for_date_range(self, instrument_code: str,
+                                      start_date: datetime.datetime, end_date: datetime.datetime) -> pd.Series:
         """
         Default method to get instrument price at 'natural' frequency
 
@@ -242,15 +247,15 @@ class simData(baseData):
 
 
         """
-        start_date = self.start_date_for_data()
+        (start_date, end_date) = self.date_range_for_data()
 
-        return self._get_fx_data_from_start_date(
-            currency1, currency2, start_date=start_date
-        )
+        return self._get_fx_data_for_date_range(currency1,
+                                                 currency2,
+                                                 start_date=start_date, end_date=end_date)
 
-    def _get_fx_data_from_start_date(
-        self, currency1: str, currency2: str, start_date: datetime.datetime
-    ) -> fxPrices:
+
+    def _get_fx_data_for_date_range(self, currency1: str, currency2: str,
+                                     start_date: datetime.datetime, end_date: datetime.datetime) -> fxPrices:
         """
         Get the FX rate currency1/currency2 between two currencies
         Or return None if not available
@@ -262,28 +267,26 @@ class simData(baseData):
         raise NotImplementedError("Need to inherit for a specific data source")
 
 
-def _resolve_start_date(sim_data: simData):
+def _resolve_date(sim_data: simData, date_type:str):
 
     config = _resolve_config(sim_data)
 
     if config is missing_data:
-        start_date = missing_data
+        date = missing_data
     else:
-        start_date = getattr(config, "start_date", missing_data)
+        date = getattr(config, date_type, missing_data)
 
-    if start_date is missing_data:
-        start_date = ARBITRARY_START
-    else:
-        if type(start_date) is not datetime.datetime:
+    if date is not missing_data:
+        if type(date) is not datetime.datetime:
             try:
-                start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+                date = datetime.datetime.strptime(date, "%Y-%m-%d")
             except:
                 raise Exception(
-                    "Parameter start_date %s in config file does not conform to pattern 2020-03-19"
-                    % str(start_date)
-                )
+                    "Parameter %s %s in config file does not conform to pattern 2020-03-19"
+                    % (date_type, str(date))
+				)
 
-    return start_date
+    return date
 
 
 def _resolve_config(sim_data: simData):

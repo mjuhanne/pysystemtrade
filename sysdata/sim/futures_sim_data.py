@@ -65,8 +65,8 @@ class futuresSimData(simData):
     def length_of_history_in_days_for_instrument(self, instrument_code: str) -> int:
         return len(self.daily_prices(instrument_code))
 
-    def get_raw_price_from_start_date(
-        self, instrument_code: str, start_date
+    def get_raw_price_for_date_range(
+    	self, instrument_code: str, start_date, end_date
     ) -> pd.Series:
         """
         For  futures the price is the backadjusted price
@@ -76,7 +76,7 @@ class futuresSimData(simData):
         """
         price = self.get_backadjusted_futures_price(instrument_code)
 
-        return price[start_date:]
+        return price[start_date:end_date]
 
     def get_instrument_raw_carry_data(self, instrument_code: str) -> pd.DataFrame:
         """
@@ -211,14 +211,14 @@ class futuresSimData(simData):
         raise NotImplementedError()
 
     def get_multiple_prices(self, instrument_code: str) -> futuresMultiplePrices:
-        start_date = self.start_date_for_data()
+        (start_date, end_date) = self.date_range_for_data()
 
-        return self.get_multiple_prices_from_start_date(
-            instrument_code, start_date=start_date
+        return self.get_multiple_prices_for_date_range(
+        	instrument_code, start_date=start_date, end_date=end_date
         )
 
-    def get_multiple_prices_from_start_date(
-        self, instrument_code: str, start_date
+    def get_multiple_prices_for_date_range(
+    	self, instrument_code: str, start_date, end_date
     ) -> futuresMultiplePrices:
         raise NotImplementedError()
 
