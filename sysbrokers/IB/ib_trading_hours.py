@@ -175,16 +175,17 @@ def get_time_difference(time_zone_id: str) -> int:
         "CST (Central Standard Time)": 6,
         "MET (Middle Europe Time)": -1,
         "EST (Eastern Standard Time)": 5,
-        "JST (Japan Standard Time)": -8,
+        "JST (Japan Standard Time)": -9,
         "US/Eastern": 5,
         "MET": -1,
         "EST": 5,
-        "JST": -8,
-        "Japan": -8,
+        "JST": -9,
+        "Japan": -9,
         "US/Central": 6,
         "GB-Eire": 0,
-        "Hongkong": -7,
-        "": 0,
+        "Hongkong": -8,
+        "Australia/NSW": 11,
+        "": 0
     }
     diff_hours = time_diff_dict.get(time_zone_id, None)
     if diff_hours is None:
