@@ -174,6 +174,8 @@ class ibFuturesContractData(brokerFuturesContractData):
         self, contract_object: futuresContract, N_hours: float = 1.0
     ) -> bool:
         trading_hours = self.get_trading_hours_for_contract(contract_object)
+        if trading_hours is missing_contract:
+            return False
         trading_hours_checker = manyTradingStartAndEndDateTimes(trading_hours)
 
         return trading_hours_checker.less_than_N_hours_left(N_hours=N_hours)
