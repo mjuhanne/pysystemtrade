@@ -76,9 +76,12 @@ class ibContractPositionData(brokerContractPositionData):
             return missing_contract
 
         ib_code = position_entry["symbol"]
-        instrument_code = (
-            self.futures_instrument_data.get_instrument_code_from_broker_code(ib_code)
-        )
+        try:
+            instrument_code = (
+                self.futures_instrument_data.get_instrument_code_from_broker_code(ib_code)
+			)
+        except:
+            return missing_contract
         expiry = position_entry["expiry"]
 
         contract = futuresContract(instrument_code, expiry)
