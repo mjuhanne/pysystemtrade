@@ -1076,3 +1076,6 @@ dict_of_functions = {
     51: suggest_bad_markets,
     52: suggest_duplicate_markets,
 }
+
+if __name__ == "__main__":
+    interactive_controls()
