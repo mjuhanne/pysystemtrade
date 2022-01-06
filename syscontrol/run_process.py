@@ -155,6 +155,7 @@ def _start_or_wait(process_to_run: processToRun) -> status:
         okay_to_wait = _is_okay_to_wait_before_starting(process_to_run)
         if not okay_to_wait:
             return failure
+        time.sleep(0.5)
 
 
 def _is_okay_to_start(process_to_run: processToRun) -> bool:
