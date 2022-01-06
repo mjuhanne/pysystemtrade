@@ -78,7 +78,7 @@ class connectionIB(object):
                 ib.connect(ipaddress, port, clientId=client_id, account=account)
 
         # Sometimes takes a few seconds to resolve... only have to do this once per process so no biggie
-        time.sleep(5)
+        time.sleep(1)
 
         self._ib = ib
         self._account = account
