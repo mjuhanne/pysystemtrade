@@ -278,11 +278,11 @@ class reportingApi(object):
     def roll_data_dict_for_instrument_code(
         self, instrument_code: str = ALL_ROLL_INSTRUMENTS
     ):
-        roll_data_dict = self.roll_data_dict
         if instrument_code is ALL_ROLL_INSTRUMENTS:
-            return roll_data_dict
+            return self.roll_data_dict
         else:
-            return {instrument_code: roll_data_dict[instrument_code]}
+            roll_data = get_roll_data_for_instrument(instrument_code, self.data)
+            return {instrument_code: roll_data}
 
     @property
     def roll_data_dict(self):
