@@ -196,7 +196,7 @@ def create_balance_trade(data):
     )
     print("Or perhaps you are trading manually")
     print("Trades have to be attributed to a strategy (even roll trades)")
-    strategy_name = get_valid_strategy_name_from_user(data=data, source="positions")
+    strategy_name = get_valid_strategy_name_from_user(data=data, source="config")
     instrument_code, contract_date = get_valid_instrument_code_and_contractid_from_user(
         data
     )
@@ -895,3 +895,6 @@ dict_of_functions = {
     41: delete_specific_order,
     42: end_of_day,
 }
+
+if __name__ == "__main__":
+    interactive_order_stack()
