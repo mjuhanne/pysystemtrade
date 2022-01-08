@@ -58,6 +58,8 @@ class csvRollParametersData(rollParametersData):
         self, instrument_code: str
     ) -> rollParameters:
         config_for_this_instrument = self._get_config_information().loc[instrument_code]
+        if config_for_this_instrument.ndim != 1:
+            raise Exception("Instrument %s has multiple roll config entries!" % (instrument_code))
         roll_parameters_object = rollParameters(
             hold_rollcycle=config_for_this_instrument.HoldRollCycle,
             roll_offset_day=config_for_this_instrument.RollOffsetDays,
