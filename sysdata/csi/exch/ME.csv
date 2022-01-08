@@ -1,0 +1,10 @@
+CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
+73,0,73,CGF,CGF,CGF,ME,"Canada 5 Yr Govt Bond",,Settlement,"",1,10,1000,CAD,"CAD100000","percent",1,10,IIVIIVIIVIIV,1995-01-19,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,29461
+87,0,87,BAX,BAX,BAX,ME,"Canadian Bankers Acceptance 90 day",,Settlement,"",1,2.5,2500,CAD,"CAD1000000","CAD/bas pt",5,12.5,SSVSSVSSVSSV,1988-04-22,2022-01-07,"","20:00 - 16:30",,"",3,0,0,0,1,65512
+88,0,88,CGB,CGB,CGB,ME,"Canada 10 Yr Govt Bond",,Settlement,"",1,10,1000,CAD,"CAD100000","percent",1,10,IIVIIVIIVIIV,1989-09-15,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,149834
+105,0,105,BAR,BAR,,ME,"Canadian Bankers' Acceptance-1Mth",,Settlement,"",0,25,2500,CAD,"CAD3000000","CAD/bas pt",1,25,VVVVVVVVVVVV,1992-04-16,1999-02-01,"","08:00 - 15:00",,"",2,0,0,0,1,
+588,0,588,SXF,SXF,SXF,ME,"S&P Canada 60",,Settlement,"",1,2,200,CAD,"CAD200 x Index","points",1,2,IIVIIVIIVIIV,1999-09-07,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,22348
+100453,0,1453,FCS,FCS,SCF,ME,"mini S&P/TSX Composite",,Settlement,"",1,0.05,5,CAD,"CAD 5 x index","points",100,5,IIVIIVIIVIIV,2009-05-20,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,0
+100598,0,1598,CGZ,CGZ,CGZ,ME,"Canada 2 Yr Gov Bond",,Settlement,"",1,2,2000,CAD,"CAD 200000","percent",5,10,IIVIIVIIVIIV,2010-12-09,2022-01-07,"","20:00 - 16:30",,"",3,0,0,0,1,20952
+100599,0,1599,LGB,LGB,LGB,ME,"Canada 30 Yr Gov Bond",,Settlement,"",1,10,1000,CAD,"CAD 100000","percent",1,10,IIVIIVIIVIIV,2010-12-10,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,358
+100676,0,1676,STM,STM,SXM,ME,"S&P/TSX 60 Mini Index",,Settlement,"",1,0.5,50,CAD,"CAD 50 x Index","Points",1,0.5,IIVIIVIIVIIV,2011-05-09,2022-01-07,"","20:00 - 16:30",,"",2,0,0,0,1,2

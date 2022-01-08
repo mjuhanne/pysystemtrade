@@ -1,5 +1,5 @@
 CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
-919,0,919,VX,VX,VX,CFE,"CBOE Volatility Index (VIX)",Combined,Settlement,"",1,0.1,1000,USD,"$1000 x Index","points",100,10,SVSSVSSVSSVS,2004-03-26,2021-08-11,"","15:30 - 15:15",,"",4,0,0,0,1,144859
+919,0,919,VX,VX,VX,CFE,"CBOE Volatility Index (VIX)",Combined,Settlement,"",1,0.1,1000,USD,"$1000 x Index","points",100,10,SVSSVSSVSSVS,2004-03-26,2022-01-07,"","15:30 - 15:15",,"",4,0,0,0,1,224104
 948,0,948,CX,CX,,CFE,"CBOE China Index",,Settlement,"",0,1,100,USD,"$100 x Index","points",5,5,SSVSSVSSVSSV,2004-11-15,2007-06-12,"","08:30 - 15:15",,"",2,0,0,0,1,
 949,0,949,VT,VT,,CFE,"CBOE S&P 500 Index-3 Mth Variance",,Settlement,"",0,0.5,50,USD,"$50 x Index","points",50,25,IIVIIVIIVIIV,2004-11-15,2012-09-24,"","08:30 - 15:15",,"",2,0,0,0,1,
 990,0,990,VD,VD,,CFE,"DJIA Volatility Index",,Settlement,"",0,1,1000,USD,"$1000 x Index","points",10,10,SVSSVSSVSSVS,2006-01-19,2009-08-12,"","08:30 - 15:15",,"",3,0,0,0,1,
@@ -12,9 +12,9 @@ CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolU
 100813,0,1813,OVX,OVX,OV,CFE,"Crude Oil ETF Volatility Index",,Settlement,"",0,1,100,USD,"USD 100 x Index","points",5,5,VVVVVVVVVVVV,2012-10-02,2015-05-20,"","08:30 - 15:00",,"",2,0,0,0,1,
 100814,0,1814,GVX,GVX,GV,CFE,"Gold ETF Volatility Index",,Settlement,"",0,1,100,USD,"USD 100 x Index","points",5,5,VVVVVVVVVVVV,2012-10-02,2015-05-20,"","08:30 - 15:00",,"",2,0,0,0,1,
 100815,0,1815,BVX,BVX,VXEW,CFE,"Brazil ETF Volatility Index",,Settlement,"",0,1,100,USD,"USD 100 x Index","points",5,5,VVVVVVVVVVVV,2012-10-02,2015-05-20,"","08:30 - 15:00",,"",2,0,0,0,1,
-100928,0,1928,VA2,VA2,VA,CFE,"S&P 500 Variance",,Settlement,"",1,0.01,1,USD,"$1 x Variance","points",5,0.05,SSVSSVSSVSSV,2013-09-04,2021-08-11,"","08:30 - 15:15",,"",2,0,0,0,1,0
+100928,0,1928,VA2,VA2,VA,CFE,"S&P 500 Variance",,Settlement,"",1,0.01,1,USD,"$1 x Variance","points",5,0.05,SSVSSVSSVSSV,2013-09-04,2022-01-07,"","08:30 - 15:15",,"",2,0,0,0,1,0
 200311,0,20311,XBT,XBT,XBT,CFE,"Bitcoin",,Settlement,"",0,0.01,1,USD,"1 Bitcoin","USD/Bitcoin",1000,10,SSVSSVSSVSSV,2017-12-11,2019-06-19,"","15:30 - 15:15",,"",2,0,0,0,1,
-200321,0,20321,VXT,VXT,VXT,CFE,"CBOE Volatility TAS",,Settlement,"",1,1,1000,USD,"USD 1000","points",5,5,VVVVVVVVVVVV,2018-07-24,2021-08-11,"","15:30 - 15:13",50,"",3,0,0,0,1,33296
-200344,0,20344,IBH,IBH,IBHY,CFE,"iBoxx iShares High Yield Corporate Bond Index",,Settlement,"",1,1,1000,USD,"USD 1000 x Index","points",1,1,SSVSSVSSVSSV,2020-04-24,2021-08-11,"","08:30 - 15:00",,"",3,0,0,0,1,864
-200345,0,20345,IBI,IBI,IBIG,CFE,"iBoxx iShares Investment Grade Corporate Bond Index",,Settlement,"",1,1,1000,USD,"USD 1000 x Index","points",1,1,SSVSSVSSVSSV,2020-04-27,2021-08-11,"","08:30 - 15:00",,"",3,0,0,0,1,303
-200382,0,20382,VXM,VXM,VXM,CFE,"mini CBOE Volatility Index",,Settlement,"",1,0.01,100,USD,"USD 100 x Index","points",500,5,VVVVVVVVVVVV,2020-08-11,2021-08-11,"","15:30 - 15:15",,"",4,0,0,0,1,9999
+200321,0,20321,VXT,VXT,VXT,CFE,"CBOE Volatility TAS",,Settlement,"",1,1,1000,USD,"USD 1000","points",5,5,VVVVVVVVVVVV,2018-07-24,2022-01-07,"","15:30 - 15:13",50,"",3,0,0,0,1,30843
+200344,0,20344,IBH,IBH,IBHY,CFE,"iBoxx iShares High Yield Corporate Bond Index",,Settlement,"",1,1,1000,USD,"USD 1000 x Index","points",1,1,SSVSSVSSVSSV,2020-04-24,2022-01-07,"","08:30 - 15:00",,"",3,0,0,0,1,1101
+200345,0,20345,IBI,IBI,IBIG,CFE,"iBoxx iShares Investment Grade Corporate Bond Index",,Settlement,"",1,1,1000,USD,"USD 1000 x Index","points",1,1,SSVSSVSSVSSV,2020-04-27,2022-01-07,"","08:30 - 15:00",,"",3,0,0,0,1,507
+200382,0,20382,VXM,VXM,VXM,CFE,"mini CBOE Volatility Index",,Settlement,"",1,0.01,100,USD,"USD 100 x Index","points",500,5,VVVVVVVVVVVV,2020-08-11,2022-01-07,"","15:30 - 15:15",,"",4,0,0,0,1,11930

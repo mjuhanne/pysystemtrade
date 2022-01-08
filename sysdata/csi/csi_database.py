@@ -58,14 +58,14 @@ CSI_CONFIG_FILE = get_filename_for_package("sysdata.csi.csi-config.csv")
 # instrument database after adding new instruments. You don't need to update it very often though
 # (maybe once per year?) because the price and volume data is used just for screening purposes and it isn't
 # accessed after you have set up your portfolio
-MARKETS_FILE = get_filename_for_package("sysdata.csi.markets.csv")
+MARKETS_FILE = get_filename_for_package("private.csi.markets.csv")
 MARKET_FILE_NOT_FOUND_WARNING = "CSI market data file not found! Full instrument metadata not available!"
 
 # CSI Data fact sheets per exchange, downloaded as CSV files from https://apps.csidata.com/FactsheetListing.aspx
 # As opposed to the market data above, these contain precalculated full point value for each instrument
 factsheet_exchange_files = { "ASX.csv", "CFE.csv", "CFTC-COT.csv",
     "CME.csv", "EUREX.csv", "EURONEXT.csv", "HKEX.csv", "ICE.csv",
-    "KRX.csv", "OSE.csv", "SGX.csv" }
+    "KRX.csv", "ME.csv", "MEFF.csv", "MIF.csv", "OSE.csv", "SGX.csv" }
 FACTSHEET_FILES = [ get_filename_for_package("sysdata.csi.exch." + filename) for filename in factsheet_exchange_files]
 
 
