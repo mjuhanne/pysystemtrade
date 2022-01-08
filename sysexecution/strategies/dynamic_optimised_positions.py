@@ -150,7 +150,7 @@ def calculate_optimised_positions_data(
     objective_function = get_objective_instance(
         data=data, data_for_objective=data_for_objective
     )
-
+    
     optimised_positions_data = get_optimised_positions_data_dict_given_optimisation(
         data_for_objective=data_for_objective, objective_function=objective_function
     )
@@ -517,17 +517,22 @@ def get_optimised_positions_data_dict_given_optimisation(
     instrument_list = list(optimised_position_weights.keys())
 
     minima_weights = portfolioWeights.from_weights_and_keys(
-        list_of_keys=instrument_list,
+        list_of_keys=objective_function.keys_with_valid_data,
         list_of_weights=list(objective_function.minima_as_np),
     )
+    minima_weights = minima_weights.with_zero_weights_for_missing_keys(instrument_list)
+
     maxima_weights = portfolioWeights.from_weights_and_keys(
-        list_of_keys=instrument_list,
+        list_of_keys=objective_function.keys_with_valid_data,
         list_of_weights=list(objective_function.maxima_as_np),
     )
+    maxima_weights = maxima_weights.with_zero_weights_for_missing_keys(instrument_list)
+
     starting_weights = portfolioWeights.from_weights_and_keys(
-        list_of_keys=instrument_list,
+        list_of_keys=objective_function.keys_with_valid_data,
         list_of_weights=list(objective_function.starting_weights_as_np),
     )
+    starting_weights = starting_weights.with_zero_weights_for_missing_keys(instrument_list)
 
     data_dict = dict(
         [
