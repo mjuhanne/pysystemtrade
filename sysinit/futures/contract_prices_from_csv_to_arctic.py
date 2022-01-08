@@ -10,7 +10,7 @@ from sysobjects.contracts import futuresContract
 def init_arctic_with_csv_futures_contract_prices(
     datapath: str, csv_config=arg_not_supplied
 ):
-    csv_prices = csvFuturesContractPriceData(datapath)
+    csv_prices = csvFuturesContractPriceData(datapath, config=csv_config)
     input(
         "WARNING THIS WILL ERASE ANY EXISTING ARCTIC PRICES WITH DATA FROM %s ARE YOU SURE?! (CTRL-C TO STOP)"
         % csv_prices.datapath
