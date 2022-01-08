@@ -129,7 +129,7 @@ Before you can use the screening or validating scripts, you have to fetch CSI's 
  - From main menu access 'Market specs'
  -  Check 'Include Latest Pricing Information' 
  -  File menu -> Save table results to file
- - Save it as **'markets.csv'** to *sysdata/csi/*
+ - Save it as **'markets.csv'** to *private/csi/*
 
 This file contains now all the required metadata for the circa 1400 futures instruments available in UA.
 

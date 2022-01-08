@@ -1,17 +1,17 @@
 CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
-3,0,3,CC,CC,CC,ICE-US,"Cocoa",RTH,Settlement,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,1965-12-30,2021-07-30,"CC2 starts at 1965-12-30","04:45 - 13:30",,"",0,0,0,0,1,39337
-7,0,7,CT,CT,CT,ICE-US,"Cotton #2",RTH,Settlement,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/lb",1,5,IIVIVIVIIVIV,1967-03-22,2021-07-30,"CT2 starts at 1967-03-22","21:00 - 14:20",,"",2,0,0,0,1,17854
-10,0,10,KC,KC,KC,ICE-US,"Coffee",RTH,Settlement,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/lb",5,18.75,IIVIVIVIVIIV,1972-08-16,2021-07-30,"KC2 starts at 1972-08-16","04:15 - 13:30",,"",2,0,0,0,1,62519
-12,0,12,OJ,OJ,OJ,ICE-US,"Orange Juice",RTH,Settlement,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/lb",5,7.5,VIVIVIVIVIVI,1966-10-26,2021-07-30,"OJ2 starts at 1966-10-26","08:00 - 14:00",,"",2,0,0,0,1,896
-20,0,20,SB,SB,SB,ICE-US,"Sugar #11 (World)",RTH,Settlement,"SB,SB1,SB2",1,11.2,1120,USD,"112000 lbs","cents/lb",1,11.2,IIVIVIVIIVII,1965-12-30,2021-07-30,"SB2 starts at 1965-12-30","03:30 - 13:00",,"",2,0,0,0,1,115119
-28,0,28,ZG,ZG,ZG,ICE-US,"100oz Gold",,Settlement,"",1,10,100,USD,"100 oz","USD/oz",1,10,SVSVSVSVSVSV,1987-09-14,2021-07-30,"","20:00 - 18:00",,"",1,0,0,0,1,0
-37,0,37,ZI,ZI,ZI,ICE-US,"5000oz Silver",,Settlement,"",1,5,5000,USD,"5000 oz ","USD/oz",1,5,VSVSVSVSVSSV,1987-09-14,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
+3,0,3,CC,CC,CC,ICE-US,"Cocoa",RTH,Settlement,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,1965-12-30,2022-01-07,"CC2 starts at 1965-12-30","04:45 - 13:30",,"",0,0,0,0,1,41547
+7,0,7,CT,CT,CT,ICE-US,"Cotton #2",RTH,Settlement,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/lb",1,5,IIVIVIVIIVIV,1967-03-22,2022-01-07,"CT2 starts at 1967-03-22","21:00 - 14:20",,"",2,0,0,0,1,24003
+10,0,10,KC,KC,KC,ICE-US,"Coffee",RTH,Settlement,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/lb",5,18.75,IIVIVIVIVIIV,1972-08-16,2022-01-07,"KC2 starts at 1972-08-16","04:15 - 13:30",,"",2,0,0,0,1,35148
+12,0,12,OJ,OJ,OJ,ICE-US,"Orange Juice",RTH,Settlement,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/lb",5,7.5,VIVIVIVIVIVI,1966-10-26,2022-01-07,"OJ2 starts at 1966-10-26","08:00 - 14:00",,"",2,0,0,0,1,716
+20,0,20,SB,SB,SB,ICE-US,"Sugar #11 (World)",RTH,Settlement,"SB,SB1,SB2",1,11.2,1120,USD,"112000 lbs","cents/lb",1,11.2,IIVIVIVIIVII,1965-12-30,2022-01-07,"SB2 starts at 1965-12-30","03:30 - 13:00",,"",2,0,0,0,1,97296
+28,0,28,ZG,ZG,ZG,ICE-US,"100oz Gold",,Settlement,"",1,10,100,USD,"100 oz","USD/oz",1,10,SVSVSVSVSVSV,1987-09-14,2022-01-07,"","20:00 - 18:00",,"",1,0,0,0,1,1
+37,0,37,ZI,ZI,ZI,ICE-US,"5000oz Silver",,Settlement,"",1,5,5000,USD,"5000 oz ","USD/oz",1,5,VSVSVSVSVSSV,1987-09-14,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
 42,0,42,SE,SE,SE,ICE-US,"Sugar #14(Domestic)",RTH,Settlement,"SE,SE1,SE2",0,11.2,1120,USD,"112000 lbs","cents/lb",1,11.2,VIVIVIVIVIVI,1977-05-02,2009-08-10,"SE2 starts at 2007-03-28","08:30 - 14:00",,"",2,0,0,0,0,
 45,0,45,CI9,CI9,,ICE-US,"Cotton-Cotlook World",,Settlement,"",0,5,500,USD,"50000 lbs","cents/lb",1,5,VVVVVVVVVVVV,1992-10-01,1994-10-13,"","09:30 - 14:40",,"",2,0,0,0,1,
-49,0,49,LCC,LCC,C,ICE-EU-AGS,"Cocoa",,Settlement,"",1,1,10,GBP,"10 tonnes","GBP/tonne",10,10,IIVIVIVIVIIV,1968-01-02,2021-07-30,"","09:30 - 16:55",,"",1,0,1,0,1,35669
-51,0,51,LWB,LWB,T,ICE-EU-AGS,"Wheat",,Settlement,"",1,1,100,GBP,"100 tonnes","GBP/tonne",5,5,VIVIVIVIIIVI,1968-01-02,2021-07-30,"","09:25 - 17:28",,"",2,0,1,0,1,234
+49,0,49,LCC,LCC,C,ICE-EU-AGS,"Cocoa",,Settlement,"",1,1,10,GBP,"10 tonnes","GBP/tonne",10,10,IIVIVIVIVIIV,1968-01-02,2022-01-07,"","09:30 - 16:55",,"",1,0,1,0,1,22142
+51,0,51,LWB,LWB,T,ICE-EU-AGS,"Wheat",,Settlement,"",1,1,100,GBP,"100 tonnes","GBP/tonne",5,5,VIVIVIVIIIVI,1968-01-02,2022-01-07,"","09:25 - 17:28",,"",2,0,1,0,1,449
 57,0,57,WO,WO,,ICE-CA,"Oats",,Settlement,"",0,0.2,20,CAD,"20 tonnes","CAD/tonne",10,2,IIVIVIVIIVVV,1969-12-31,2001-05-30,"","09:30 - 13:15",,"",2,0,0,0,1,
-58,0,58,RS,RS,RS,ICE-US,"Rapeseed(Canola)",,Settlement,"",1,2,20,CAD,"20 tonnes","CAD/tonne",1,2,VIVIVIVIIIVI,1969-12-31,2021-07-30,"","09:30 - 13:15",,"",1,0,0,0,1,13960
+58,0,58,RS,RS,RS,ICE-US,"Rapeseed(Canola)",,Settlement,"",1,2,20,CAD,"20 tonnes","CAD/tonne",1,2,VIVIVIVIIIVI,1969-12-31,2022-01-07,"","09:30 - 13:15",,"",1,0,0,0,1,19385
 59,0,59,WF,WF,,ICE-CA,"Flaxseed",,Settlement,"",0,2,20,CAD,"20 tonnes","CAD/tonne",1,2,VIVIVIVIVVVV,1969-12-31,2005-10-25,"","09:30 - 13:15",,"",1,0,0,0,1,
 60,0,60,WR,WR,,ICE-CA,"Rye",,Settlement,"",0,10,100,CAD,"100 tonnes","CAD/tonne",1,10,IIVIVIVIVVIV,1969-12-31,1995-09-21,"","09:30 - 13:15",,"",1,0,0,0,1,
 61,0,61,WB,WB,,ICE-CA,"Barley",,Settlement,"",0,1,100,CAD,"100 tonnes","CAD/tonne",1,1,IIVIVIVIIVVV,1969-12-31,1994-05-19,"","09:30 - 13:15",,"",2,0,0,0,1,
@@ -21,120 +21,120 @@ CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolU
 101,0,101,CR,CR,CI,ICE-US,"Continuous Commodity Index(CRB)",,Settlement,"",0,5,500,USD,"$500 x Index","points",5,25,VVIVIVIVIIVI,1986-06-12,2013-04-12,"","09:40 - 14:40",,"",2,0,0,0,1,
 103,0,103,RA?,RA?,,ICE-US,"Russell 3000 Index",,Settlement,"",0,,,USD,"","points",5,,IIVIIVIIVIIV,1987-09-10,1990-01-31,"","",,"",2,0,0,0,1,
 126,0,126,SL,SL,,ICE-CA,"Silver - 200 oz",,Settlement,"",0,20,200,USD,"200 troy ounce","$/troy ounce",1,20,VIIVIIVIIVII,1981-04-10,1988-04-20,"","09:00 - 14:01",,"",1,0,0,0,1,
-134,0,134,LGO,LGO,G,ICE-EU,"Low Sulphur Gasoil",Combined,Settlement,"LGO,LG4,LG5",1,1,100,USD,"100 tonnes","USD/tonne",25,25,VVVVVVVVVVVV,1981-04-06,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,187719
+134,0,134,LGO,LGO,G,ICE-EU,"Low Sulphur Gasoil",Combined,Settlement,"LGO,LG4,LG5",1,1,100,USD,"100 tonnes","USD/tonne",25,25,VVVVVVVVVVVV,1981-04-06,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,320336
 135,0,135,LFO,LFO,,ICE-EU,"Fuel Oil",,Settlement,"",0,1,100,USD,"100 tonnes","USD/tonne",5,5,VVVVVVVVVVVV,1999-09-03,2001-01-10,"","09:05 - 17:05",,"",2,0,0,0,1,
-136,0,136,LCO,LCO,B,ICE-EU,"Brent Crude",Combined,Settlement,"LCO,LC4,LC5",1,10,1000,USD,"1000 barrels","USD/barrel",1,10,VVVVVVVVVVVV,1988-06-23,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,767746
+136,0,136,LCO,LCO,B,ICE-EU,"Brent Crude",Combined,Settlement,"LCO,LC4,LC5",1,10,1000,USD,"1000 barrels","USD/barrel",1,10,VVVVVVVVVVVV,1988-06-23,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,1078389
 137,0,137,LSO,LSO,,ICE-EU,"Crude Oil Dubai",,Settlement,"",0,10,1000,USD,"100 barrels","$/barrel",1,10,VVVVVVVVVVVV,1990-07-19,1991-06-14,"","04:37 - 15:15",,"",2,0,0,0,1,
 151,0,151,YX,YX,,ICE-US,"NYSE Composite Index",,Settlement,"",0,5,500,USD,"$500 x Index","points",5,25,IIVIIVIIVIIV,1982-05-06,2003-09-18,"","09:30 - 16:15",,"",2,0,0,0,1,
-173,0,173,FSS,FSS,L,ICE-EU-FIN,"3 Month Sterling",Combined,Settlement,"",1,1.25,1250,GBP,"GBP 500000","GBP/bas pt",5,6.25,SSVSSVSSVSSV,1982-11-04,2021-07-30,"","07:30 - 18:00",,"",3,0,1,0,1,245327
-174,0,174,FLG,FLG,R,ICE-EU-FIN,"Long Gilt",,Settlement,"",1,10,1000,GBP,"GBP100000","percent",1,10,IIVIIVIIVIIV,1982-11-18,2021-07-30,"","08:00 - 18:00",,"",2,0,1,0,1,244861
-183,0,183,YI,YI,YI,ICE-US,"mini Silver",,Settlement,"",1,1,10,USD,"1000 oz","cents/oz",1,1,VSVSVSVSVSSV,1983-04-15,2021-07-30,"","20:00 - 18:00",,"",1,0,0,0,1,18
-185,0,185,FES,FES,S,ICE-EU-FIN,"Three Month Euro Swiss Franc (Euroswiss)",Combined,Settlement,"",1,2.5,2500,CHF,"CHF 1000000","CHF/bas pt",5,12.5,IIVIIVIIVIIV,1991-02-07,2021-07-30,"","07:30 - 18:00",,"",3,0,1,0,1,6075
+173,0,173,FSS,FSS,L,ICE-EU-FIN,"3 Month Sterling",Combined,Settlement,"",0,1.25,1250,GBP,"GBP 500000","GBP/bas pt",5,6.25,SSVSSVSSVSSV,1982-11-04,2021-12-17,"","07:30 - 18:00",,"",3,0,1,0,1,
+174,0,174,FLG,FLG,R,ICE-EU-FIN,"Long Gilt",,Settlement,"",1,10,1000,GBP,"GBP100000","percent",1,10,IIVIIVIIVIIV,1982-11-18,2022-01-07,"","08:00 - 18:00",,"",2,0,1,0,1,188833
+183,0,183,YI,YI,YI,ICE-US,"mini Silver",,Settlement,"",1,1,10,USD,"1000 oz","cents/oz",1,1,VSVSVSVSVSSV,1983-04-15,2022-01-07,"","20:00 - 18:00",,"",1,0,0,0,1,34
+185,0,185,FES,FES,S,ICE-EU-FIN,"Three Month Euro Swiss Franc (Euroswiss)",Combined,Settlement,"",0,2.5,2500,CHF,"CHF 1000000","CHF/bas pt",5,12.5,IIVIIVIIVIIV,1991-02-07,2021-12-17,"","07:30 - 18:00",,"",3,0,1,0,1,
 186,0,186,AB,AB,,ICE-CA,"Barley",,Settlement,"",0,0.2,20,CAD,"20 tonnes","CAD/tonne",10,2,VVVIVIVVIVVV,1983-02-28,2012-08-09,"","09:30 - 13:15",,"",2,0,0,0,1,
-199,0,199,LSU,LSU,W,ICE-EU-AGS,"White Sugar (#5)",,Settlement,"",1,5,50,USD,"50 tonnes","USD/tonne",1,5,IIVIVIIVIVIV,1987-07-30,2021-07-30,"","08:45 - 18:00",,"",1,0,1,0,1,8152
+199,0,199,LSU,LSU,W,ICE-EU-AGS,"White Sugar (#5)",,Settlement,"",1,5,50,USD,"50 tonnes","USD/tonne",1,5,IIVIVIIVIVIV,1987-07-30,2022-01-07,"","08:45 - 18:00",,"",1,0,1,0,1,13342
 200,0,200,LFU,LFU,,ICE-EU,"Gasoline Unleaded",,Settlement,"",0,1,100,USD,"100 tonnes","USD/tonne",1,1,VVVVVVVVVVVV,1992-01-27,1996-02-20,"","04:25 - 15:15",,"",2,0,0,0,1,
-209,0,209,FFI,FFI,Z,ICE-EU-FIN,"FTSE 100 Index",,Settlement,"",1,1,10,GBP,"GBP 10 x INDEX","points",5,5,IIVIIVIIVIIV,1984-05-03,2021-07-30,"","01:00 - 21:00",,"",1,0,1,0,1,97764
-213,0,213,YG,YG,YG,ICE-US,"mini Gold",,Settlement,"",1,3.215,32.15,USD,"32.15 troy oz","USD/oz troy",1,3.215,SVSVSVSVSVSV,1984-06-13,2021-07-30,"","20:00 - 18:00",,"",1,0,0,0,1,34
+209,0,209,FFI,FFI,Z,ICE-EU-FIN,"FTSE 100 Index",,Settlement,"",1,1,10,GBP,"GBP 10 x INDEX","points",5,5,IIVIIVIIVIIV,1984-05-03,2022-01-07,"","01:00 - 21:00",,"",1,0,1,0,1,83757
+213,0,213,YG,YG,YG,ICE-US,"mini Gold",,Settlement,"",1,3.215,32.15,USD,"32.15 troy oz","USD/oz troy",1,3.215,SVSVSVSVSVSV,1984-06-13,2022-01-07,"","20:00 - 18:00",,"",1,0,0,0,1,27
 222,0,222,LC9,LC9,,ICE-EU,"Naptha",,Settlement,"",0,,,USD,"","",1,,VVVVVVVVVVVV,1991-04-10,1992-05-21,"","04:25 - 15:15",,"",2,0,0,0,1,
-263,0,263,DX,DX,DX,ICE-US,"U.S. Dollar Index",RTH,Settlement,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,1985-11-20,2021-07-30,"DX2 starts at 1985-11-20","20:00 - 17:00",,"",3,0,0,0,1,24295
+263,0,263,DX,DX,DX,ICE-US,"U.S. Dollar Index",RTH,Settlement,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,1985-11-20,2022-01-07,"DX2 starts at 1985-11-20","20:00 - 17:00",,"",3,0,0,0,1,14368
 264,0,264,EU,EU,EU,ICE-US,"Euro",,Settlement,"",0,2,200000,USD,"EUR200000","USD/EUR",5,10,IIVIIVIIVIIV,1986-01-07,2008-07-28,"","20:00 - 15:00",,"",5,0,0,0,1,
 281,0,281,EZ9,EZ9,,ICE-US,"Cheese-Cheddar",,Settlement,"",0,4,400,USD,"40000 lbs","cents/lb",1,4,VVVVVVVVVVVV,1993-06-15,1998-12-22,"","09:00 - 14:00",,"",2,0,0,0,1,
 282,0,282,MU9,MU9,,ICE-US,"Milk-Non-Fat Dry",,Settlement,"",0,4.4,440,USD,"44000 lbs","cents/lb",1,4.4,VVVVVVVVVVVV,1993-06-15,1998-12-22,"","09:00 - 14:00",,"",2,0,0,0,1,
 285,0,285,YU9,YU9,,ICE-US,"NYSE Utilty",,Settlement,"",0,,,USD,"","",1,,IIVIIVIIVIIV,1993-11-15,1994-10-14,"","09:30 - 16:15",,"",2,0,0,0,1,
 289,0,289,BY,BY,,ICE-CA,"Barley-Continental",,Settlement,"",0,1,100,CAD,"100 tonnes","CAD/tonne",1,1,IIVIVIVIVIIV,1993-11-01,1995-12-05,"","08:30 - 13:15",,"",2,0,0,0,1,
 297,0,297,KB,KB,,ICE-US,"Coffee-Brazil Diff",,Settlement,"",0,3.75,375,USD,"$137500 lbs","cents/lb",1,3.75,IIVIVIVIVIIV,1992-06-12,1994-03-18,"","",,"",2,0,0,0,1,
-304,0,304,NGL,NGL,M,ICE-EU,"Natural Gas (National Balancing Point)",,Settlement,"",1,0.3,300,GBP,"1000 Therm/Day","0.01 GBP/Therm/Day",1,0.3,VVVVVVVVVVVV,1997-01-31,2021-07-30,"","07:00 - 17:00",,"",3,0,0,0,1,21410
-372,0,372,ZR,ZR,ZR,ICE-US,"US Dollar/South African Rand",,Settlement,"",1,1,100000,ZAR,"$100000","ZAR/USD",5,5,IIVIIVIIVIIV,1997-04-03,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,1
-373,0,373,SS,SS,SS,ICE-US,"British Pound/Swiss Franc",,Settlement,"",1,1.25,125000,CHF,"GBP 125000","CHF/GBP",10,12.5,IIVIIVIIVIIV,1997-04-18,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-374,0,374,SY,SY,SY,ICE-US,"British Pound/Japanese Yen",,Settlement,"",1,125,125000,JPY,"GBP125000","JPY/GBP",10,1250,IIVIIVIIVIIV,1997-04-18,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,2
+304,0,304,NGL,NGL,M,ICE-EU,"Natural Gas (National Balancing Point)",,Settlement,"",1,0.3,300,GBP,"1000 Therm/Day","0.01 GBP/Therm/Day",1,0.3,VVVVVVVVVVVV,1997-01-31,2022-01-07,"","03:00 - 13:00",,"",3,0,0,0,1,37600
+372,0,372,ZR,ZR,ZR,ICE-US,"US Dollar/South African Rand",,Settlement,"",1,1,100000,ZAR,"$100000","ZAR/USD",5,5,IIVIIVIIVIIV,1997-04-03,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,5
+373,0,373,SS,SS,SS,ICE-US,"British Pound/Swiss Franc",,Settlement,"",1,1.25,125000,CHF,"GBP 125000","CHF/GBP",10,12.5,IIVIIVIIVIIV,1997-04-18,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+374,0,374,SY,SY,SY,ICE-US,"British Pound/Japanese Yen",,Settlement,"",1,125,125000,JPY,"GBP125000","JPY/GBP",10,1250,IIVIIVIIVIIV,1997-04-18,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,0
 400,0,400,WP9,WP9,,ICE-CA,"Field Peas",,Settlement,"",0,0.2,20,USD,"20 tonnes","USD/tonne",10,2,IVVVVVVVIVIV,1995-11-01,2002-10-15,"","09:30 - 13:15",,"",2,0,0,0,0,
-417,0,417,AR,AR,AR,ICE-US,"Australian Dollar/New Zealand $",,Settlement,"",1,2,200000,NZD,"AUD200000","NZD/AUD",10,20,IIVIIVIIVIIV,1999-05-14,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,1
-418,0,418,YA,YA,YA,ICE-US,"Australian Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"AUD200000","JPY/AUD",5,1000,IIVIIVIIVIIV,1999-05-14,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,8
+417,0,417,AR,AR,AR,ICE-US,"Australian Dollar/New Zealand $",,Settlement,"",1,2,200000,NZD,"AUD200000","NZD/AUD",10,20,IIVIIVIIVIIV,1999-05-14,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+418,0,418,YA,YA,YA,ICE-US,"Australian Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"AUD200000","JPY/AUD",5,1000,IIVIIVIIVIIV,1999-05-14,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,10
 428,0,428,BW,BW,,ICE-US,"Butter-Grade AA",,Settlement,"",0,1,100,USD,"10000000lbs","cents/lb",1,1,SVSVSVSVSVSV,1996-10-15,2004-11-26,"","09:00 - 14:00",,"",2,0,0,0,1,
 431,0,431,TK,TK,,ICE-US,"Pacific Technology Index",,Settlement,"",0,1,100,USD,"USD 100 x Index","points",5,5,IIVIIVIIVIIV,1996-04-23,2001-03-16,"","09:30 - 16:15",,"",2,0,0,0,0,
 442,0,442,PT,PT,,ICE-US,"Potatoes",,Settlement,"",0,8.5,850,USD,"85000 lbs","USD/CWT",1,8.5,VIVIVIVIVIVI,1996-09-17,1999-05-10,"","09:45 - 14:00",,"",2,0,0,0,1,
 462,0,462,MJ,MJ,,ICE-US,"Milk BFP",,Settlement,"",0,10,1000,USD,"$1K x BFP","USD/CWT",1,10,VVVVVVVVVVVV,1997-04-08,2001-02-01,"","09:00 - 14:00",,"",2,0,0,0,1,
 536,0,536,YS9,YS9,,ICE-US,"NYSE Small Composite",,Settlement,"",0,2.5,250,USD,"$250 x Index","points",1,2.5,IIVIIVIIVIIV,1998-08-13,2003-09-18,"","09:30 - 16:15",,"",2,0,0,0,1,
-558,0,558,FBO,FBO,O,ICE-EU-FIN,"5-Year Euro Swapnote",,Settlement,"",1,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1999-01-14,2021-07-30,"","07:00 - 18:00",,"",2,0,1,0,1,0
-559,0,559,FBP,FBP,P,ICE-EU-FIN,"10-Year Euro Swapnote",,Settlement,"",1,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1999-01-14,2021-07-30,"","07:00 - 18:00",,"",2,0,1,0,1,0
-565,0,565,FEI,FEI,I,ICE-EU-FIN,"3-Month EURIBOR",Combined,Settlement,"",1,2.5,2500,EUR,"EUR 1000000","EUR/basis point",5,12.5,SSVSSVSSVSSV,1998-12-08,2021-07-30,"FED starts at 1989-04-20","01:00 - 21:00",,"",3,0,1,0,1,462706
-621,0,621,KX,KX,KX,ICE-US,"US Dollar/Swedish Krona",,Settlement,"",1,1,100000,SEK,"USD 100000","SEK/USD",5,5,IIVIIVIIVIIV,2000-05-12,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,3
-622,0,622,NT,NT,NT,ICE-US,"US Dollar/Norwegian Krone",,Settlement,"",1,1,100000,NOK,"USD 100000","NOK/USD",50,50,IIVIIVIIVIIV,2000-05-12,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-624,0,624,AS,AS,AS,ICE-US,"Australian Dollar/Canadian Dollar",,Settlement,"",1,2,200000,CAD,"AUD200000","CAD/AUD",5,10,IIVIIVIIVIIV,2000-05-12,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,1
-625,0,625,HY,HY,HY,ICE-US,"Canadian Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"CAD200000","JPY/CAD",5,1000,IIVIIVIIVIIV,2000-05-12,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,14
-658,0,658,FBS,FBS,TWS,ICE-EU-FIN,"2-Year Euro Swapnote",,Settlement,"",1,1,1000,EUR,"EUR 100000","percent",5,5,IIVIIVIIVIIV,2001-03-29,2021-07-30,"","07:00 - 18:00",,"",3,0,1,0,1,0
+558,0,558,FBO,FBO,O,ICE-EU-FIN,"5-Year Euro Swapnote",,Settlement,"",1,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1999-01-14,2022-01-07,"","07:00 - 18:00",,"",2,0,1,0,1,0
+559,0,559,FBP,FBP,P,ICE-EU-FIN,"10-Year Euro Swapnote",,Settlement,"",1,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1999-01-14,2022-01-07,"","07:00 - 18:00",,"",2,0,1,0,1,0
+565,0,565,FEI,FEI,I,ICE-EU-FIN,"3-Month EURIBOR",Combined,Settlement,"",1,2.5,2500,EUR,"EUR 1000000","EUR/basis point",5,12.5,SSVSSVSSVSSV,1998-12-08,2022-01-07,"FED starts at 1989-04-20","01:00 - 21:00",,"",3,0,1,0,1,628990
+621,0,621,KX,KX,KX,ICE-US,"US Dollar/Swedish Krona",,Settlement,"",1,1,100000,SEK,"USD 100000","SEK/USD",5,5,IIVIIVIIVIIV,2000-05-12,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,20
+622,0,622,NT,NT,NT,ICE-US,"US Dollar/Norwegian Krone",,Settlement,"",1,1,100000,NOK,"USD 100000","NOK/USD",50,50,IIVIIVIIVIIV,2000-05-12,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+624,0,624,AS,AS,AS,ICE-US,"Australian Dollar/Canadian Dollar",,Settlement,"",1,2,200000,CAD,"AUD200000","CAD/AUD",5,10,IIVIIVIIVIIV,2000-05-12,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+625,0,625,HY,HY,HY,ICE-US,"Canadian Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"CAD200000","JPY/CAD",5,1000,IIVIIVIIVIIV,2000-05-12,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,3
+658,0,658,FBS,FBS,TWS,ICE-EU-FIN,"2-Year Euro Swapnote",,Settlement,"",1,1,1000,EUR,"EUR 100000","percent",5,5,IIVIIVIIVIIV,2001-03-29,2022-01-07,"","07:00 - 18:00",,"",3,0,1,0,1,0
 662,0,662,ELB,ELB,Y,ICE-EU,"Electricity Base",,Settlement,"",0,0.01,1,GBP,"MWh x 24 x days","GBP/MWh",1,0.01,VVVVVVVVVVVV,2001-05-10,2015-11-19,"","08:00 - 17:00",,"",2,0,0,0,1,
 663,0,663,ELP,ELP,P,ICE-EU,"Electricity Peak",,Settlement,"",0,0.01,1,GBP,"MWh x 24 x days","GBP/MWh",1,0.01,VVVVVVVVVVVV,2005-12-05,2015-11-19,"","08:00 - 17:00",,"",2,0,0,0,1,
 667,0,667,CM,CM,,ICE-CA,"Rapeseed Meal(Canola Meal)",,Settlement,"",0,2,20,USD,"20 tons","USD/Ton",1,2,VIVIVIVVVVIV,2001-06-28,2003-09-16,"","09:30 - 13:15",,"",1,0,0,0,1,
 668,0,668,RM2,RM2,RF,ICE-US,"mini Russell 1000 Index",RTH,Settlement,"RM2,RM3,RM4",0,0.5,50,USD,"$50 x Index","points",5,2.5,IIVIIVIIVIIV,2001-06-22,2018-06-15,"RM4 starts at 2007-06-19","09:30 - 00:00",,"",2,0,0,0,1,
 672,0,672,I,I,,ICE-US,"S&P Commodity Index",,Settlement,"",0,1,100,USD,"$100 x Index","points",10,10,VVIVIVIVIIVI,2001-10-19,2003-07-30,"","09:40 - 16:00",,"",2,0,0,0,1,
 697,0,697,MK,MK,MK,ICE-US,"Coffee C-Mini",,Settlement,"",0,1.25,125,USD,"12500 lbs","cents/lb",5,6.25,IVIVVVVVVIVI,2002-03-15,2007-11-19,"","09:00 - 11:45",,"",2,0,0,0,1,
-730,0,730,FSW,FSW,USW,ICE-EU-FIN,"2-Year USD Swapnote",,Settlement,"",1,2,2000,USD,"USD 200000","percent",1,2,IIVIIVIIVIIV,2002-09-19,2021-07-30,"","07:00 - 20:00",,"",3,0,1,0,1,0
-731,0,731,FSO,FSO,USO,ICE-EU-FIN,"5-Year USD Swapnote",,Settlement,"",1,10,1000,USD,"USD 10000","percent",1,10,IIVIIVIIVIIV,2002-09-19,2021-07-30,"","07:00 - 20:00",,"",2,0,1,0,1,0
-732,0,732,FSP,FSP,USP,ICE-EU-FIN,"10-Year USD Swapnote",,Settlement,"",1,10,1000,USD,"USD 100000","percent",1,10,IIVIIVIIVIIV,2002-09-19,2021-07-30,"","07:00 - 20:00",,"",2,0,1,0,1,0
-739,0,739,EON,EON,EON,ICE-EU-FIN,"One Month Euro Overnight Rate Index",,Settlement,"",1,2.5,2500,EUR,"EUR 3000000","EUR/basis point",5,12.5,VVVVVVVVVVVV,2003-02-18,2021-07-30,"","07:00 - 18:00",,"",3,0,1,0,1,0
+730,0,730,FSW,FSW,USW,ICE-EU-FIN,"2-Year USD Swapnote",,Settlement,"",1,2,2000,USD,"USD 200000","percent",1,2,IIVIIVIIVIIV,2002-09-19,2022-01-07,"","07:00 - 20:00",,"",3,0,1,0,1,0
+731,0,731,FSO,FSO,USO,ICE-EU-FIN,"5-Year USD Swapnote",,Settlement,"",1,10,1000,USD,"USD 10000","percent",1,10,IIVIIVIIVIIV,2002-09-19,2022-01-07,"","07:00 - 20:00",,"",2,0,1,0,1,0
+732,0,732,FSP,FSP,USP,ICE-EU-FIN,"10-Year USD Swapnote",,Settlement,"",1,10,1000,USD,"USD 100000","percent",1,10,IIVIIVIIVIIV,2002-09-19,2022-01-07,"","07:00 - 20:00",,"",2,0,1,0,1,0
+739,0,739,EON,EON,EON,ICE-EU-FIN,"One Month Euro Overnight Rate Index",,Settlement,"",1,2.5,2500,EUR,"EUR 3000000","EUR/basis point",5,12.5,VVVVVVVVVVVV,2003-02-18,2022-01-07,"","07:00 - 18:00",,"",3,0,1,0,1,0
 747,0,747,GG,GG,GG,ICE-US,"Russell 1000 Growth Index",,Settlement,"",0,5,500,USD,"$500 x Index","points",5,25,IIVIIVIIVIIV,2003-05-09,2008-12-22,"","09:30 - 16:15",,"",2,0,0,0,1,
 748,0,748,VV,VV,VV,ICE-US,"Russell 1000 Value Index",,Settlement,"",0,5,500,USD,"$500 x Index","points",5,25,IIVIIVIIVIIV,2003-05-09,2008-12-22,"","09:30 - 16:15",,"",2,0,0,0,1,
-764,0,764,LC4,LC4,B,ICE-EU,"Brent Crude",ETH,Last,"LCO,LC4,LC5",1,10,1000,USD,"1000 Bbl","USD/Bbl",1,10,VVVVVVVVVVVV,2003-09-08,2021-07-30,"LCO starts at 1988-06-23","01:00 - 23:00",,"",2,0,0,0,1,767746
-765,0,765,LG4,LG4,G,ICE-EU,"Low Sulphur Gasoil",ETH,Last,"LGO,LG4,LG5",1,1,100,USD,"100 tonne","USD/tonne",25,25,VVVVVVVVVVVV,2003-09-08,2021-07-30,"LGO starts at 1981-04-06","01:00 - 23:00",,"",2,0,0,0,1,187719
-771,0,771,IHO,IHO,O,ICE-EU,"Heating Oil",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallons",1,4.2,VVVVVVVVVVVV,2006-04-21,2021-07-30,"","01:00 - 23:00",,"",4,0,0,0,1,125271
-772,0,772,IRB,IRB,N,ICE-EU,"RBOB Gasoline",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallons",1,4.2,VVVVVVVVVVVV,2006-04-24,2021-07-30,"","01:00 - 23:00",,"",4,0,0,0,1,112098
+764,0,764,LC4,LC4,B,ICE-EU,"Brent Crude",ETH,Last,"LCO,LC4,LC5",1,10,1000,USD,"1000 Bbl","USD/Bbl",1,10,VVVVVVVVVVVV,2003-09-08,2022-01-07,"LCO starts at 1988-06-23","20:00 - 18:00",,"",2,0,0,0,1,1078389
+765,0,765,LG4,LG4,G,ICE-EU,"Low Sulphur Gasoil",ETH,Last,"LGO,LG4,LG5",1,1,100,USD,"100 tonne","USD/tonne",25,25,VVVVVVVVVVVV,2003-09-08,2022-01-07,"LGO starts at 1981-04-06","20:00 - 18:00",,"",2,0,0,0,1,320336
+771,0,771,IHO,IHO,O,ICE-EU,"Heating Oil",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallons",1,4.2,VVVVVVVVVVVV,2006-04-21,2022-01-07,"","20:00 - 18:00",,"",4,0,0,0,1,168754
+772,0,772,IRB,IRB,N,ICE-EU,"RBOB Gasoline",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallons",1,4.2,VVVVVVVVVVVV,2006-04-24,2022-01-07,"","20:00 - 18:00",,"",4,0,0,0,1,46579
 778,0,778,YU,YU,YU,ICE-US,"NYSE Composite Index-Revised",,Settlement,"",0,0.5,50,USD,"$50 x Index","points",50,25,IIVIIVIIVIIV,2003-09-30,2011-09-19,"YX starts at 1982-05-06","16:45 - 16:15",,"",2,0,0,0,1,
 779,0,779,MU,MU,,ICE-US,"NYSE Small Composite Index-Revised",,Settlement,"",0,0.05,5,USD,"$5 x Index","points",50,2.5,IIVIIVIIVIIV,2003-09-30,2009-02-13,"","",,"",2,0,0,0,1,
 780,0,780,LC5,LC5,,ICE-EU,"Brent Crude",RTH,Settlement,"LCO,LC4,LC5",0,10,1000,USD,"1000 bbl","$/bbl",1,10,VVVVVVVVVVVV,2003-09-08,2005-04-07,"LCO starts at 1988-06-23","10:02 - 19:30",,"",2,0,0,0,1,
 781,0,781,LG5,LG5,,ICE-EU,"Gas Oil",RTH,Settlement,"LGO,LG4,LG5",0,1,100,USD,"100 tonne","$/tonne",25,25,VVVVVVVVVVVV,2003-09-08,2005-04-07,"LGO starts at 1981-04-06","09:15 - 17:27",,"",2,0,0,0,0,
-796,0,796,EZ,EZ,EZ,ICE-US,"Euro/Czech Koruna",,Settlement,"",1,10,100000,CZK,"EUR 100000","CZK/EUR",5,50,IIVIIVIIVIIV,2003-09-19,2021-07-30,"","20:00 - 17:00",,"",4,0,0,0,1,144
-797,0,797,VC,VC,VC,ICE-US,"US Dollar/Czech Koruna",,Settlement,"",1,10,100000,CZK,"USD 100000","CZK/USD",5,50,IIVIIVIIVIIV,2003-09-19,2021-07-30,"","20:00 - 17:00",,"",4,0,0,0,1,0
-798,0,798,VU,VU,VU,ICE-US,"US Dollar/Hungarian Forint",,Settlement,"",1,100,100000,HUF,"USD 100000","HUF/USD",10,1000,IIVIIVIIVIIV,2003-09-19,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,0
-816,0,816,LRC,LRC,RC,ICE-EU-AGS,"Robusta Coffee",,Settlement,"",1,10,10,USD,"10 tonne","USD/tonne",1,10,VIVIVIVIVIVI,2008-01-11,2021-07-30,"LKD starts at 1991-03-01","09:00 - 17:30",,"",0,0,1,0,1,29421
+796,0,796,EZ,EZ,EZ,ICE-US,"Euro/Czech Koruna",,Settlement,"",1,10,100000,CZK,"EUR 100000","CZK/EUR",5,50,IIVIIVIIVIIV,2003-09-19,2022-01-07,"","20:00 - 17:00",,"",4,0,0,0,1,499
+797,0,797,VC,VC,VC,ICE-US,"US Dollar/Czech Koruna",,Settlement,"",1,10,100000,CZK,"USD 100000","CZK/USD",5,50,IIVIIVIIVIIV,2003-09-19,2022-01-07,"","20:00 - 17:00",,"",4,0,0,0,1,52
+798,0,798,VU,VU,VU,ICE-US,"US Dollar/Hungarian Forint",,Settlement,"",1,100,100000,HUF,"USD 100000","HUF/USD",10,1000,IIVIIVIIVIIV,2003-09-19,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,0
+816,0,816,LRC,LRC,RC,ICE-EU-AGS,"Robusta Coffee",,Settlement,"",1,10,10,USD,"10 tonne","USD/tonne",1,10,VIVIVIVIVIVI,2008-01-11,2022-01-07,"LKD starts at 1991-03-01","09:00 - 17:30",,"",0,0,1,0,1,10808
 818,0,818,TF2,TF2,TF,ICE-US,"mini Russell 2000 Index",Combined,Settlement,"",0,0.5,50,USD,"$50 x Index","Points",10,5,IIVIIVIIVIIV,2007-08-17,2018-06-15,"ER2 starts at 2001-10-23","20:00 - 16:15",,"",2,0,0,0,1,
 834,0,834,MID,MID,MID,ICE-EU,"Middle East Sour Crude",,Settlement,"",0,10,1000,USD,"1000 barrels","USD/barrel",1,10,VVVVVVVVVVVV,2007-05-21,2018-05-14,"","01:00 - 23:00",,"",2,0,0,0,1,
 844,0,844,TO,TO,,ICE-US,"Russell 2000",RTH,Settlement,"TO,TO1,TO2",0,5,500,USD,"$500 x Index","Points",5,25,IIVIIVIIVIIV,2007-08-16,2008-12-19,"","16:45 - 16:15",,"",2,0,0,0,0,
 871,0,871,IRC,IRC,,ICE-EU,"Coffee-Robusta",,Settlement,"",0,3.75,375,USD,"37500 lbs","cents/lb",5,18.75,IIVIVIVIVIIV,2007-10-08,2009-09-15,"","01:30 - 15:15",,"",2,0,0,0,1,
-907,0,907,MM,MM,MP,ICE-US,"British Pound/US $-Small",,Settlement,"",1,6.25,62500,USD,"GBP 62500","USD/GBP",1,6.25,IIVIIVIIVIIV,2004-02-13,2021-07-30,"","20:00 - 17:00",,"",4,0,0,0,1,36
+907,0,907,MM,MM,MP,ICE-US,"British Pound/US $-Small",,Settlement,"",1,6.25,62500,USD,"GBP 62500","USD/GBP",1,6.25,IIVIIVIIVIIV,2004-02-13,2022-01-07,"","20:00 - 17:00",,"",4,0,0,0,1,4
 914,0,914,OD,OD,OD,ICE-US,"Orange Juice Differential",,Settlement,"",0,1.5,150,USD,"FCOJ-B/FCOJ-A Spread","cents/lb",5,7.5,VIVIVIVIVIVI,2004-02-20,2007-08-30,"","09:00 - 20:30",,"",2,0,0,0,1,
-915,0,915,HR,HR,HR,ICE-US,"Euro/Hungarian Forint",,Settlement,"",1,100,100000,HUF,"EUR 100000","HUF/EUR",5,500,IIVIIVIIVIIV,2004-02-26,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,0
-933,0,933,JN,JN,NJ,ICE-US,"Norwegian Krone/Swedish Krona",,Settlement,"",1,5,500000,SEK,"NOK 500000","SEK/NOK",5,25,IIVIIVIIVIIV,2004-05-07,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
+915,0,915,HR,HR,HR,ICE-US,"Euro/Hungarian Forint",,Settlement,"",1,100,100000,HUF,"EUR 100000","HUF/EUR",5,500,IIVIIVIIVIIV,2004-02-26,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,0
+933,0,933,JN,JN,NJ,ICE-US,"Norwegian Krone/Swedish Krona",,Settlement,"",1,5,500000,SEK,"NOK 500000","SEK/NOK",5,25,IIVIIVIIVIIV,2004-05-07,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
 934,0,934,XA,XA,XA,ICE-US,"Ethanol",,Settlement,"",0,0.775,77.5,USD,"7750 gallons","cents/gallon",10,7.75,IVIVIVIIVIVI,2004-05-07,2005-09-30,"","08:50 - 12:05",,"",2,0,0,0,1,
-946,0,946,NGQ,NGQ,,ICE-EU,"Natural Gas(Quarters)",,Settlement,"",1,1.0e-5,0.01,GBP,"Variable Min 5 lots/1000 Therm","GBP/Therm",10,0.0001,IIVIIVIIVIIV,2002-12-31,2021-07-30,"","08:00 - 17:00",,"",3,0,0,0,1,1015
-947,0,947,NGS,NGS,,ICE-EU,"Natural Gas(Seasons)",,Settlement,"",1,1.0e-5,0.01,GBP,"Variable Min 5 lots/1000 Therm","GBP/Therm",10,0.0001,IIVIIIIIVIII,2003-06-30,2021-07-30,"","08:00 - 17:00",,"",3,0,0,0,1,985
-959,0,959,EFE,EFE,EFE,ICE-EU-FIN,"FTSE Eurofirst 80 Index",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",100,10,IIVIIVIIVIIV,2005-03-07,2021-07-30,"","08:00 - 17:30",,"",2,0,1,0,1,0
-960,0,960,EFP,EFP,EFP,ICE-EU-FIN,"FTSE Eurofirst 100 Index",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",100,10,IIVIIVIIVIIV,2005-03-07,2021-07-30,"","08:00 - 17:30",,"",2,0,1,0,1,0
+946,0,946,NGQ,NGQ,,ICE-EU,"Natural Gas(Quarters)",,Settlement,"",1,1.0e-5,0.01,GBP,"Variable Min 5 lots/1000 Therm","GBP/Therm",10,0.0001,IIVIIVIIVIIV,2002-12-31,2022-01-07,"","08:00 - 17:00",,"",3,0,0,0,1,65
+947,0,947,NGS,NGS,,ICE-EU,"Natural Gas(Seasons)",,Settlement,"",1,1.0e-5,0.01,GBP,"Variable Min 5 lots/1000 Therm","GBP/Therm",10,0.0001,IIVIIIIIVIII,2003-06-30,2022-01-07,"","08:00 - 17:00",,"",3,0,0,0,1,4730
+959,0,959,EFE,EFE,EFE,ICE-EU-FIN,"FTSE Eurofirst 80 Index",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",100,10,IIVIIVIIVIIV,2005-03-07,2022-01-07,"","08:00 - 17:30",,"",2,0,1,0,1,0
+960,0,960,EFP,EFP,EFP,ICE-EU-FIN,"FTSE Eurofirst 100 Index",,Settlement,"",1,0.1,10,EUR,"EUR 10 x Index","points",100,10,IIVIIVIIVIIV,2005-03-07,2022-01-07,"","08:00 - 17:30",,"",2,0,1,0,1,0
 961,0,961,P,P,P,ICE-US,"Pulp",,Settlement,"",0,0.2,20,USD,"20 Metric Tons","USD/tonne",25,5,IVIVIVIVIVIV,2005-03-04,2009-01-02,"","08:00 - 09:30",,"",2,0,0,0,1,
 970,0,970,CRB,CRB,CR,ICE-US,"Reuters Jefferies CRB Index",,Settlement,"",0,2,200,USD,"$200 X Index","Points",5,10,IIVIIVIIVIIV,2005-07-12,2012-09-25,"","02:30 - 14:45",,"",2,0,0,0,1,
-980,0,980,CFI,CFI,C,ICE-EU,"ECX EUA Emissions",,Settlement,"",1,10,1000,EUR,"1000 tonnes","EUR/tonne",1,10,SSVSSVSSVSSV,2005-12-05,2021-07-30,"","07:00 - 17:00",,"",2,0,0,0,1,24100
-991,0,991,ICL,ICL,T,ICE-EU,"WTI Crude Oil",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2006-02-03,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,161591
-100036,0,1036,YZ,YZ,YZ,ICE-US,"Euro/South African Rand",,Settlement,"",1,1,100000,ZAR,"100000 EUR","ZAR/EUR",5,5,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100037,0,1037,QAF,QAF,QA,ICE-US,"British Pound/Australian Dollars",,Settlement,"",1,1.25,125000,AUD,"GBP 125000","AUD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100038,0,1038,GN,GN,GN,ICE-US,"British Pound/New Zealand Dollar",,Settlement,"",1,1.25,125000,NZD,"125000 GBP","NZD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,1
-100039,0,1039,PC,PC,PC,ICE-US,"British Pound/Canadian Dollar",,Settlement,"",1,1.25,125000,CAD,"125000 GBP","CAD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100040,0,1040,PK,PK,PK,ICE-US,"British Pound/Norway Krone",,Settlement,"",1,1.25,125000,NOK,"125000 GBP","NOK/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100041,0,1041,PZ,PZ,PZ,ICE-US,"British Pound/South African Rand",,Settlement,"",1,1.25,125000,ZAR,"125000 GBP","ZAR/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100042,0,1042,PS,PS,PS,ICE-US,"British Pound/Swedish Krona",,Settlement,"",1,1.25,125000,SEK,"125000 GBP","SEK/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100043,0,1043,ZJ,ZJ,ZJ,ICE-US,"New Zealand Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"200000 NZD","JPY/NZD",5,1000,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,0
-100044,0,1044,KY,KY,KY,ICE-US,"Norwegian Krone/Japanese Yen",,Settlement,"",1,20,2000000,JPY,"2000000 NOK","JPY/NOK",25,500,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100045,0,1045,KJ,KJ,KJ,ICE-US,"Swedish Krona/Japenese Yen",,Settlement,"",1,20,2000000,JPY,"2000000 SEK","JPY/SEK",25,500,IIVIIVIIVIIV,2006-07-28,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
+980,0,980,CFI,CFI,C,ICE-EU,"ECX EUA Emissions",,Settlement,"",1,10,1000,EUR,"1000 tonnes","EUR/tonne",1,10,SSVSSVSSVSSV,2005-12-05,2022-01-07,"","03:00 - 13:00",,"",2,0,0,0,1,19954
+991,0,991,ICL,ICL,T,ICE-EU,"WTI Crude Oil",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2006-02-03,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,165436
+100036,0,1036,YZ,YZ,YZ,ICE-US,"Euro/South African Rand",,Settlement,"",1,1,100000,ZAR,"100000 EUR","ZAR/EUR",5,5,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,17
+100037,0,1037,QAF,QAF,QA,ICE-US,"British Pound/Australian Dollars",,Settlement,"",1,1.25,125000,AUD,"GBP 125000","AUD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100038,0,1038,GN,GN,GN,ICE-US,"British Pound/New Zealand Dollar",,Settlement,"",1,1.25,125000,NZD,"125000 GBP","NZD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100039,0,1039,PC,PC,PC,ICE-US,"British Pound/Canadian Dollar",,Settlement,"",1,1.25,125000,CAD,"125000 GBP","CAD/GBP",5,6.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100040,0,1040,PK,PK,PK,ICE-US,"British Pound/Norway Krone",,Settlement,"",1,1.25,125000,NOK,"125000 GBP","NOK/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100041,0,1041,PZ,PZ,PZ,ICE-US,"British Pound/South African Rand",,Settlement,"",1,1.25,125000,ZAR,"125000 GBP","ZAR/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100042,0,1042,PS,PS,PS,ICE-US,"British Pound/Swedish Krona",,Settlement,"",1,1.25,125000,SEK,"125000 GBP","SEK/GBP",25,31.25,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100043,0,1043,ZJ,ZJ,ZJ,ICE-US,"New Zealand Dollar/Japanese Yen",,Settlement,"",1,200,200000,JPY,"200000 NZD","JPY/NZD",5,1000,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,4
+100044,0,1044,KY,KY,KY,ICE-US,"Norwegian Krone/Japanese Yen",,Settlement,"",1,20,2000000,JPY,"2000000 NOK","JPY/NOK",25,500,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100045,0,1045,KJ,KJ,KJ,ICE-US,"Swedish Krona/Japenese Yen",,Settlement,"",1,20,2000000,JPY,"2000000 SEK","JPY/SEK",25,500,IIVIIVIIVIIV,2006-07-28,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
 100126,0,1126,ON,ON,ON,ICE-US,"Orange Juice (not from concentrate)",,Settlement,"",0,1.2,120,USD,"12000 lbs","cents/lb",5,6,VIVIVIVIVIVI,2007-01-12,2007-12-18,"","10:00 - 13:30",,"",2,0,0,0,1,
-100139,0,1139,SB1,SB1,SB,ICE-US,"Sugar #11",ETH,Last,"SB,SB1,SB2",1,11.2,1120,USD,"112000 pounds","cents/pound",1,11.2,IIVIVIVIIVII,2007-03-28,2021-07-30,"","03:30 - 13:00",,"",2,0,0,0,1,115119
-100140,0,1140,SB2,SB2,SB,ICE-US,"Sugar #11",Combined,Settlement,"SB,SB1,SB2",1,11.2,1120,USD,"112000 lbs","cents/pound",1,11.2,IIVIVIVIIVII,1965-12-30,2021-07-30,"SB starts at 1965-12-30","03:30 - 13:00",,"",2,0,0,0,1,115119
+100139,0,1139,SB1,SB1,SB,ICE-US,"Sugar #11",ETH,Last,"SB,SB1,SB2",1,11.2,1120,USD,"112000 pounds","cents/pound",1,11.2,IIVIVIVIIVII,2007-03-28,2022-01-07,"","03:30 - 13:00",,"",2,0,0,0,1,97296
+100140,0,1140,SB2,SB2,SB,ICE-US,"Sugar #11",Combined,Settlement,"SB,SB1,SB2",1,11.2,1120,USD,"112000 lbs","cents/pound",1,11.2,IIVIVIVIIVII,1965-12-30,2022-01-07,"SB starts at 1965-12-30","03:30 - 13:00",,"",2,0,0,0,1,97296
 100141,0,1141,SE1,SE1,,ICE-US,"Sugar #14",ETH,Last,"SE,SE1,SE2",0,11.2,1120,USD,"112000 lbs","cents/pound",1,11.2,VIVIVIVIVIVI,2007-03-28,2009-08-10,"","01:30 - 15:15",,"",2,0,0,0,0,
 100142,0,1142,SE2,SE2,,ICE-US,"Sugar #14",Combined,Settlement,"SE,SE1,SE2",0,11.2,1120,USD,"112000 lbs","cents/pound",1,11.2,VIVIVIVIVIVI,2007-03-28,2009-08-10,"SE starts at 1977-05-02","01:30 - 15:15",,"",2,0,0,0,0,
-100143,0,1143,CT1,CT1,CT,ICE-US,"Cotton #2",ETH,Last,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/pound",1,5,IIVIVIVIIVIV,2007-03-28,2021-07-30,"","21:00 - 14:20",,"",2,0,0,0,1,17854
-100144,0,1144,CT2,CT2,CT,ICE-US,"Cotton #2",Combined,Settlement,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/pound",1,5,IIVIVIVIIVIV,1967-03-22,2021-07-30,"CT starts at 1967-03-22","21:00 - 14:20",,"",2,0,0,0,1,17854
-100145,0,1145,KC1,KC1,KC,ICE-US,"Coffee",ETH,Last,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/pound",5,18.75,IIVIVIVIVIIV,2007-03-28,2021-07-30,"","04:15 - 13:30",,"",2,0,0,0,1,62519
-100146,0,1146,KC2,KC2,KC,ICE-US,"Coffee",Combined,Settlement,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/pound",5,18.75,IIVIVIVIVIIV,1972-08-16,2021-07-30,"KC starts at 1972-08-16","04:15 - 13:30",,"",2,0,0,0,1,62519
-100147,0,1147,CC1,CC1,CC,ICE-US,"Cocoa",ETH,Last,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,2007-03-28,2021-07-30,"","04:45 - 13:30",,"",0,0,0,0,1,39337
-100148,0,1148,CC2,CC2,CC,ICE-US,"Cocoa",Combined,Settlement,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,1965-12-30,2021-07-30,"CC starts at 1965-12-30","04:45 - 13:30",,"",0,0,0,0,1,39337
-100149,0,1149,OJ1,OJ1,OJ,ICE-US,"Frozen Orange Juice",ETH,Last,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/pound",5,7.5,VIVIVIVIVIVI,2007-03-28,2021-07-30,"","08:00 - 14:00",,"",2,0,0,0,1,896
-100150,0,1150,OJ2,OJ2,OJ,ICE-US,"Frozen Orange Juice",Combined,Settlement,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/pound",5,7.5,VIVIVIVIVIVI,1966-10-26,2021-07-30,"OJ starts at 1966-10-26","08:00 - 14:00",,"",2,0,0,0,1,896
-100152,0,1152,RC,RC,ATW,ICE-EU,"API2 Rotterdam Coal Monthly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VVVVVVVVVVVV,2007-04-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,2027
-100153,0,1153,RCQ,RCQ,,ICE-EU,"API2 Rotterdam Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIVIIVIIV,2007-04-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,261
-100154,0,1154,RCS,RCS,,ICE-EU,"API2 Rotterdam Coal Seasonal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIIIIVIII,2007-04-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,0
-100155,0,1155,AF,AF,AFR,ICE-EU,"API4 Richards Bay Coal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VVVVVVVVVVVV,2007-04-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,95
-100156,0,1156,AFQ,AFQ,,ICE-EU,"API4 Richards Bay Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIVIIVIIV,2007-04-11,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,10
-100157,0,1157,AFS,AFS,,ICE-EU,"API4 Richards Bay Coal Seasonal",,Settlement,"",1,50,5000,USD,"5000 tonne","USD/tonne",5,250,IIVIIIIIVIII,2007-04-11,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,0
-100204,0,1204,DX1,DX1,DX,ICE-US,"US Dollar Index",ETH,Last,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,2007-06-19,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,24295
-100205,0,1205,DX2,DX2,DX,ICE-US,"U.S. Dollar Index",Combined,Settlement,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,1985-11-20,2021-07-30,"DX starts at 1985-11-20","20:00 - 17:00",,"",3,0,0,0,1,24295
+100143,0,1143,CT1,CT1,CT,ICE-US,"Cotton #2",ETH,Last,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/pound",1,5,IIVIVIVIIVIV,2007-03-28,2022-01-07,"","21:00 - 14:20",,"",2,0,0,0,1,24003
+100144,0,1144,CT2,CT2,CT,ICE-US,"Cotton #2",Combined,Settlement,"CT,CT1,CT2",1,5,500,USD,"50000 lbs","cents/pound",1,5,IIVIVIVIIVIV,1967-03-22,2022-01-07,"CT starts at 1967-03-22","21:00 - 14:20",,"",2,0,0,0,1,24003
+100145,0,1145,KC1,KC1,KC,ICE-US,"Coffee",ETH,Last,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/pound",5,18.75,IIVIVIVIVIIV,2007-03-28,2022-01-07,"","04:15 - 13:30",,"",2,0,0,0,1,35148
+100146,0,1146,KC2,KC2,KC,ICE-US,"Coffee",Combined,Settlement,"KC,KC1,KC2",1,3.75,375,USD,"37500 lbs","cents/pound",5,18.75,IIVIVIVIVIIV,1972-08-16,2022-01-07,"KC starts at 1972-08-16","04:15 - 13:30",,"",2,0,0,0,1,35148
+100147,0,1147,CC1,CC1,CC,ICE-US,"Cocoa",ETH,Last,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,2007-03-28,2022-01-07,"","04:45 - 13:30",,"",0,0,0,0,1,41547
+100148,0,1148,CC2,CC2,CC,ICE-US,"Cocoa",Combined,Settlement,"CC,CC1,CC2",1,10,10,USD,"10 tonnes","USD/tonne",1,10,IIVIVIVIVIIV,1965-12-30,2022-01-07,"CC starts at 1965-12-30","04:45 - 13:30",,"",0,0,0,0,1,41547
+100149,0,1149,OJ1,OJ1,OJ,ICE-US,"Frozen Orange Juice",ETH,Last,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/pound",5,7.5,VIVIVIVIVIVI,2007-03-28,2022-01-07,"","08:00 - 14:00",,"",2,0,0,0,1,716
+100150,0,1150,OJ2,OJ2,OJ,ICE-US,"Frozen Orange Juice",Combined,Settlement,"OJ,OJ1,OJ2",1,1.5,150,USD,"15000 lbs","cents/pound",5,7.5,VIVIVIVIVIVI,1966-10-26,2022-01-07,"OJ starts at 1966-10-26","08:00 - 14:00",,"",2,0,0,0,1,716
+100152,0,1152,RC,RC,ATW,ICE-EU,"API2 Rotterdam Coal Monthly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VVVVVVVVVVVV,2007-04-10,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,1173
+100153,0,1153,RCQ,RCQ,,ICE-EU,"API2 Rotterdam Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIVIIVIIV,2007-04-10,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,182
+100154,0,1154,RCS,RCS,,ICE-EU,"API2 Rotterdam Coal Seasonal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIIIIVIII,2007-04-10,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,0
+100155,0,1155,AF,AF,AFR,ICE-EU,"API4 Richards Bay Coal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VVVVVVVVVVVV,2007-04-10,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,116
+100156,0,1156,AFQ,AFQ,,ICE-EU,"API4 Richards Bay Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,IIVIIVIIVIIV,2007-04-11,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,2
+100157,0,1157,AFS,AFS,,ICE-EU,"API4 Richards Bay Coal Seasonal",,Settlement,"",1,50,5000,USD,"5000 tonne","USD/tonne",5,250,IIVIIIIIVIII,2007-04-11,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,0
+100204,0,1204,DX1,DX1,DX,ICE-US,"US Dollar Index",ETH,Last,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,2007-06-19,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,14368
+100205,0,1205,DX2,DX2,DX,ICE-US,"U.S. Dollar Index",Combined,Settlement,"DX,DX1,DX2",1,1,1000,USD,"$1000 x Index","points",5,5,IIVIIVIIVIIV,1985-11-20,2022-01-07,"DX starts at 1985-11-20","20:00 - 17:00",,"",3,0,0,0,1,14368
 100206,0,1206,R1,R1,,ICE-US,"Russell 1000 Index",ETH,Last,"R,R1,R2",0,5,500,USD,"$500 x Index","points",5,25,IIVIIVIIVIIV,2007-06-19,2008-12-19,"","20:00 - 16:15",,"",2,0,0,0,0,
 100207,0,1207,R2,R2,,ICE-US,"Russell 1000 Index",Combined,Settlement,"R,R1,R2",0,5,500,USD,"$500 x Index","points",5,25,IIVIIVIIVIIV,1999-03-05,2008-12-19,"R starts at 1999-03-05","20:00 - 16:15",,"",2,0,0,0,0,
 100208,0,1208,RM3,RM3,RF,ICE-US,"mini Russell 1000 Index",ETH,Last,"RM2,RM3,RM4",0,0.5,50,USD,"$50 x Index","points",5,2.5,IIVIIVIIVIIV,2007-06-19,2018-06-15,"","20:00 - 16:15",,"",2,0,0,0,1,
@@ -142,9 +142,9 @@ CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolU
 100218,0,1218,TO1,TO1,,ICE-US,"Russell 2000",ETH,Last,"TO,TO1,TO2",0,5,500,USD,"$500 x Index","Points",5,25,IIVIIVIIVIIV,2007-08-16,2008-12-19,"","20:00 - 16:15",,"",2,0,0,0,0,
 100219,0,1219,TO2,TO2,,ICE-US,"Russell 2000",Combined,Settlement,"TO,TO1,TO2",0,5,500,USD,"$500 x Index","Points",5,25,IIVIIVIIVIIV,2007-08-16,2008-12-19,"TF2 starts at 2007-08-17","16:45 - 16:15",,"",2,0,0,0,0,
 100220,0,1220,,TF,TF,ICE-US,"mini Russell 2000 Index",Combined,Settlement,"",0,0.5,50,USD,"$50 x Index","Points",10,5,IIVIIVIIVIIV,2014-11-28,2014-12-01,"ER2 starts at 2001-10-23","20:00 - 16:15",,"",2,0,0,0,1,
-100297,0,1297,RCY,RCY,,ICE-EU,"API2 Rotterdam Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VIIIIIIIIIII,2008-03-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,79
-100298,0,1298,AFY,AFY,,ICE-EU,"API4 Richards Bay Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VIIIIIIIIIII,2008-03-10,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,0
-100312,0,1312,CER,CER,CER,ICE-EU,"Carbon Certified Emission Reduction",,Settlement,"",0,10,1000,EUR,"1000 metric tons","EUR/tonne",1,10,SSVSSVSSVSSV,2008-03-27,2021-03-22,"","07:00 - 17:00",,"",2,0,0,0,1,
+100297,0,1297,RCY,RCY,,ICE-EU,"API2 Rotterdam Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VIIIIIIIIIII,2008-03-10,2022-01-07,"","01:00 - 23:00",,"",2,0,0,0,1,27
+100298,0,1298,AFY,AFY,,ICE-EU,"API4 Richards Bay Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD/tonne",5,50,VIIIIIIIIIII,2008-03-10,2022-01-07,"","01:00 - 23:00",,"",2,0,0,0,1,0
+100312,0,1312,CER,CER,CER,ICE-EU,"Carbon Certified Emission Reduction",,Settlement,"",0,10,1000,EUR,"1000 metric tons","EUR/tonne",1,10,SSVSSVSSVSSV,2008-03-27,2021-03-22,"","03:00 - 13:00",,"",2,0,0,0,1,
 100369,0,1369,IEO,IEO,IEO,ICE-US,"Million EUR/USD",,Settlement,"",0,10,1000000,USD,"1000000 EUR","USD/EUR",5,50,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",5,0,0,0,1,
 100370,0,1370,IMP,IMP,IMP,ICE-US,"Million GBP/USD",,Settlement,"",0,100,1000000,USD,"1000000 GBP","USD/GBP",5,500,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",4,0,0,0,1,
 100371,0,1371,ISV,ISV,ISV,ICE-US,"Million USD/CAD",,Settlement,"",0,10,1000000,CAD,"1000000 USD","CAD/USD",5,50,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",5,0,0,0,1,
@@ -157,125 +157,127 @@ CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolU
 100378,0,1378,IRK,IRK,IRK,ICE-US,"Million EUR/SEK",,Settlement,"",0,10,1000000,SEK,"1000000 EUR","SEK/EUR",5,50,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",5,0,0,0,1,
 100379,0,1379,IRZ,IRZ,IRZ,ICE-US,"Million EUR/CHF",,Settlement,"",0,10,1000000,CHF,"1000000 EUR","CHF/EUR",5,50,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",5,0,0,0,1,
 100380,0,1380,IAU,IAU,IAU,ICE-US,"Million AUD/USD",,Settlement,"",0,10,1000000,USD,"1000000 AUD","USD/AUD",5,50,IIVIIVIIVIIV,2008-11-11,2019-04-08,"","20:00 - 17:00",,"",5,0,0,0,1,
-100388,0,1388,F2I,F2I,Z,ICE-EU-FIN,"FTSE 100 Index",,Last,"",1,1,10,GBP,"GBP 10 x Index","points",5,5,IIVIIVIIVIIV,2008-12-22,2021-07-30,"","01:00 - 21:00",,"",1,0,1,0,1,86065
-100390,0,1390,NCM,NCM,NCF,ICE-EU,"NewCastle Coal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,VVVVVVVVVVVV,2008-12-19,2021-07-30,"","01:00 - 23:00",,"",2,0,0,0,1,455
-100391,0,1391,NCQ,NCQ,,ICE-EU,"NewCastle Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,IIVIIVIIVIIV,2008-12-22,2021-07-30,"","01:00 - 17:00",,"",2,0,0,0,1,113
-100392,0,1392,NCY,NCY,,ICE-EU,"NewCastle Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,VIIIIIIIIIII,2008-12-22,2021-07-30,"","01:00 - 17:00",,"",2,0,0,0,1,3
+100388,0,1388,F2I,F2I,Z,ICE-EU-FIN,"FTSE 100 Index",,Last,"",1,1,10,GBP,"GBP 10 x Index","points",5,5,IIVIIVIIVIIV,2008-12-22,2022-01-07,"","01:00 - 21:00",,"",1,0,1,0,1,111786
+100390,0,1390,NCM,NCM,NCF,ICE-EU,"NewCastle Coal",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,VVVVVVVVVVVV,2008-12-19,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,1027
+100391,0,1391,NCQ,NCQ,,ICE-EU,"NewCastle Coal Quarterly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,IIVIIVIIVIIV,2008-12-22,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,100
+100392,0,1392,NCY,NCY,,ICE-EU,"NewCastle Coal Yearly",,Settlement,"",1,10,1000,USD,"1000 tonnes","USD / tonne",5,50,VIIIIIIIIIII,2008-12-22,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,6
 100397,0,0,GCI,,,ICE-EU,"ICE Gas Oil Crack",,Settlement,"",0,,,,"","",,,VVVVVVVVVVVV,2009-04-29,2010-02-25,"","",50,"",4,0,0,0,1,
 100398,0,0,HCI,,,ICE-EU,"ICE HO/WTI Crack",,Settlement,"",0,,,,"","",,,VVVVVVVVVVVV,2009-04-29,2010-02-25,"","",500,"",2,0,0,0,1,
 100399,0,0,UCI,,,ICE-EU,"ICE RBOB/WTI Crack",,Settlement,"",0,,,,"","",,,VVVVVVVVVVVV,2009-04-29,2010-02-25,"","",500,"",2,0,0,0,1,
-100454,0,1454,SFI,SFI,SF,ICE-US,"Sugar #16",,Settlement,"",1,11.2,1120,USD,"112000 lb","cents/lb",1,11.2,VIVIVIVIVIVI,2008-09-26,2021-07-30,"","09:00 - 13:00",,"",2,0,0,0,1,336
-100496,0,1496,FSG,FSG,G,ICE-EU-FIN,"Short Term Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",1,10,IIVIIVIIVIIV,2009-11-23,2021-07-30,"","08:00 - 18:00",,"",2,0,1,0,1,0
-100497,0,1497,FMG,FMG,H,ICE-EU-FIN,"Medium Term Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",1,10,IIVIIVIIVIIV,2009-11-23,2021-07-30,"","08:00 - 18:00",,"",2,0,1,0,1,0
+100454,0,1454,SFI,SFI,SF,ICE-US,"Sugar #16",,Settlement,"",1,11.2,1120,USD,"112000 lb","cents/lb",1,11.2,VIVIVIVIVIVI,2008-09-26,2022-01-07,"","09:00 - 13:00",,"",2,0,0,0,1,95
+100496,0,1496,FSG,FSG,G,ICE-EU-FIN,"Short Term Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",1,10,IIVIIVIIVIIV,2009-11-23,2022-01-07,"","08:00 - 18:00",,"",2,0,1,0,1,0
+100497,0,1497,FMG,FMG,H,ICE-EU-FIN,"Medium Term Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",1,10,IIVIIVIIVIIV,2009-11-23,2022-01-07,"","08:00 - 18:00",,"",2,0,1,0,1,0
 100498,0,0,IA,,,ICE-EU,"ICE ASCI",,Settlement,"",0,,,,"","",,,VVVVVVVVVVVV,2009-12-07,2010-02-25,"","",,"",2,0,0,0,1,
 100499,0,0,IAQ,,,ICE-EU,"ICE ASCI           Q",,Settlement,"",0,,,,"","",,,IIVIIVIIVIIV,2009-12-07,2010-02-25,"","",,"",2,0,0,0,1,
 100500,0,0,IAY,,,ICE-EU,"ICE ASCI           Y",,Settlement,"",0,,,,"","",,,IIIIIIIIIIIV,2009-12-07,2010-02-25,"","",,"",2,0,0,0,1,
 100501,0,1501,ID,ID,MEC,ICE-EU,"ASCI Differential",,Settlement,"",0,10,1000,USD,"1000 barrels","$/bbl",1,10,VVVVVVVVVVVV,2009-12-07,2018-05-14,"","01:00 - 23:00",500,"",2,0,0,0,1,
 100502,0,0,IDQ,,,ICE-EU,"ICE ASCI Diff.     Q",,Settlement,"",0,,,,"","",,,IIVIIVIIVIIV,2009-12-07,2012-09-25,"","",500,"",2,0,0,0,1,
 100503,0,0,IDY,,,ICE-EU,"ICE ASCI Diff.     Y",,Settlement,"",0,,,,"","",,,IIIIIIIIIIIV,2009-12-07,2012-01-04,"","",500,"",2,0,0,0,1,
-100535,0,1535,TTM,TTM,TFM,ICE-EU,"Dutch TTF Gas M",,Settlement,"",1,1,1000,EUR,"1MWh/day","EUR/MWh",25,25,VVVVVVVVVVVV,2010-03-16,2021-07-30,"","02:00 - 12:00",,"",3,0,1,0,1,245482
-100536,0,1536,TTQ,TTQ,,ICE-EU,"Dutch TTF Gas Q",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,IIVIIVIIVIIV,2010-03-16,2021-07-30,"","02:00 - 12:00",,"",3,0,1,0,1,9352
-100537,0,1537,TTS,TTS,,ICE-EU,"Dutch TTF Gas S",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,IIVIIIIIVIII,2010-03-16,2021-07-30,"","02:00 - 12:00",,"",3,0,1,0,1,8638
-100538,0,1538,TTY,TTY,,ICE-EU,"Dutch TTF Gas Y",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,VIIIIIIIIIII,2010-03-16,2021-07-30,"","02:00 - 12:00",,"",3,0,1,0,1,1000
+100535,0,1535,TTM,TTM,TFM,ICE-EU,"Dutch TTF Gas M",,Settlement,"",1,1,1000,EUR,"1MWh/day","EUR/MWh",25,25,VVVVVVVVVVVV,2010-03-16,2022-01-07,"","02:00 - 12:00",,"",3,0,1,0,1,150573
+100536,0,1536,TTQ,TTQ,,ICE-EU,"Dutch TTF Gas Q",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,IIVIIVIIVIIV,2010-03-16,2022-01-07,"","02:00 - 12:00",,"",3,0,1,0,1,4817
+100537,0,1537,TTS,TTS,,ICE-EU,"Dutch TTF Gas S",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,IIVIIIIIVIII,2010-03-16,2022-01-07,"","02:00 - 12:00",,"",3,0,1,0,1,8281
+100538,0,1538,TTY,TTY,,ICE-EU,"Dutch TTF Gas Y",,Settlement,"",1,1,1000,EUR,"1MWh/hour/day/delivery period","EUR/MWh",25,25,VIIIIIIIIIII,2010-03-16,2022-01-07,"","02:00 - 12:00",,"",3,0,1,0,1,935
 100541,0,1541,IRV,IRV,RV,ICE-US,"Russell 1000 Value Index",,Settlement,"",0,0.5,50,USD,"$50 x Index","points",10,5,IIVIIVIIVIIV,2010-05-07,2018-06-15,"","20:00 - 18:00",,"",2,0,0,0,0,
 100542,0,1542,IRG,IRG,RG,ICE-US,"Russell 1000 Growth Index",,Settlement,"",0,0.5,50,USD,"$50 x Index","points",10,5,IIVIIVIIVIIV,2010-05-07,2018-06-15,"","20:00 - 18:00",,"",2,0,0,0,1,
-100549,0,1549,MLE,MLE,MLE,ICE-US,"mini MSCI Emerging Markets Latin America Index",,Settlement,"",1,0.02,20,USD,"$20 x Index","points",100,2,IIVIIVIIVIIV,2013-10-16,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,18
-100552,0,1552,MEM,MEM,MME,ICE-US,"mini MSCI Emerging Markets Index",,Settlement,"",1,0.05,50,USD,"USD 50 x Index","points",100,5,IIVIIVIIVIIV,2010-09-24,2021-07-30,"EMI starts at 2008-05-27","20:00 - 18:00",,"",3,0,0,0,1,128668
+100549,0,1549,MLE,MLE,MLE,ICE-US,"mini MSCI Emerging Markets Latin America Index",,Settlement,"",1,0.02,20,USD,"$20 x Index","points",100,2,IIVIIVIIVIIV,2013-10-16,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100552,0,1552,MEM,MEM,MME,ICE-US,"mini MSCI Emerging Markets Index",,Settlement,"",1,0.05,50,USD,"USD 50 x Index","points",100,5,IIVIIVIIVIIV,2010-09-24,2022-01-07,"EMI starts at 2008-05-27","20:00 - 18:00",,"",3,0,0,0,1,91789
 100563,0,1563,KCM,KCM,,ICE-US,"Coffee TAMM",,Settlement,"",0,3.75,375,USD,"37500 lbs","US cents/pound",5,18.75,IIVIVIVIVIIV,2010-08-13,2012-03-30,"","08:00 - 08:02",,"",2,0,0,0,1,
 100564,0,1564,CTM,CTM,,ICE-US,"Cotton TAMM",,Settlement,"",0,5,500,USD,"50000 lb","US cents/pound",1,5,IIVIVIVIIVIV,2010-08-13,2012-03-30,"","10:30 - 10:31",,"",2,0,0,0,1,
 100565,0,1565,CCM,CCM,,ICE-US,"Cocoa TAMM",,Settlement,"",0,10,10,USD,"10 metric tons","US Dollars/metric ton",1,10,IIVIVIVIVIIV,2010-08-13,2012-03-30,"","08:00 - 08:02",,"",0,0,0,0,1,
 100566,0,1566,OJM,OJM,,ICE-US,"Orange Juice TAMM",,Settlement,"",0,1.5,150,USD,"15000 lbs OJ Solids","US cents/pound",5,7.5,VIVIVIVIVIVI,2010-08-13,2012-03-30,"","10:00 - 10:01",,"",2,0,0,0,1,
 100567,0,1567,SBM,SBM,,ICE-US,"Sugar TAMM",,Settlement,"",0,11.2,1120,USD,"112000 lbs","US cents/pound",1,11.2,IIVIVIVIIVII,2010-08-13,2012-03-30,"","08:10 - 08:12",,"",2,0,0,0,1,
-100570,0,1570,MFS,MFS,MFS,ICE-US,"mini MSCI EAFE Index",,Settlement,"",1,0.05,50,USD,"USD 50 x Index","points",100,5,IIVIIVIIVIIV,2010-09-24,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,38344
-100571,0,1571,LXZ,LXZ,XZ,ICE-EU-FIN,"FTSE 100 Dividend Index (RDSA Withholding)",,Settlement,"",1,1,10,GBP,"GBP 10 x Index","points",1,1,IIIIIIIIIIIV,2010-09-29,2021-07-30,"","08:00 - 16:30",,"",1,0,1,0,1,3896
-100573,0,1573,MNN,MNN,MMN,ICE-US,"mini MSCI EM NTR Index",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",100,10,IIVIIVIIVIIV,2010-10-06,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,117
-100574,0,1574,MFU,MFU,MFU,ICE-US,"mini MSCI EAFE NTR Index",,Settlement,"",1,0.02,20,USD,"USD 20 x Index","points",100,2,IIVIIVIIVIIV,2010-10-06,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
-100590,0,1590,GPM,GPM,GER,ICE-EU,"Gaspool NG Monthly",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VVVVVVVVVVVV,2010-11-17,2021-07-30,"","07:00 - 17:00",,"",3,0,1,0,1,10
+100570,0,1570,MFS,MFS,MFS,ICE-US,"mini MSCI EAFE Index",,Settlement,"",1,0.05,50,USD,"USD 50 x Index","points",100,5,IIVIIVIIVIIV,2010-09-24,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,36057
+100571,0,1571,LXZ,LXZ,XZ,ICE-EU-FIN,"FTSE 100 Dividend Index (RDSA Withholding)",,Settlement,"",1,1,10,GBP,"GBP 10 x Index","points",1,1,IIIIIIIIIIIV,2010-09-29,2022-01-07,"","08:00 - 16:30",,"",1,0,1,0,1,30175
+100573,0,1573,MNN,MNN,MMN,ICE-US,"mini MSCI EM NTR Index",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",100,10,IIVIIVIIVIIV,2010-10-06,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100574,0,1574,MFU,MFU,MFU,ICE-US,"mini MSCI EAFE NTR Index",,Settlement,"",1,0.02,20,USD,"USD 20 x Index","points",100,2,IIVIIVIIVIIV,2010-10-06,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100590,0,1590,GPM,GPM,GER,ICE-EU,"Gaspool NG Monthly",,Settlement,"",0,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VVVVVVVVVVVV,2010-11-17,2021-08-30,"","07:00 - 17:00",,"",3,0,1,0,1,
 100591,0,1591,GPQ,GPQ,,ICE-EU,"Gaspool NG Quarterly",,Settlement,"",0,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIVIIVIIV,2010-11-17,2021-05-21,"","07:00 - 17:00",,"",3,0,1,0,1,
 100592,0,1592,GPS,GPS,,ICE-EU,"Gaspool NG Seasonal",,Settlement,"",0,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIIIIVIII,2010-11-17,2021-05-21,"","07:00 - 17:00",,"",3,0,1,0,1,
 100593,0,1593,GPY,GPY,,ICE-EU,"Gaspool NG Yearly",,Settlement,"",0,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VIIIIIIIIIII,2010-11-17,2021-05-21,"","07:00 - 17:00",,"",3,0,1,0,1,
-100594,0,1594,CGM,CGM,GNM,ICE-EU,"NCG NG Monthy",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VVVVVVVVVVVV,2010-11-17,2021-07-30,"","07:00 - 17:00",,"",3,0,1,0,1,0
-100595,0,1595,CGQ,CGQ,,ICE-EU,"NCG NG Quarterly",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIVIIVIIV,2010-11-17,2021-07-30,"","07:00 - 17:00",,"",3,0,1,0,1,0
-100596,0,1596,CGS,CGS,,ICE-EU,"NCG NG Seasonal",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIIIIVIII,2010-11-17,2021-07-30,"","07:00 - 17:00",,"",3,0,1,0,1,0
-100597,0,1597,CGY,CGY,,ICE-EU,"NCG NG Yearly",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VIIIIIIIIIII,2010-11-17,2021-07-30,"","07:00 - 17:00",,"",3,0,1,0,1,0
+100594,0,1594,CGM,CGM,GNM,ICE-EU,"NCG NG Monthy",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VVVVVVVVVVVV,2010-11-17,2022-01-07,"","07:00 - 17:00",,"",3,0,1,0,1,0
+100595,0,1595,CGQ,CGQ,,ICE-EU,"NCG NG Quarterly",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIVIIVIIV,2010-11-17,2022-01-07,"","07:00 - 17:00",,"",3,0,1,0,1,0
+100596,0,1596,CGS,CGS,,ICE-EU,"NCG NG Seasonal",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,IIVIIIIIVIII,2010-11-17,2022-01-07,"","07:00 - 17:00",,"",3,0,1,0,1,0
+100597,0,1597,CGY,CGY,,ICE-EU,"NCG NG Yearly",,Settlement,"",1,0.001,1,EUR,"1 MWH per hour per day","EUR/MWH per hour per day",1,0.001,VIIIIIIIIIII,2010-11-17,2022-01-07,"","07:00 - 17:00",,"",3,0,1,0,1,0
 100645,0,1645,ERU,ERU,ERU,ICE-EU,"ECX ERU",,Settlement,"",0,10,1000,EUR,"1000 ERU","EUR/tonne",1,10,SSVSSVSSVSSV,2011-02-07,2015-03-23,"","07:00 - 17:00",,"",2,0,0,0,1,
-100686,0,1686,MPM,MPM,MPP,ICE-US,"mini MSCI Pan-Euro Index",,Settlement,"",1,0.02,20,EUR,"20 EUR x Index","Points",100,2,IIVIIVIIVIIV,2011-06-14,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
-100687,0,1687,MPE,MPE,MEU,ICE-US,"mini MSCI Euro Index",,Settlement,"",1,0.02,20,EUR,"20 EUR x Index","Points",100,2,IIVIIVIIVIIV,2011-06-16,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
-100688,0,1688,EUP,EUP,KGB,ICE-US,"Euro/Sterling",,Settlement,"",1,1.25,125000,GBP,"125000 Euro","GBP/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,8
-100689,0,1689,EUY,EUY,KEJ,ICE-US,"Euro/Japanese Yen",,Settlement,"",1,125,125000,JPY,"125000 Euro","JPY/EUR",5,625,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,2
-100690,0,1690,EUK,EUK,KRK,ICE-US,"Euro/Swedish Krona",,Settlement,"",1,1.25,125000,SEK,"125000 Euro","SEK/EUR",25,31.25,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100691,0,1691,EUF,EUF,KRZ,ICE-US,"Euro/Swiss Franc",,Settlement,"",1,1.25,125000,CHF,"125000 Euro","CHF/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,1
-100692,0,1692,EUU,EUU,KEO,ICE-US,"Euro/US Dollar",,Settlement,"",1,1.25,125000,USD,"125000 Euro","USD/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,120
-100693,0,1693,AUU,AUU,KAU,ICE-US,"Australian Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"100000 AUD","USD/AUD",5,5,IIVIIVIIVIIV,2011-06-06,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100694,0,1694,KRA,KRA,KRA,ICE-US,"Euro/Australian Dollar",,Settlement,"",1,1.25,125000,AUD,"125000 Euro","AUD/EUR",5,6.25,IIVIIVIIVIIV,2011-09-09,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100695,0,1695,KEP,KEP,KEP,ICE-US,"Euro/Canadian Dollar",,Settlement,"",1,1.25,125000,CAD,"125000 Euro","CAD/EUR",25,31.25,IIVIIVIIVIIV,2011-09-09,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100696,0,1696,KOL,KOL,KOL,ICE-US,"Euro/Norwegian Krone",,Settlement,"",1,1.25,125000,NOK,"125000 Euro","NOK/EUR",25,31.25,IIVIIVIIVIIV,2011-09-09,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,28
+100686,0,1686,MPM,MPM,MPP,ICE-US,"mini MSCI Pan-Euro Index",,Settlement,"",1,0.02,20,EUR,"20 EUR x Index","Points",100,2,IIVIIVIIVIIV,2011-06-14,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100687,0,1687,MPE,MPE,MEU,ICE-US,"mini MSCI Euro Index",,Settlement,"",1,0.02,20,EUR,"20 EUR x Index","Points",100,2,IIVIIVIIVIIV,2011-06-16,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100688,0,1688,EUP,EUP,KGB,ICE-US,"Euro/Sterling",,Settlement,"",1,1.25,125000,GBP,"125000 Euro","GBP/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,10
+100689,0,1689,EUY,EUY,KEJ,ICE-US,"Euro/Japanese Yen",,Settlement,"",1,125,125000,JPY,"125000 Euro","JPY/EUR",5,625,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,5
+100690,0,1690,EUK,EUK,KRK,ICE-US,"Euro/Swedish Krona",,Settlement,"",1,1.25,125000,SEK,"125000 Euro","SEK/EUR",25,31.25,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,20
+100691,0,1691,EUF,EUF,KRZ,ICE-US,"Euro/Swiss Franc",,Settlement,"",1,1.25,125000,CHF,"125000 Euro","CHF/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,8
+100692,0,1692,EUU,EUU,KEO,ICE-US,"Euro/US Dollar",,Settlement,"",1,1.25,125000,USD,"125000 Euro","USD/EUR",5,6.25,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,385
+100693,0,1693,AUU,AUU,KAU,ICE-US,"Australian Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"100000 AUD","USD/AUD",5,5,IIVIIVIIVIIV,2011-06-06,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100694,0,1694,KRA,KRA,KRA,ICE-US,"Euro/Australian Dollar",,Settlement,"",1,1.25,125000,AUD,"125000 Euro","AUD/EUR",5,6.25,IIVIIVIIVIIV,2011-09-09,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100695,0,1695,KEP,KEP,KEP,ICE-US,"Euro/Canadian Dollar",,Settlement,"",1,1.25,125000,CAD,"125000 Euro","CAD/EUR",25,31.25,IIVIIVIIVIIV,2011-09-09,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100696,0,1696,KOL,KOL,KOL,ICE-US,"Euro/Norwegian Krone",,Settlement,"",1,1.25,125000,NOK,"125000 Euro","NOK/EUR",25,31.25,IIVIIVIIVIIV,2011-09-09,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
 100697,0,1697,KBX,KBX,KBX,ICE-US,"Brazilian Real/US Dollar",,Settlement,"",0,1,100000,USD,"100000 Real","USD/BRL",5,5,VVVVVVVVVVVV,2013-01-28,2021-05-10,"","20:00 - 17:00",,"",5,0,0,0,1,
-100698,0,1698,KZY,KZY,KZY,ICE-US,"Swiss Franc/Japanese Yen",,Settlement,"",1,250,250000,JPY,"250000 CHF","JPY/CHF",10,2500,IIVIIVIIVIIV,2011-09-09,2021-07-30,"","20:00 - 17:00",,"",3,0,0,0,1,2
+100698,0,1698,KZY,KZY,KZY,ICE-US,"Swiss Franc/Japanese Yen",,Settlement,"",1,250,250000,JPY,"250000 CHF","JPY/CHF",10,2500,IIVIIVIIVIIV,2011-09-09,2022-01-07,"","20:00 - 17:00",,"",3,0,0,0,1,40
 100699,0,1699,ASC,ASC,F,ICE-EU,"ASCI Futures Monthy",,Settlement,"",0,10,1000,USD,"1000 barrels","USD/Barrel",1,10,VVVVVVVVVVVV,2009-12-07,2018-05-14,"","01:00 - 23:00",,"",2,0,0,0,1,
 100700,0,1700,ULS,ULS,ULS,ICE-EU,"Low Sulphur Gasoil",,Settlement,"",0,1,100,USD,"100 Tonnes","USD/Tonne",25,25,VVVVVVVVVVVV,2011-09-19,2015-01-12,"","01:00 - 23:00",,"",2,0,0,0,1,
-100701,0,1701,KZX,KZX,KZX,ICE-US,"New Zealand Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"NZD 100000","USD/NZD",5,5,IIVIIVIIVIIV,2011-09-19,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,17
-100702,0,1702,KSV,KSV,KSV,ICE-US,"Canadian Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"CAD 100000","USD/CAD",5,5,IIVIIVIIVIIV,2011-09-19,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
-100703,0,1703,KMF,KMF,KMF,ICE-US,"Swiss Franc/US Dollar",,Settlement,"",1,1.25,125000,USD,"CHF 125000","USD/CHF",5,6.25,IIVIIVIIVIIV,2011-09-19,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,23
-100704,0,1704,KSJ,KSJ,KSN,ICE-US,"Japanese Yen/US Dollar",,Settlement,"",1,12.5,12500000,USD,"JPY 12500000","USD/JPY",1,12.5,IIVIIVIIVIIV,2011-09-19,2021-07-30,"","20:00 - 17:00",,"",6,0,0,0,1,0
-100705,0,1705,KMP,KMP,KMP,ICE-US,"Mexican Peso/US Dollar",,Settlement,"",1,0.5,500000,USD,"MXN 500000","USD/MXN",25,12.5,IIVIIVIIVIIV,2011-09-19,2021-07-30,"","20:00 - 17:00",,"",6,0,0,0,1,0
+100701,0,1701,KZX,KZX,KZX,ICE-US,"New Zealand Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"NZD 100000","USD/NZD",5,5,IIVIIVIIVIIV,2011-09-19,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100702,0,1702,KSV,KSV,KSV,ICE-US,"Canadian Dollar/US Dollar",,Settlement,"",1,1,100000,USD,"CAD 100000","USD/CAD",5,5,IIVIIVIIVIIV,2011-09-19,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100703,0,1703,KMF,KMF,KMF,ICE-US,"Swiss Franc/US Dollar",,Settlement,"",1,1.25,125000,USD,"CHF 125000","USD/CHF",5,6.25,IIVIIVIIVIIV,2011-09-19,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,7
+100704,0,1704,KSJ,KSJ,KSN,ICE-US,"Japanese Yen/US Dollar",,Settlement,"",1,12.5,12500000,USD,"JPY 12500000","USD/JPY",1,12.5,IIVIIVIIVIIV,2011-09-19,2022-01-07,"","20:00 - 17:00",,"",6,0,0,0,1,0
+100705,0,1705,KMP,KMP,KMP,ICE-US,"Mexican Peso/US Dollar",,Settlement,"",1,0.5,500000,USD,"MXN 500000","USD/MXN",25,12.5,IIVIIVIIVIIV,2011-09-19,2022-01-07,"","20:00 - 17:00",,"",6,0,0,0,1,44
 100706,0,1706,KCU,KCU,KCU,ICE-US,"Colombian Peso/US Dollar",,Settlement,"",0,0.1,10,USD,"COP 100000000","USD/COP 10000000",10,1,IIVIIVIIVIIV,2011-09-19,2021-05-10,"","20:00 - 17:00",,"",2,0,0,0,1,
 100709,0,1709,CRQ,CRQ,,ICE-EU,"ASCI Quarters (Argus Sour Crude Index )",,Settlement,"",0,10,1000,USD,"1000 Barrels","USD/Barrel",1,10,IIVIIVIIVIIV,2009-12-07,2012-09-25,"","01:00 - 23:00",,"",2,0,0,0,1,
 100710,0,1710,CRY,CRY,,ICE-EU,"ASCI Calendars (Argus Sour Crude Index)",,Settlement,"",0,10,1000,USD,"1000 Barrels","USD/Barrel",1,10,VVVVVVVVVVVV,2009-12-07,2012-01-04,"","01:00 - 23:00",,"",2,0,0,0,1,
-100711,0,1711,BMM,BMM,,ICE-EU,"Brent Marker Singapore",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2005-01-28,2021-07-30,"","01:00 - 09:30",,"",2,0,0,0,1,0
-100712,0,1712,BMA,BMA,,ICE-EU,"Brent Marker Afternoon",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2003-02-27,2021-07-30,"","01:00 - 09:30",,"",2,0,0,0,1,0
-100713,0,1713,GMM,GMM,,ICE-EU,"Gasoil Marker Singapore",,Settlement,"",1,25,2500,USD,"100 mt","USD/mt",25,625,VVVVVVVVVVVV,2007-07-02,2021-07-30,"","01:00 - 09:30",,"",2,0,0,0,1,0
+100711,0,1711,BMM,BMM,,ICE-EU,"Brent Marker Singapore",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2005-01-28,2022-01-07,"","20:00 - 04:30",,"",2,0,0,0,1,0
+100712,0,1712,BMA,BMA,,ICE-EU,"Brent Marker Afternoon",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2003-02-27,2022-01-07,"","20:00 - 12:30",,"",2,0,0,0,1,0
+100713,0,1713,GMM,GMM,,ICE-EU,"Gasoil Marker Singapore",,Settlement,"",1,25,2500,USD,"100 mt","USD/mt",25,625,VVVVVVVVVVVV,2007-07-02,2022-01-07,"","20:00 - 04:30",,"",2,0,0,0,1,0
 100714,0,1714,GME,GME,,ICE-EU,"Gasoil Marker Eve",,Settlement,"",0,25,2500,USD,"100 mt","USD/mt",25,625,VVVVVVVVVVVV,2005-10-03,2012-02-17,"","01:00 - 17:30",,"",2,0,0,0,1,
-100715,0,1715,GMN,GMN,,ICE-EU,"Gasoil Marker 19:30",,Settlement,"",1,25,2500,USD,"100 mt","USD/mt",25,625,VVVVVVVVVVVV,2005-10-03,2021-07-30,"","01:00 - 19:30",,"",2,0,0,0,1,0
-100716,0,1716,WCM,WCM,,ICE-EU,"WTI Crude Marker",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2007-07-02,2021-07-30,"","01:00 - 09:30",,"",2,0,0,0,1,0
+100715,0,1715,GMN,GMN,,ICE-EU,"Gasoil Marker 19:30",,Settlement,"",1,25,2500,USD,"100 mt","USD/mt",25,625,VVVVVVVVVVVV,2005-10-03,2022-01-07,"","20:00 - 14:30",,"",2,0,0,0,1,0
+100716,0,1716,WCM,WCM,,ICE-EU,"WTI Crude Marker",,Settlement,"",1,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2007-07-02,2022-01-07,"","01:00 - 09:30",,"",2,0,0,0,1,0
 100717,0,1717,MCM,MCM,,ICE-EU,"Mid East SC Marker",,Settlement,"",0,10,1000,USD,"1000 bbl","USD/bbl",1,10,VVVVVVVVVVVV,2007-05-21,2013-10-25,"","01:00 - 09:30",,"",2,0,0,0,1,
 100728,0,1728,BNX,BNX,BNX,ICE-EU,"Brent NX Crude",,Settlement,"",0,10,1000,USD,"1000 barrels","USD/Barrel",1,10,VVVVVVVVVVVV,2011-12-05,2015-05-13,"","01:00 - 23:00",,"",2,0,0,0,1,
 100738,0,1738,CWA,CWA,WA,ICE-CA,"Milling Wheat",,Settlement,"",0,10,1000,CAD,"100 tonnes","CAD/tonne",10,100,IIVIVIVIIVIV,2012-01-23,2017-10-25,"","18:30 - 13:15",,"",2,0,0,0,1,
 100739,0,1739,CDW,CDW,DW,ICE-CA,"Durum Wheat",,Settlement,"",0,10,1000,CAD,"100 tonnes","CAD/tonne",10,100,IIVIVIVIIVIV,2012-01-23,2017-10-25,"","18:30 - 13:15",,"",2,0,0,0,1,
 100740,0,1740,CBW,CBW,BW,ICE-CA,"Barley",,Settlement,"",0,2,200,CAD,"20 tonnes","CAD/tonne",10,20,IIVIVIVIIVIV,2012-01-23,2017-10-25,"","18:30 - 13:15",,"",2,0,0,0,1,
-100753,0,1753,MCQ,MCQ,MCQ,ICE-EU-FIN,"MSCI Emerging Markets",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2012-05-07,2021-07-30,"","01:00 - 21:00",,"",3,0,1,0,1,189
+100753,0,1753,MCQ,MCQ,MCQ,ICE-EU-FIN,"MSCI Emerging Markets",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2012-05-07,2022-01-07,"","01:00 - 21:00",,"",3,0,1,0,1,36
 100754,0,1754,ICN,ICN,ICN,ICE-US,"Corn",,Settlement,"",0,6.25,50,USD,"5000 bu","cents/bushel",2,12.5,IIVIVIVIVIIV,2012-05-14,2018-06-08,"","20:00 - 14:30",,"",-1,0,0,0,1,
 100755,0,1755,IW,IW,IW,ICE-US,"Wheat",,Settlement,"",0,6.25,50,USD,"5000 bu","cents/bu",2,12.5,IIVIVIVIVIIV,2012-05-14,2018-06-08,"","20:00 - 14:30",,"",-1,0,0,0,1,
 100756,0,1756,ISB,ISB,IS,ICE-US,"Soybean",,Settlement,"",0,6.25,50,USD,"5000 bu","cents/bushel",2,12.5,VIVIVIVVVIVI,2012-05-14,2018-07-31,"","20:00 - 14:30",,"",-1,0,0,0,1,
 100757,0,1757,IBO,IBO,IBO,ICE-US,"Soybean Oil",,Settlement,"",0,6,600,USD,"60000 lbs","cents/lb",1,6,VIVIVIVVVVIV,2012-05-14,2018-06-08,"","20:00 - 14:30",,"",2,0,0,0,1,
 100758,0,1758,IBM,IBM,ISM,ICE-US,"Soybean Meal",,Settlement,"",0,10,100,USD,"100 short ton","USD/short ton",1,10,VIVIVIVVVVIV,2012-05-14,2018-06-08,"","20:00 - 14:30",,"",1,0,0,0,1,
 100850,0,1850,KIU,KIU,KIU,ICE-US,"Indian Rupee/US Dollar",,Settlement,"",0,2,2000000,USD,"INR 2000000","USD/INR",1,2,VVVVVVVVVVVV,2013-01-22,2019-04-08,"","20:00 - 17:00",,"",6,0,0,0,1,
-100854,0,1854,IED,IED,ED,ICE-EU-FIN,"Eurodollar",,Settlement,"",1,0.25,2500,USD,"USD1000000","USD/bas pt",25,6.25,SSVSSVSSVSSV,2013-02-22,2021-07-30,"","00:45 - 22:00",,"",4,0,1,0,1,0
+100854,0,1854,IED,IED,ED,ICE-EU-FIN,"Eurodollar",,Settlement,"",1,0.25,2500,USD,"USD1000000","USD/bas pt",25,6.25,SSVSSVSSVSSV,2013-02-22,2022-01-07,"","00:45 - 22:00",,"",4,0,1,0,1,0
 100870,0,1870,WIG,WIG,WIG,ICE-US,"Markit CDX Investment Grade WI Future",,Settlement,"",0,0.25,2500,USD,"$2500 x Index","points",100,25,IIVIIIIIVIII,2013-06-17,2014-03-20,"","20:00 - 18:00",,"",4,0,0,0,1,
-100925,0,1925,MWL,MWL,MWL,ICE-US,"mini MSCI World Index",,Settlement,"",1,0.05,50,USD,"$50 x Index","points",100,5,IIVIIVIIVIIV,2013-08-05,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
+100925,0,1925,MWL,MWL,MWL,ICE-US,"mini MSCI World Index",,Settlement,"",1,0.05,50,USD,"$50 x Index","points",100,5,IIVIIVIIVIIV,2013-08-05,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,0
 100948,0,1948,RPT,RPT,RPT,ICE-EU,"U.S. Treasury DTCC GCF Repo Index",,Settlement,"",0,0.4167,4167,USD,"$5000000","percent",25,10.4175,VVVVVVVVVVVV,2014-01-28,2019-08-30,"","00:45 - 22:00",,"",4,0,0,0,1,
 100949,0,1949,RPA,RPA,RPA,ICE-EU,"Agency DTCC GCF Repo Index",,Settlement,"",0,0.4167,4167,USD,"$5000000","percent",25,10.4175,VVVVVVVVVVVV,2014-01-29,2016-12-23,"","19:45 - 17:00",,"",4,0,0,0,1,
 100950,0,1950,RPM,RPM,RPM,ICE-EU,"Mortgage-Backed Securities DTCC GCF Repo Index",,Settlement,"",0,0.4167,4167,USD,"$5000000","percent",25,10.4175,VVVVVVVVVVVV,2014-01-28,2019-05-07,"","00:45 - 22:00",,"",4,0,0,0,1,
-100957,0,1957,FUG,FUG,U,ICE-EU-FIN,"Ultra Long Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",2,20,IIVIIVIIVIIV,2014-03-07,2021-07-30,"","08:00 - 18:00",,"",2,0,1,0,1,0
-100959,0,1959,FM2,FM2,Y2,ICE-EU-FIN,"FTSE 250 Index (2 GBP)",,Settlement,"",1,0.2,2,GBP,"GBP 2 x Index","points",5,1,IIVIIVIIVIIV,2013-12-16,2021-07-30,"FMC starts at 1994-02-25","07:00 - 17:30",,"",1,0,1,0,1,625
+100957,0,1957,FUG,FUG,U,ICE-EU-FIN,"Ultra Long Gilt",,Settlement,"",1,10,1000,GBP,"GBP 100000","percent",2,20,IIVIIVIIVIIV,2014-03-07,2022-01-07,"","08:00 - 18:00",,"",2,0,1,0,1,0
+100959,0,1959,FM2,FM2,Y2,ICE-EU-FIN,"FTSE 250 Index (2 GBP)",,Settlement,"",1,0.2,2,GBP,"GBP 2 x Index","points",5,1,IIVIIVIIVIIV,2013-12-16,2022-01-07,"FMC starts at 1994-02-25","07:00 - 17:30",,"",1,0,1,0,1,308
 100979,0,1979,KRU,KRU,KRU,ICE-US,"RUB/USD",,Settlement,"",0,2.5,2500000,USD,"2500000 Ruble","USD/RUB",10,25,VVVVVVVVVVVV,2012-01-23,2021-05-10,"","20:00 - 17:00",,"",6,0,0,0,1,
-100996,0,1996,UCX,UCX,UCX,ICE-EU,"CSX Coal",,Settlement,"",0,10,1000,USD,"1000 short ton","USD/short ton",1,10,VVVVVVVVVVVV,2014-07-15,2020-03-27,"","01:00 - 23:00",,"",2,0,0,0,1,
+100996,0,1996,UCX,UCX,UCX,ICE-EU,"CSX Coal",,Settlement,"",0,10,1000,USD,"1000 short ton","USD/short ton",1,10,VVVVVVVVVVVV,2014-07-15,2020-03-27,"","20:00 - 18:00",,"",2,0,0,0,1,
 100997,0,1997,UCA,UCA,UCA,ICE-EU,"Central Appalachian Coal",,Settlement,"",0,15.5,1550,USD,"1550 short ton","USD/short ton",1,15.5,VVVVVVVVVVVV,2014-07-16,2017-07-31,"","01:00 - 23:00",,"",2,0,0,0,1,
-100998,0,1998,UCP,UCP,UCP,ICE-EU,"Powder River Basin Coal",,Settlement,"",0,10,1000,USD,"1000 short ton","USD/short ton",1,10,VVVVVVVVVVVV,2014-07-16,2020-03-27,"","01:00 - 23:00",,"",2,0,0,0,1,
-200117,0,20117,MCG,MCG,MCG,ICE-EU-FIN,"MSCI Brazil Index (NTR)",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2014-11-17,2021-07-30,"","08:00 - 17:30",,"",3,0,1,0,1,79
-200118,0,20118,MII,MII,MII,ICE-EU-FIN,"MSCI India Index (NTR)",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2014-11-17,2021-07-30,"","08:00 - 17:30",,"",3,0,1,0,1,21
-200161,0,20161,UBL,UBL,UBL,ICE-EU,"UK Base Electricity (Gregorian)",,Settlement,"",1,7.3,730,GBP,"730 MWH","GBP/MWH",1,7.3,VVVVVVVVVVVV,2014-02-10,2021-07-30,"","07:00 - 17:00",,"",2,0,0,0,1,6
-200162,0,20162,UPL,UPL,UPL,ICE-EU,"UK Peak Electricity (Gregorian)",,Settlement,"",1,3.65,365,GBP,"365 MWH","GBP/MWH",1,3.65,VVVVVVVVVVVV,2014-02-10,2021-07-30,"","07:00 - 17:00",,"",2,0,0,0,1,0
-200197,0,20197,BCM,BCM,BM,ICE-SG,"mini Brent Crude",,Settlement,"",1,1,100,USD,"100 oil barrel","USD/oil barrel",1,1,VVVVVVVVVVVV,2015-11-18,2021-07-30,"","08:00 - 06:00",,"",2,0,0,0,1,6
-200226,0,20226,TRM,TRM,TRM,ICE-US,"Turkish Lira/US Dollar",,Settlement,"",1,5,500000,USD,"TRY500000","USD/TRY",5,25,IIVIIVIIVIIV,2015-01-22,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,2
-200229,0,20229,PLN,PLN,PLN,ICE-US,"Polish Zloty/US Dollar",,Settlement,"",1,5,500000,USD,"PLN500000","USD/PLN",5,25,IIVIIVIIVIIV,2015-08-31,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,41
-200230,0,20230,PLE,PLE,PLE,ICE-US,"Polish Zloty/Euro",,Settlement,"",1,5,500000,EUR,"PLN500000","EUR/PLN",5,25,IIVIIVIIVIIV,2015-08-31,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,43
-200231,0,20231,IL2,IL2,ILS,ICE-US,"Israeli Shekel/US Dollar",,Settlement,"",1,1,1000000,USD,"ILS1000000","USD/ILS",25,25,IIVIIVIIVIIV,2015-08-31,2021-07-30,"","20:00 - 17:00",,"",6,0,0,0,1,148
-200232,0,20232,ETR,ETR,ETR,ICE-US,"Turkish Lira/Euro",,Settlement,"",1,5,500000,EUR,"TRY500000","EUR/TRY",5,25,IIVIIVIIVIIV,2015-08-31,2021-07-30,"","20:00 - 17:00",,"",5,0,0,0,1,0
+100998,0,1998,UCP,UCP,UCP,ICE-EU,"Powder River Basin Coal",,Settlement,"",0,10,1000,USD,"1000 short ton","USD/short ton",1,10,VVVVVVVVVVVV,2014-07-16,2020-03-27,"","20:00 - 18:00",,"",2,0,0,0,1,
+200117,0,20117,MCG,MCG,MCG,ICE-EU-FIN,"MSCI Brazil Index (NTR)",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2014-11-17,2022-01-07,"","08:00 - 17:30",,"",3,0,1,0,1,66
+200118,0,20118,MII,MII,MII,ICE-EU-FIN,"MSCI India Index (NTR)",,Settlement,"",1,0.1,100,USD,"USD 100 x Index","points",1,0.1,SSVSSVSSVSSV,2014-11-17,2022-01-07,"","08:00 - 17:30",,"",3,0,1,0,1,13
+200161,0,20161,UBL,UBL,UBL,ICE-EU,"UK Base Electricity (Gregorian)",,Settlement,"",1,7.3,730,GBP,"730 MWH","GBP/MWH",1,7.3,VVVVVVVVVVVV,2014-02-10,2022-01-07,"","07:00 - 17:00",,"",2,0,0,0,1,0
+200162,0,20162,UPL,UPL,UPL,ICE-EU,"UK Peak Electricity (Gregorian)",,Settlement,"",1,3.65,365,GBP,"365 MWH","GBP/MWH",1,3.65,VVVVVVVVVVVV,2014-02-10,2022-01-07,"","07:00 - 17:00",,"",2,0,0,0,1,0
+200197,0,20197,BCM,BCM,BM,ICE-SG,"mini Brent Crude",,Settlement,"",1,1,100,USD,"100 oil barrel","USD/oil barrel",1,1,VVVVVVVVVVVV,2015-11-18,2022-01-07,"","08:00 - 06:00",,"",2,0,0,0,1,0
+200226,0,20226,TRM,TRM,TRM,ICE-US,"Turkish Lira/US Dollar",,Settlement,"",1,5,500000,USD,"TRY500000","USD/TRY",5,25,IIVIIVIIVIIV,2015-01-22,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,46
+200229,0,20229,PLN,PLN,PLN,ICE-US,"Polish Zloty/US Dollar",,Settlement,"",1,5,500000,USD,"PLN500000","USD/PLN",5,25,IIVIIVIIVIIV,2015-08-31,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,156
+200230,0,20230,PLE,PLE,PLE,ICE-US,"Polish Zloty/Euro",,Settlement,"",1,5,500000,EUR,"PLN500000","EUR/PLN",5,25,IIVIIVIIVIIV,2015-08-31,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,493
+200231,0,20231,IL2,IL2,ILS,ICE-US,"Israeli Shekel/US Dollar",,Settlement,"",1,1,1000000,USD,"ILS1000000","USD/ILS",25,25,IIVIIVIIVIIV,2015-08-31,2022-01-07,"","20:00 - 17:00",,"",6,0,0,0,1,0
+200232,0,20232,ETR,ETR,ETR,ICE-US,"Turkish Lira/Euro",,Settlement,"",1,5,500000,EUR,"TRY500000","EUR/TRY",5,25,IIVIIVIIVIIV,2015-08-31,2022-01-07,"","20:00 - 17:00",,"",5,0,0,0,1,0
 200269,0,20269,WCT,WCT,WCT,ICE-US,"World Cotton",,Settlement,"",0,5.5,550,USD,"55000 lbs","US cents/lb",1,5.5,IIVIVIVIIVIV,2015-11-02,2017-06-12,"","21:00 - 14:20",,"",2,0,0,0,1,
-200275,0,20275,ILB,ILB,ILB,ICE-EU,"Illinois Basin Coal",,Settlement,"",0,10,1000,USD,"1000 tons","USD/ton",1,10,VVVVVVVVVVVV,2016-04-04,2020-03-27,"","01:00 - 23:00",,"",2,0,0,0,1,
-200295,0,20295,HY5,HY5,HY5,ICE-US,"ERIS CDX High Yield Credit (5 year)",,Settlement,"",1,1,10000,USD,"USD 1000 x Index","points",1,1,IIIIIVIIIIIV,2015-04-27,2021-07-30,"","02:00 - 18:00",,"",4,0,0,0,1,0
-200296,0,20296,IG5,IG5,IG5,ICE-US,"ERIS CDX Investment Grade Credit (5 year)",,Settlement,"",1,1,10000,USD,"USD 1000 x Index","points",1,1,IIIIIVIIIIIV,2015-04-27,2021-07-30,"","02:00 - 18:00",,"",4,0,0,0,1,0
-200309,0,20309,FNG,FNG,FNG,ICE-US,"micro NYSE FANG+ Index",,Settlement,"",1,0.05,5,USD,"USD 5 x Index","points",20,1,IIVIIVIIVIIV,2017-11-08,2021-07-30,"","20:00 - 18:00",,"",2,0,0,0,1,6099
-200342,0,20342,LFM,LFM,LFM,ICE-US,"MSCI Emerging Markets ESG Leaders NTR Index",,Settlement,"",1,0.025,25,USD,"USD25 x Index","points",100,2.5,IIVIIVIIVIIV,2019-11-04,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,22
-200343,0,20343,BBM,BBM,BTM,ICE-US,"Bakkt Bitcoin",,Settlement,"",1,0.01,1,USD,"1 bitcoin","USD/BTC",50,0.5,VVVVVVVVVVVV,2019-09-23,2021-07-30,"","20:00 - 18:00",,"",2,0,0,0,1,769
-200384,0,20384,LFW,LFW,LFW,ICE-US,"MSCI World ESG Leaders NTR Index",,Settlement,"",1,0.2,200,USD,"USD 200 x index","points",50,10,IIVIIVIIVIIV,2019-11-04,2021-07-30,"","20:00 - 18:00",,"",3,0,0,0,1,0
-200415,0,20415,O67,O67,O67,ICE-EU,"NYH Ultra Low Sulphur Heating Oil",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallon",1,4.2,VVVVVVVVVVVV,2019-07-29,2021-07-30,"","01:00 - 23:00",,"",4,0,0,0,1,0
-200430,0,20430,BPB,BPB,BPB,ICE-EU,"Belgian Power Baseload",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2021-07-30,"","08:00 - 18:00",,"",3,0,0,0,1,0
-200431,0,20431,DPB,DPB,DPB,ICE-EU,"Dutch Power Baseload",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2021-07-30,"","08:00 - 18:00",,"",3,0,0,0,1,155
-200432,0,20432,GAB,GAB,GAB,ICE-EU,"German Power Financial Base",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2021-07-30,"","08:00 - 18:00",,"",3,0,0,0,1,633
-200433,0,20433,IPB,IPB,IPB,ICE-EU,"Italian Power Financial Base",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2021-07-30,"","08:00 - 18:00",,"",3,0,0,0,1,75
-200444,0,20444,S1,S1,SF1,ICE-EU-FIN,"1 Month SOFR Index",,Settlement,"",1,1,10000,USD,"USD 10000 x Index","points",25,25,VVVVVVVVVVVV,2018-10-22,2021-07-30,"","00:45 - 22:00",,"",4,0,1,0,1,4516
-200445,0,20445,S3,S3,SF3,ICE-EU-FIN,"3 Month SOFR Index",,Settlement,"",1,1,10000,USD,"USD 10000 x Index","points",25,25,IIVIIVIIVIIV,2018-10-22,2021-07-30,"","00:45 - 22:00",,"",4,0,1,0,1,1684
-200446,0,20446,SO1,SO1,SOA,ICE-EU-FIN,"1 Month SONIA Index",,Settlement,"",1,0.25,2500,GBP,"GBP 2500 x Index","points",25,6.25,VVVVVVVVVVVV,2017-11-30,2021-07-30,"","07:30 - 18:00",,"",4,0,1,0,1,78
-200447,0,20447,SO3,SO3,SO3,ICE-EU-FIN,"3 Month SONIA Index",,Settlement,"",1,0.25,2500,GBP,"GBP 2500 x Index","points",25,6.25,IIVIIVIIVIIV,2018-06-01,2021-07-30,"","07:30 - 18:00",,"",4,0,1,0,1,72420
+200275,0,20275,ILB,ILB,ILB,ICE-EU,"Illinois Basin Coal",,Settlement,"",0,10,1000,USD,"1000 tons","USD/ton",1,10,VVVVVVVVVVVV,2016-04-04,2020-03-27,"","20:00 - 18:00",,"",2,0,0,0,1,
+200295,0,20295,HY5,HY5,HY5,ICE-US,"ERIS CDX High Yield Credit (5 year)",,Settlement,"",1,1,10000,USD,"USD 1000 x Index","points",1,1,IIIIIVIIIIIV,2015-04-27,2022-01-07,"","02:00 - 18:00",,"",4,0,0,0,1,0
+200296,0,20296,IG5,IG5,IG5,ICE-US,"ERIS CDX Investment Grade Credit (5 year)",,Settlement,"",1,1,10000,USD,"USD 1000 x Index","points",1,1,IIIIIVIIIIIV,2015-04-27,2022-01-07,"","02:00 - 18:00",,"",4,0,0,0,1,0
+200309,0,20309,FNG,FNG,FNG,ICE-US,"micro NYSE FANG+ Index",,Settlement,"",1,0.05,5,USD,"USD 5 x Index","points",20,1,IIVIIVIIVIIV,2017-11-08,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,5970
+200342,0,20342,LFM,LFM,LFM,ICE-US,"MSCI Emerging Markets ESG Leaders NTR Index",,Settlement,"",1,0.025,25,USD,"USD25 x Index","points",100,2.5,IIVIIVIIVIIV,2019-11-04,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,4
+200343,0,20343,BBM,BBM,BTM,ICE-US,"Bakkt Bitcoin",,Settlement,"",1,0.01,1,USD,"1 bitcoin","USD/BTC",50,0.5,VVVVVVVVVVVV,2019-09-23,2022-01-07,"","20:00 - 18:00",,"",2,0,0,0,1,163
+200384,0,20384,LFW,LFW,LFW,ICE-US,"MSCI World ESG Leaders NTR Index",,Settlement,"",1,0.2,200,USD,"USD 200 x index","points",50,10,IIVIIVIIVIIV,2019-11-04,2022-01-07,"","20:00 - 18:00",,"",3,0,0,0,1,15
+200415,0,20415,O67,O67,O67,ICE-EU,"NYH Ultra Low Sulphur Heating Oil",,Settlement,"",1,4.2,42000,USD,"42000 gallons","USD/gallon",1,4.2,VVVVVVVVVVVV,2019-07-29,2022-01-07,"","01:00 - 23:00",,"",4,0,0,0,1,0
+200430,0,20430,BPB,BPB,BPB,ICE-EU,"Belgian Power Baseload",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2022-01-07,"","08:00 - 18:00",,"",3,0,0,0,1,15
+200431,0,20431,DPB,DPB,DPB,ICE-EU,"Dutch Power Baseload",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2022-01-07,"","08:00 - 18:00",,"",3,0,0,0,1,7
+200432,0,20432,GAB,GAB,GAB,ICE-EU,"German Power Financial Base",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2022-01-07,"","08:00 - 18:00",,"",3,0,0,0,1,87
+200433,0,20433,IPB,IPB,IPB,ICE-EU,"Italian Power Financial Base",,Settlement,"",1,0.728,728,EUR,"728 MWH","EUR/MWH",10,7.279999999999999,VVVVVVVVVVVV,2020-04-08,2022-01-07,"","08:00 - 18:00",,"",3,0,0,0,1,0
+200444,0,20444,S1,S1,SF1,ICE-EU-FIN,"1 Month SOFR Index",,Settlement,"",1,1,10000,USD,"USD 10000 x Index","points",25,25,VVVVVVVVVVVV,2018-10-22,2022-01-07,"","00:45 - 22:00",,"",4,0,1,0,1,2113
+200445,0,20445,S3,S3,SF3,ICE-EU-FIN,"3 Month SOFR Index",,Settlement,"",1,1,10000,USD,"USD 10000 x Index","points",25,25,IIVIIVIIVIIV,2018-10-22,2022-01-07,"","00:45 - 22:00",,"",4,0,1,0,1,2340
+200446,0,20446,SO1,SO1,SOA,ICE-EU-FIN,"1 Month SONIA Index",,Settlement,"",1,0.25,2500,GBP,"GBP 2500 x Index","points",25,6.25,VVVVVVVVVVVV,2017-11-30,2022-01-07,"","07:30 - 18:00",,"",4,0,1,0,1,51
+200447,0,20447,SO3,SO3,SO3,ICE-EU-FIN,"3 Month SONIA Index",,Settlement,"",1,0.25,2500,GBP,"GBP 2500 x Index","points",25,6.25,IIVIIVIIVIIV,2018-06-01,2022-01-07,"","07:30 - 18:00",,"",4,0,1,0,1,269359
+200480,0,20480,SN3,SN3,SA3,ICE-EU-FIN,"3-Month SARON Index",,Settlement,"",1,0.25,2500,CHF,"CHF 1000000","CHF/bas pt",25,6.25,IIVIIVIIVIIV,2019-07-29,2022-01-07,"","09:00 - 17:00",,"",4,0,1,0,1,5758
+200484,0,20484,NGY,NGY,GWM,ICE-EU,"UK Natural Gas Yearly",,Settlement,"",1,1,1000,GBP,"1000 Therm/Day","GBP/Therm/Day",1,1,IIVIIIIIIIII,2011-06-21,2022-01-07,"","02:00 - 12:00",,"",3,0,0,0,0,0

@@ -1,0 +1,10 @@
+CommercialCsiNumber,CommercialDeliveryMonth,UACsiNumber,SymbolCommercial,SymbolUA,ExchangeSymbol,Exchange,Name,SessionType,CloseField,SessionGroup,IsActive,TerminalPointValue,FullPointValue,Currency,ContractSize,Units,MinimumTick,TickValue,DeliveryMonths,StartDate,EndDate,LinkSymbol,TradingTime,OhlcOffset,Footnote,ConversionFactorCode,HasImplied5,HasCurrentDayVolume,HasCurrentDayOpenInterest,HasKnownExpirationDates,LastTotalVolume
+300,0,300,IFB,IFB,,MIF,"Italian Govt Bond-10 Yr",,Settlement,"",0,25000,2500000,ITL,"ITL 250000000","percent",1,25000,IIVIIVIIVIIV,1992-09-11,1998-12-07,"","09:10 - 17:00",,"",2,0,0,0,0,
+327,0,327,IFC,IFC,,MIF,"Italian Govt Bond-5Yr",,Settlement,"",0,20000,2000000,ITL,"ITL200000000","percent",1,20000,IIVIIVIIVIIV,1992-12-11,1998-06-04,"","",,"",2,0,0,0,0,
+359,0,359,IFX,IFX,,MIF,"MIB 30 Index",,Settlement,"",0,5,5,EUR,"EUR 5 x Index","points",1,5,IIVIIVIIVIIV,1994-11-28,2004-09-17,"","09:30 - 17:30",,"",0,0,0,0,1,
+463,0,463,IFF,IFF,,MIF,"Italian Govt Bond-5Yr 6%",,Settlement,"",0,20000,2000000,USD,"ITL 200000000","percent",1,20000,IIVIIVIIVIIV,1997-04-08,1998-06-04,"","",,"",2,0,0,0,1,
+464,0,464,IFT,IFT,,MIF,"Italian Govt Bond-10Yr 6%",,Settlement,"",0,10,1000,EUR,"EUR 100000","percent",1,10,IIVIIVIIVIIV,1997-04-08,2000-09-07,"","09:10 - 17:00",,"",2,0,0,0,0,
+475,0,475,RIB,RIB,,MIF,"RIBOR 1Mth-SIA",,Settlement,"",0,25000,2500000,ITL,"ITL 3000000000","ITL/bas pt",1,25000,VVVVVVVVVVVV,1997-06-02,1998-12-15,"","08:50 - 17:10",,"",2,0,0,0,1,
+628,0,628,IFN,IFN,,MIF,"MIB 30 Index-Mini",,Settlement,"",0,1,1,EUR,"EUR1 x Index","points",1,1,IIVIIVIIVIIV,2000-07-04,2004-09-17,"","09:30 - 17:30",,"",0,0,0,0,1,
+941,0,941,IFS,IFS,FIB,MIF,"MIB FTSE Index (S&P-June09)",,Settlement,"",1,5,5,EUR,"EUR 5 x Index","points",5,25,IIVIIVIIVIIV,2004-03-22,2022-01-07,"IFX starts at 1994-11-28","09:00 - 17:50",,"",0,0,1,1,1,18979
+942,0,942,IFM,IFM,,MIF,"mini MIB Index",,Settlement,"",1,1,1,EUR,"EUR 1 x Index","points",1,1,IIVIIVIIVIIV,2004-03-22,2022-01-07,"","09:00 - 17:50",,"",0,0,1,1,1,5882
