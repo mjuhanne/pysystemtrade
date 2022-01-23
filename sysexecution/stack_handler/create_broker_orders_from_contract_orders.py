@@ -207,7 +207,7 @@ class stackHandlerCreateBrokerOrders(stackHandlerForFills):
                 log.msg("Convert to market order because no market data permissions")
                 new_order = contract_order_after_trade_limits.replace_required_trade_size_only_use_for_unsubmitted_trades(
                     liquid_qty)
-                new_order = reallocate_to_market_algo(log, new_order)
+                reallocate_to_market_algo(log, new_order)
                 return new_order
 
         if liquid_qty != contract_order_after_trade_limits.trade:
