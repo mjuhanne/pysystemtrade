@@ -11,6 +11,7 @@ Two types of services:
 """
 
 from syscore.objects import success
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysobjects.dict_of_named_futures_per_contract_prices import (
     dictNamedFuturesContractFinalPrices,
@@ -111,10 +112,15 @@ def update_multiple_adjusted_prices_for_instrument(
     """
 
     data.log.label(instrument_code=instrument_code)
-    updated_multiple_prices = calc_updated_multiple_prices(data, instrument_code)
-    updated_adjusted_prices = calc_update_adjusted_prices(
-        data, instrument_code, updated_multiple_prices
-    )
+    if virtualFuturesData.is_virtual(instrument_code):
+        updated_multiple_prices = virtualFuturesData.get_multiple_prices(data, instrument_code)
+        updated_adjusted_prices = virtualFuturesData.get_adjusted_prices(
+            data, instrument_code)
+    else:
+        updated_multiple_prices = calc_updated_multiple_prices(data, instrument_code)
+        updated_adjusted_prices = calc_update_adjusted_prices(
+            data, instrument_code, updated_multiple_prices
+        )
 
     update_with_new_prices(
         data,

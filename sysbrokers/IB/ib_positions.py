@@ -4,6 +4,7 @@ from syscore.objects import arg_not_supplied, missing_data
 
 from sysexecution.trade_qty import tradeQuantity
 
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 def extract_fx_balances_from_account_summary(account_summary) -> dict:
     relevant_tag = "TotalCashBalance"
@@ -53,6 +54,13 @@ def from_ib_positions_to_dict(
                 continue
 
         asset_class = position.contract.secType
+
+        if asset_class == 'STK':
+            if virtualFuturesData.is_virtual_by_broker_code(position.contract.symbol):
+                asset_class = 'FUT'
+                position.contract.multiplier = 1
+                position.contract.lastTradeDateOrContractMonth = virtualFuturesData.get_contract_date()
+
         method = position_methods.get(asset_class, None)
         if method is None:
             raise Exception("Can't find asset class %s in methods dict" % asset_class)

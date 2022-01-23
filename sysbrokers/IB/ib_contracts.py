@@ -3,13 +3,13 @@ import re
 
 from sysbrokers.IB.ib_instruments import (
     futuresInstrumentWithIBConfigData,
-    ib_futures_instrument,
+    ib_futures_instrument, ib_stock_instrument
 )
 from sysbrokers.IB.ib_positions import resolveBS
 from syscore.genutils import list_of_ints_with_highest_common_factor_positive_first
 from sysexecution.trade_qty import tradeQuantity
 from sysobjects.contract_dates_and_expiries import contractDate
-
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 def resolve_multiple_expiries(
     ibcontract_list: list,
@@ -83,19 +83,22 @@ def get_ib_contract_with_specific_expiry(
     contract_date: contractDate,
 ) -> Contract:
 
-    ibcontract = ib_futures_instrument(futures_instrument_with_ib_data)
-    contract_date_string = str(contract_date.date_str)
-
-    contract_day_was_passed = contract_date.is_day_defined()
-    if contract_day_was_passed:
-        # Already have the expiry
-        pass
+    if virtualFuturesData.is_virtual(futures_instrument_with_ib_data.instrument_code):
+        ibcontract = ib_stock_instrument(futures_instrument_with_ib_data)
     else:
-        # Don't have the expiry so lose the days at the end so it's just
-        # 'YYYYMM'
-        contract_date_string = contract_date_string[:6]
+        ibcontract = ib_futures_instrument(futures_instrument_with_ib_data)
+        contract_date_string = str(contract_date.date_str)
 
-    ibcontract.lastTradeDateOrContractMonth = contract_date_string
+        contract_day_was_passed = contract_date.is_day_defined()
+        if contract_day_was_passed:
+            # Already have the expiry
+            pass
+        else:
+            # Don't have the expiry so lose the days at the end so it's just
+            # 'YYYYMM'
+            contract_date_string = contract_date_string[:6]
+
+        ibcontract.lastTradeDateOrContractMonth = contract_date_string
 
     return ibcontract
 

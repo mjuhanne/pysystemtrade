@@ -3,6 +3,7 @@ import pandas as pd
 from syscore.algos import apply_buffer
 from syscore.objects import missing_data
 from syscore.pdutils import turnover
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from systems.system_cache import diagnostic
 
 from systems.accounts.account_inputs import accountInputs
@@ -79,7 +80,10 @@ class accountBufferingSystemLevel(accountInputs):
 
         optimal_position = self.get_notional_position(instrument_code)
 
-        buffer_method = self.config.get_element_or_missing_data("buffer_method")
+        if virtualFuturesData.is_virtual(instrument_code):
+            buffer_method = self.config.get_element_or_missing_data("virtual_futures_buffer_method")
+        else:
+            buffer_method = self.config.get_element_or_missing_data("buffer_method")
         if buffer_method is missing_data:
             if roundpositions:
                 return optimal_position.round()

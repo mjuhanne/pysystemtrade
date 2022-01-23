@@ -70,6 +70,8 @@ class PositionSizing(SystemStage):
         position = self.get_subsystem_position(instrument_code)
 
         vol_scalar = self.get_volatility_scalar(instrument_code)
+        prices = self.parent.data.daily_prices(instrument_code)
+        raw_costs = self.parent.data.get_raw_cost_data(instrument_code)
         log = self.log
         config = self.config
 
@@ -77,7 +79,9 @@ class PositionSizing(SystemStage):
                                    position=position,
                                    log=log,
                                    config = config,
-                                   vol_scalar = vol_scalar)
+                                   vol_scalar = vol_scalar,
+                                   daily_prices=prices,
+                                   raw_costs=raw_costs)
 
         return buffer
 

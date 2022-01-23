@@ -5,6 +5,7 @@ import pandas as pd
 
 from syscore.objects import failure, success
 from sysdata.data_blob import dataBlob
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from sysobjects.adjusted_prices import futuresAdjustedPrices
 from sysobjects.contracts import futuresContract
 from sysobjects.dict_of_named_futures_per_contract_prices import (
@@ -42,8 +43,12 @@ def get_roll_data_for_instrument(instrument_code, data):
     # length to expiries / length to suggested roll
 
     price_expiry_days = c_data.days_until_price_expiry(instrument_code)
-    carry_expiry_days = c_data.days_until_carry_expiry(instrument_code)
-    when_to_roll_days = c_data.days_until_roll(instrument_code)
+    if virtualFuturesData.is_virtual(instrument_code):
+        carry_expiry_days = np.NaN
+        when_to_roll_days = np.NaN
+    else:
+        carry_expiry_days = c_data.days_until_carry_expiry(instrument_code)
+        when_to_roll_days = c_data.days_until_roll(instrument_code)
 
     # roll status
     diag_positions = diagPositions(data)

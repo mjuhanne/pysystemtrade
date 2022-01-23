@@ -8,6 +8,7 @@ from sysbrokers.IB.ib_connection import connectionIB
 from sysbrokers.IB.client.ib_price_client import tickerWithBS, ibPriceClient
 from sysbrokers.broker_futures_contract_price_data import brokerFuturesContractPriceData
 
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysexecution.tick_data import tickerObject, dataFrameOfRecentTicks
 from sysexecution.orders.contract_orders import contractOrder
@@ -137,9 +138,14 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
                 instrument_code
             )
         )
-        list_of_date_str = self.ib_client.broker_get_futures_contract_list(
-            futures_instrument_with_ib_data, allow_expired=allow_expired
-        )
+        if virtualFuturesData.is_virtual(instrument_code):
+            list_of_date_str = [
+                virtualFuturesData.get_virtual_futures_contract(instrument_code).date_str
+            ]
+        else:
+            list_of_date_str = self.ib_client.broker_get_futures_contract_list(
+                futures_instrument_with_ib_data, allow_expired=allow_expired
+            )
 
         list_of_contracts = [
             futuresContract(instrument_code, date_str) for date_str in list_of_date_str
@@ -153,11 +159,11 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
         raise NotImplementedError("Do not use get_contracts_with_price_data with IB")
 
     def get_prices_at_frequency_for_potentially_expired_contract_object(
-        self, contract: futuresContract, freq: Frequency = DAILY_PRICE_FREQ
+        self, contract: futuresContract, freq: Frequency = DAILY_PRICE_FREQ, startDateTime="",
     ) -> futuresContractPrices:
 
         price_data = self._get_prices_at_frequency_for_contract_object_no_checking(
-            contract, freq=freq, allow_expired=True
+            contract, freq=freq, startDateTime=startDateTime, allow_expired=True
         )
         return price_data
 
@@ -174,6 +180,7 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
         self,
         contract_object: futuresContract,
         freq: Frequency,
+        startDateTime="",
         allow_expired=False,
     ) -> futuresContractPrices:
 
@@ -202,6 +209,7 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
             contract_object_with_ib_broker_config,
             freq=freq,
             allow_expired=allow_expired,
+            startDateTime=startDateTime,
         )
 
         return price_data
@@ -209,7 +217,7 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
     def _get_prices_at_frequency_for_ibcontract_object_no_checking(
         self,
         contract_object_with_ib_broker_config,
-        freq: Frequency,
+        freq: Frequency, startDateTime="",
         allow_expired: bool = False,
     ) -> futuresContractPrices:
 
@@ -217,7 +225,7 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
 
         price_data = self.ib_client.broker_get_historical_futures_data_for_contract(
             contract_object_with_ib_broker_config,
-            bar_freq=freq,
+            bar_freq=freq, startDateTime=startDateTime,
             allow_expired=allow_expired,
         )
 

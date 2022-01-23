@@ -1,4 +1,5 @@
 from sysdata.data_blob import dataBlob
+from syscore.objects import arg_not_supplied
 from sysbrokers.IB.ib_futures_contract_price_data import (
     ibFuturesContractPriceData,
     futuresContract,
@@ -7,17 +8,19 @@ from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
 from sysdata.arctic.arctic_futures_per_contract_prices import (
     arcticFuturesContractPriceData,
 )
+import datetime
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
-
-def seed_price_data_from_IB(instrument_code):
-    data = dataBlob()
-    data.add_class_list(
-        [
-            ibFuturesContractPriceData,
-            arcticFuturesContractPriceData,
-            ibFuturesContractData,
-        ]
-    )
+def seed_price_data_from_IB(instrument_code, data: dataBlob = arg_not_supplied):
+    if data is arg_not_supplied:
+        data = dataBlob()
+        data.add_class_list(
+            [
+                ibFuturesContractPriceData,
+                arcticFuturesContractPriceData,
+                ibFuturesContractData,
+            ]
+        )
     list_of_contracts = data.broker_futures_contract_price.contracts_with_price_data_for_instrument_code(
         instrument_code, allow_expired=True
     )
@@ -33,8 +36,13 @@ def seed_price_data_for_contract(data: dataBlob, contract: futuresContract):
 
     date_str = contract.contract_date.date_str[:6]
     new_contract = futuresContract(contract.instrument, date_str)
+    startDateTime = ""
+    if virtualFuturesData.is_virtual(contract.instrument.instrument_code):
+        # For normal futures the default (max 1 year) per contract is ok 
+        # but for virtual futures (stocks) we want to get all the historial data we can get
+        startDateTime = datetime.datetime(1900,1,1,0,0,0)
     prices = data.broker_futures_contract_price.get_prices_at_frequency_for_potentially_expired_contract_object(
-        new_contract
+        new_contract, startDateTime=startDateTime
     )
     if len(prices) == 0:
         print("No data!")

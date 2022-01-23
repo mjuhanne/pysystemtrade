@@ -1,4 +1,5 @@
 from dateutil.tz import tz
+from datetime import timedelta
 
 import datetime
 import pandas as pd
@@ -6,7 +7,12 @@ import pandas as pd
 from ib_insync import Contract as ibContract
 from ib_insync import util
 
-from sysbrokers.IB.client.ib_client import  IB_ERROR_TYPES, PACING_INTERVAL_SECONDS, IB_ERROR__NO_MARKET_PERMISSIONS
+from sysbrokers.IB.client.ib_client import (
+    IB_ERROR_TYPES, 
+    PACING_INTERVAL_SECONDS, 
+    IB_ERROR__NO_MARKET_PERMISSIONS,
+    IB_ERROR__NO_HEAD_TIME_STAMP,
+)
 from sysbrokers.IB.client.ib_contracts_client import ibContractsClient
 from sysbrokers.IB.ib_positions import resolveBS_for_list
 
@@ -37,7 +43,8 @@ class ibPriceClient(ibContractsClient):
         self,
         contract_object_with_ib_broker_config: futuresContract,
         bar_freq: Frequency = DAILY_PRICE_FREQ,
-            whatToShow="TRADES",
+        whatToShow="TRADES",
+        startDateTime="",
         allow_expired=False,
     ) -> pd.DataFrame:
         """
@@ -62,7 +69,7 @@ class ibPriceClient(ibContractsClient):
             return missing_data
 
         price_data = self._get_generic_data_for_contract(
-            ibcontract, log=specific_log, bar_freq=bar_freq, whatToShow=whatToShow
+            ibcontract, log=specific_log, bar_freq=bar_freq, whatToShow=whatToShow, startDateTime=startDateTime
         )
 
         return price_data
@@ -163,32 +170,88 @@ class ibPriceClient(ibContractsClient):
         log: logger = None,
         bar_freq: Frequency = DAILY_PRICE_FREQ,
         whatToShow: str = "TRADES",
+        startDateTime="",
     ) -> pd.DataFrame:
         """
         Get historical daily data
 
         :param contract_object_with_ib_data: contract where instrument has ib metadata
         :param freq: str; one of D, H, 5M, M, 10S, S
+        :param startDateTime: str/datetime; If "" then then one maximum chunk (1 year for daily frequency) is returned. Otherwise 
+            return data from the given date or the earliest available data point
         :return: futuresContractPriceData
         """
         if log is None:
             log = self.log
 
         try:
-            barSizeSetting, durationStr = _get_barsize_and_duration_from_frequency(
+            barSizeSetting, barSize, durationStr, duration = _get_barsize_and_duration_from_frequency(
                 bar_freq
             )
         except Exception as exception:
             log.warn(exception)
             return missing_data
 
-        price_data_raw = self._ib_get_historical_data_of_duration_and_barSize(
-            ibcontract,
-            durationStr=durationStr,
-            barSizeSetting=barSizeSetting,
-            whatToShow=whatToShow,
-            log=log,
-        )
+        if startDateTime=="":
+            price_data_raw = self._ib_get_historical_data_of_duration_and_barSize(
+                ibcontract,
+                durationStr=durationStr,
+                barSizeSetting=barSizeSetting,
+                whatToShow=whatToShow,
+            
+                log=log,
+            )
+        else:
+            earliest_data = self.ib.reqHeadTimeStamp(
+                ibcontract,
+                whatToShow=whatToShow,
+                useRTH=True,
+            )
+            if self.get_last_error(ibcontract) == IB_ERROR__NO_HEAD_TIME_STAMP:
+                # let's try 10 years of history
+                earliest_data = datetime.datetime.now() - datetime.timedelta(days=365*10)
+                if startDateTime < earliest_data:
+                    startDateTime = earliest_data
+                log.msg(
+                    "Couldn't fetch head time stamp! Trying to fetch data starting from %s" 
+                    % (
+                        startDateTime.strftime("%Y-%m-%d") 
+                ) )
+            else:
+                if startDateTime < earliest_data:
+                    startDateTime = earliest_data
+                log.msg(
+                    "Earliest data: %s, collection starting date: %s" 
+                    % (
+                        earliest_data.strftime("%Y-%m-%d"), 
+                        startDateTime.strftime("%Y-%m-%d") 
+                ) )
+
+            price_data_raw = None
+
+            while (startDateTime < datetime.datetime.now()):
+
+                endDateTime = startDateTime + duration
+                price_data_chunk = self._ib_get_historical_data_of_duration_and_barSize(
+                    ibcontract,
+                    durationStr=durationStr,
+                    barSizeSetting=barSizeSetting,
+                    whatToShow=whatToShow,
+                    endDateTime=endDateTime,
+                    log=log,
+                )
+                if price_data_raw is None:
+                    price_data_raw = price_data_chunk
+                else:
+                    price_data_raw = price_data_raw.append(price_data_chunk)
+
+                startDateTime = endDateTime + barSize
+
+        if len(price_data_raw) == 0:
+            raise Exception(
+                "Could not fetch %s for contract %s (startTime %s, freq %s)"
+                % (whatToShow, startDateTime, str(bar_freq))
+            )
 
         price_data_as_df = self._raw_ib_data_to_df(
             price_data_raw=price_data_raw, log=log
@@ -256,6 +319,7 @@ class ibPriceClient(ibContractsClient):
         durationStr: str = "1 Y",
         barSizeSetting: str = "1 day",
         whatToShow="TRADES",
+        endDateTime="",
         log: logger = None,
     ) -> pd.DataFrame:
         """
@@ -272,7 +336,7 @@ class ibPriceClient(ibContractsClient):
 
         bars = self.ib.reqHistoricalData(
             ibcontract,
-            endDateTime="",
+            endDateTime=endDateTime,
             durationStr=durationStr,
             barSizeSetting=barSizeSetting,
             whatToShow=whatToShow,
@@ -286,9 +350,11 @@ class ibPriceClient(ibContractsClient):
         return df
 
 
-def _get_barsize_and_duration_from_frequency(bar_freq: Frequency) -> (str, str):
 
-    barsize_lookup = dict(
+
+def _get_barsize_and_duration_from_frequency(bar_freq: Frequency) -> (str, timedelta, str, timedelta):
+
+    barsize_str_lookup = dict(
         [
             (Frequency.Day, "1 day"),
             (Frequency.Hour, "1 hour"),
@@ -300,7 +366,19 @@ def _get_barsize_and_duration_from_frequency(bar_freq: Frequency) -> (str, str):
         ]
     )
 
-    duration_lookup = dict(
+    barsize_lookup = dict(
+        [
+            (Frequency.Day, timedelta(days=1)),
+            (Frequency.Hour, timedelta(hours=1)),
+            (Frequency.Minutes_15, timedelta(minutes=15)),
+            (Frequency.Minutes_5, timedelta(minutes=5)),
+            (Frequency.Minute, timedelta(minutes=1)),
+            (Frequency.Seconds_10, timedelta(seconds=10)),
+            (Frequency.Second, timedelta(seconds=1)),
+        ]
+    )
+
+    duration_str_lookup = dict(
         [
             (Frequency.Day, "1 Y"),
             (Frequency.Hour, "1 M"),
@@ -311,8 +389,23 @@ def _get_barsize_and_duration_from_frequency(bar_freq: Frequency) -> (str, str):
             (Frequency.Second, "1800 S"),
         ]
     )
+
+    duration_lookup = dict(
+        [
+            (Frequency.Day, timedelta(days=365)),
+            (Frequency.Hour, timedelta(days=30)),
+            (Frequency.Minutes_15, timedelta(days=7)),
+            (Frequency.Minutes_5, timedelta(days=7)),
+            (Frequency.Minute, timedelta(days=1)),
+            (Frequency.Seconds_10, timedelta(hours=4)),
+            (Frequency.Second, timedelta(minutes=30)),
+        ]
+    )
+
     try:
+        assert bar_freq in barsize_str_lookup.keys()
         assert bar_freq in barsize_lookup.keys()
+        assert bar_freq in duration_str_lookup.keys()
         assert bar_freq in duration_lookup.keys()
     except:
         raise Exception(
@@ -320,10 +413,12 @@ def _get_barsize_and_duration_from_frequency(bar_freq: Frequency) -> (str, str):
             % (str(bar_freq), str(barsize_lookup.keys()))
         )
 
+    ib_barsize_str = barsize_str_lookup[bar_freq]
     ib_barsize = barsize_lookup[bar_freq]
+    ib_duration_str = duration_str_lookup[bar_freq]
     ib_duration = duration_lookup[bar_freq]
 
-    return ib_barsize, ib_duration
+    return ib_barsize_str, ib_barsize, ib_duration_str, ib_duration
 
 
 def _avoid_pacing_violation(
