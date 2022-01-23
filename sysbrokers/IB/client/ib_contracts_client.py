@@ -17,6 +17,7 @@ from sysbrokers.IB.ib_contracts import (
 
 from syscore.objects import missing_contract
 from syscore.genutils import list_of_ints_with_highest_common_factor_positive_first
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from syslogdiag.logger import logger
 
@@ -74,6 +75,9 @@ class ibContractsClient(ibClient):
         if ibcontract is missing_contract:
             specific_log.warn("Contract is missing can't get expiry")
             return missing_contract
+
+        if virtualFuturesData.is_virtual(futures_contract_with_ib_data.instrument_code):
+            return virtualFuturesData.get_expiration_date()
 
         expiry_date = ibcontract.lastTradeDateOrContractMonth
 

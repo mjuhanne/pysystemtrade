@@ -13,6 +13,7 @@ from syscore.objects import resolve_function, missing_data, arg_not_supplied
 from syscore.genutils import str2Bool
 
 from sysdata.config.configdata import Config
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysquant.estimators.stdev_estimator import stdevEstimates, seriesOfStdevEstimates
 from sysquant.estimators.correlations import (
@@ -148,6 +149,8 @@ class Portfolios(SystemStage):
         config = self.config
         idm = self.get_instrument_diversification_multiplier()
         instr_weights = self.get_instrument_weights()
+        prices = self.parent.data.daily_prices(instrument_code)
+        raw_costs = self.parent.data.get_raw_cost_data(instrument_code)
 
         buffer = calculate_buffers(instrument_code=instrument_code,
                                    position=position,
@@ -155,7 +158,9 @@ class Portfolios(SystemStage):
                                    config = config,
                                    idm = idm,
                                    instr_weights=instr_weights,
-                                   vol_scalar = vol_scalar)
+                                   vol_scalar = vol_scalar,
+                                   daily_prices=prices,
+                                   raw_costs=raw_costs)
 
         return buffer
 

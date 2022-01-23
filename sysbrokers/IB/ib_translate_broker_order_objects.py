@@ -14,6 +14,7 @@ from sysobjects.spot_fx_prices import currencyValue
 from sysexecution.orders.broker_orders import brokerOrder
 from sysexecution.trade_qty import tradeQuantity
 
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 class ibOrderCouldntCreateException(Exception):
     pass
@@ -46,7 +47,6 @@ class ibBrokerOrder(brokerOrder):
         ibBrokerOrder, extracted_trade_data, instrument_code=arg_not_supplied
     ):
         sec_type = extracted_trade_data.contract.ib_sectype
-
         if sec_type not in ["FUT", "BAG"]:
             # Doesn't handle non futures trades, just ignores them
             return missing_order
@@ -174,7 +174,7 @@ def create_broker_order_from_trade_with_contract(
 
     # we do this in two stages to make the abstraction marginally better (to
     # be honest, to reflect legacy history)
-    extracted_trade_info = extract_trade_info(trade_with_contract_from_ib)
+    extracted_trade_info = extract_trade_info(trade_with_contract_from_ib, instrument_code)
 
     # and stage two
     ib_broker_order = ibBrokerOrder.from_broker_trade_object(
@@ -310,12 +310,12 @@ def extract_totals_from_fill_data_for_contract_id(list_of_fills_for_contractid):
     )
 
 
-def extract_trade_info(placed_broker_trade_object):
+def extract_trade_info(placed_broker_trade_object, instrument_code: str):
     trade_to_process = placed_broker_trade_object.trade
     legs = placed_broker_trade_object.ibcontract_with_legs.legs
     order_info = extract_order_info(trade_to_process)
-    contract_info = extract_contract_info(trade_to_process, legs)
-    fill_info = extract_fill_info(trade_to_process)
+    contract_info = extract_contract_info(trade_to_process, legs, instrument_code)
+    fill_info = extract_fill_info(trade_to_process, instrument_code)
 
     algo_msg = " ".join([str(log_entry) for log_entry in trade_to_process.log])
     active = trade_to_process.isActive()
@@ -375,17 +375,24 @@ def extract_order_info(trade_to_process):
     return order_info
 
 
-def extract_contract_info(trade_to_process, legs):
+def extract_contract_info(trade_to_process, legs, instrument_code: str):
     contract = trade_to_process.contract
     ib_instrument_code = contract.symbol
-    ib_sectype = contract.secType
 
-    is_combo_legs = not legs == []
-    if is_combo_legs:
-        ib_contract_id, leg_ratios = get_combo_info(contract, legs)
-    else:
-        ib_contract_id = [contract.lastTradeDateOrContractMonth]
+    if virtualFuturesData.is_virtual(instrument_code):
+        # Override contract date and security type for virtual futures
+        ib_contract_id = [virtualFuturesData.get_contract_date()]
+        ib_sectype = 'FUT'
         leg_ratios = [1]
+    else:
+        ib_sectype = contract.secType
+
+        is_combo_legs = not legs == []
+        if is_combo_legs:
+            ib_contract_id, leg_ratios = get_combo_info(contract, legs)
+        else:
+            ib_contract_id = [contract.lastTradeDateOrContractMonth]
+            leg_ratios = [1]
 
     contractInfo = namedtuple(
         "contractInfo",
@@ -457,9 +464,9 @@ def extract_contract_spread_info(trade_to_process):
     return contract_info
 
 
-def extract_fill_info(trade_to_process):
+def extract_fill_info(trade_to_process, instrument_code: str):
     all_fills = trade_to_process.fills
-    fill_info = [extract_single_fill(single_fill) for single_fill in all_fills]
+    fill_info = [extract_single_fill(single_fill, instrument_code) for single_fill in all_fills]
     fill_info_without_bags = [
         single_fill for single_fill in fill_info if single_fill is not None
     ]
@@ -467,7 +474,7 @@ def extract_fill_info(trade_to_process):
     return fill_info_without_bags
 
 
-def extract_single_fill(single_fill):
+def extract_single_fill(single_fill, instrument_code: str):
     is_bag_fill = single_fill.contract.secType == "BAG"
     if is_bag_fill:
         return None
@@ -484,7 +491,12 @@ def extract_single_fill(single_fill):
     time = datetime.datetime.fromtimestamp(time.timestamp())
     temp_id = single_fill.execution.orderId
     client_id = single_fill.execution.clientId
-    contract_month = single_fill.contract.lastTradeDateOrContractMonth
+    if virtualFuturesData.is_virtual(instrument_code):
+        # Override contract date and security type for virtual futures
+        contract_month = virtualFuturesData.get_contract_date()
+
+    else:
+        contract_month = single_fill.contract.lastTradeDateOrContractMonth
 
     singleFill = namedtuple(
         "singleFill",

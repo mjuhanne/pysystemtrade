@@ -1,6 +1,7 @@
 import pandas as pd
 
 from syscore.objects import missing_instrument
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from sysdata.sim.sim_data import simData
 
 from sysobjects.adjusted_prices import futuresAdjustedPrices
@@ -122,6 +123,8 @@ class futuresSimData(simData):
         ]
 
     def get_rolls_per_year(self, instrument_code: str) -> int:
+        if virtualFuturesData.is_virtual(instrument_code):
+            return 0
         roll_parameters = self.get_roll_parameters(instrument_code)
         rolls_per_year = roll_parameters.rolls_per_year_in_hold_cycle()
 

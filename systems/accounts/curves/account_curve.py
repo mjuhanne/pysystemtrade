@@ -255,6 +255,8 @@ class accountCurve(pd.Series):
 
     def time_in_drawdown(self):
         dd = self.drawdown().dropna()
+        if len(dd) == 0:
+            return np.nan
         in_dd = float(dd[dd < 0].shape[0])
         return in_dd / float(dd.shape[0])
 
@@ -319,6 +321,8 @@ class accountCurve(pd.Series):
     def hitrate(self):
         no_gains = float(self.gains().shape[0])
         no_losses = float(self.losses().shape[0])
+        if (no_gains+no_losses) == 0:
+            return np.nan
         return no_gains / (no_losses + no_gains)
 
     def rolling_ann_std(self, window=40):

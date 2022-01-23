@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ib_insync import Future
+from ib_insync import Future, Stock
 
 from sysobjects.instruments import futuresInstrument
 
@@ -65,6 +65,29 @@ def ib_futures_instrument(
         ibcontract.currency = ib_data.currency
 
     return ibcontract
+
+def ib_stock_instrument(
+    futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+) -> Future:
+    """
+    Get an IB contract for stock
+    Used for creating a link from virtual instrument to stock 
+
+    :param futures_instrument_with_ib_data: instrument with .metadata suitable for IB
+    :return: IBcontract
+    """
+
+    ib_data = futures_instrument_with_ib_data.ib_data
+    
+    ibcontract = Stock(ib_data.symbol, exchange=ib_data.exchange)
+
+    if ib_data.currency is NOT_REQUIRED_FOR_IB:
+        pass
+    else:
+        ibcontract.currency = ib_data.currency
+
+    return ibcontract
+
 
 
 def _resolve_multiplier(multiplier_passed):

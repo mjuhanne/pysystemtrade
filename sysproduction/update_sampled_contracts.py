@@ -1,4 +1,5 @@
 from syscore.objects import missing_contract, success
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysobjects.contract_dates_and_expiries import contractDate, expiryDate
 from sysobjects.contracts import futuresContract, listOfFuturesContracts
@@ -107,6 +108,9 @@ def update_active_contracts_for_instrument(instrument_code: str, data: dataBlob)
 
 def get_contract_chain(data: dataBlob, instrument_code: str) -> listOfFuturesContracts:
 
+    if virtualFuturesData.is_virtual(instrument_code):
+        return listOfFuturesContracts([virtualFuturesData.get_virtual_futures_contract(instrument_code)])
+        
     furthest_out_contract = get_furthest_out_contract_with_roll_parameters(
         data, instrument_code
     )

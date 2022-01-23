@@ -25,6 +25,7 @@ from sysobjects.contracts import futuresContract, listOfFuturesContracts
 from sysproduction.data.prices import get_valid_instrument_code_from_user, diagPrices
 from sysproduction.data.generic_production_data import productionDataLayerGeneric
 from sysdata.data_blob import dataBlob
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 missing_expiry = datetime.datetime(1900, 1, 1)
 
@@ -166,6 +167,8 @@ class dataContracts(productionDataLayerGeneric):
         return ans_as_dict
 
     def get_current_contract_dict(self, instrument_code) -> setOfNamedContracts:
+        if virtualFuturesData.is_virtual(instrument_code):
+            return virtualFuturesData.get_current_contract_dict(instrument_code)
         multiple_prices = self.db_multiple_prices_data.get_multiple_prices(
             instrument_code
         )
