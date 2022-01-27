@@ -17,6 +17,7 @@ from sysobjects.instruments import futuresInstrument
 from syslogdiag.log_to_screen import logtoscreen
 
 IB_FUTURES_CONFIG_FILE = get_filename_for_package("sysbrokers.IB.ib_config_futures.csv")
+PRIVATE_IB_FUTURES_CONFIG_FILE = get_filename_for_package("private.ib_config_futures.csv")
 
 
 class IBconfig(pd.DataFrame):
@@ -25,6 +26,11 @@ class IBconfig(pd.DataFrame):
 
 def read_ib_config_from_file() -> IBconfig:
     df = pd.read_csv(IB_FUTURES_CONFIG_FILE)
+    try:
+        private_df = pd.read_csv(PRIVATE_IB_FUTURES_CONFIG_FILE)
+        df = df.join(private_df, on='Instrument')
+    except:
+        pass
     return IBconfig(df)
 
 
