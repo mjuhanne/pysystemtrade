@@ -59,7 +59,7 @@ def from_ib_positions_to_dict(
             if virtualFuturesData.is_virtual_by_broker_code(position.contract.symbol):
                 asset_class = 'FUT'
                 position.contract.multiplier = 1
-                position.contract.lastTradeDateOrContractMonth = virtualFuturesData.get_contract_date()
+                position.contract.lastTradeDateOrContractMonth = virtualFuturesData.get_expiration_date()
 
         method = position_methods.get(asset_class, None)
         if method is None:
