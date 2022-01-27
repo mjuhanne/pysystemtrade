@@ -3,6 +3,7 @@ Simplest possible execution method, one market order
 """
 from copy import copy
 from syscore.objects import missing_order
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from sysproduction.data.broker import dataBroker
 
 from sysexecution.algos.algo import Algo
@@ -54,9 +55,13 @@ class algoMarket(Algo):
             log.msg("PANIC ORDER! DON'T RESIZE AND DO ENTIRE TRADE")
             cut_down_contract_order = copy(contract_order)
         else:
-            cut_down_contract_order = contract_order.reduce_trade_size_proportionally_so_smallest_leg_is_max_size(
-                SIZE_LIMIT
-            )
+            if virtualFuturesData.is_virtual(contract_order.instrument_code):
+                # For stocks do the entire trade
+                cut_down_contract_order = copy(contract_order)
+            else:
+                cut_down_contract_order = contract_order.reduce_trade_size_proportionally_so_smallest_leg_is_max_size(
+                    SIZE_LIMIT
+                )
 
         if cut_down_contract_order.trade != contract_order.trade:
             log.msg(

@@ -12,6 +12,7 @@ from syscore.objects import success, failure, status, named_object
 from syscore.text import landing_strip, print_with_landing_strips_around
 
 from sysdata.data_blob import dataBlob
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysobjects.contracts import futuresContract
 from sysobjects.production.roll_state import (
@@ -217,7 +218,8 @@ def get_list_of_instruments_to_auto_cycle(data: dataBlob, days_ahead: int = 10) 
 def include_instrument_in_auto_cycle(
     data: dataBlob, instrument_code: str, days_ahead: int = 10
 ) -> bool:
-
+    if virtualFuturesData.is_virtual(instrument_code):
+        return False
     days_until_expiry = days_until_earliest_expiry(data, instrument_code)
     return days_until_expiry <= days_ahead
 

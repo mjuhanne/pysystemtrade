@@ -1,6 +1,7 @@
 """
 This is the original 'best execution' algo I used in my legacy system
 """
+from copy import copy
 from syscore.objects import missing_order
 
 from sysdata.data_blob import dataBlob
@@ -22,6 +23,8 @@ from sysexecution.orders.contract_orders import contractOrder, best_order_type
 from syslogdiag.logger import logger
 
 from sysproduction.data.broker import dataBroker
+
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 # Here are the algo parameters
 # Hard coded; if you want to try different parameters make a hard copy and
@@ -84,11 +87,15 @@ class algoOriginalBest(Algo):
             )
             return missing_order
 
-        cut_down_contract_order = (
-            contract_order.reduce_trade_size_proportionally_so_smallest_leg_is_max_size(
-                SIZE_LIMIT
+        if virtualFuturesData.is_virtual(contract_order.instrument_code):
+            # For stocks do the entire trade
+            cut_down_contract_order = copy(contract_order)
+        else:
+            cut_down_contract_order = (
+                contract_order.reduce_trade_size_proportionally_so_smallest_leg_is_max_size(
+                    SIZE_LIMIT
+                )
             )
-        )
         if cut_down_contract_order.trade != contract_order.trade:
             log.msg(
                 "Cut down order to size %s from %s because of algo size limit"
