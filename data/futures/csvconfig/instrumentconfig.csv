@@ -21,17 +21,17 @@ BRENT_W,1000,,,,OilGas,USD,Brent crude summer,
 BTP,1000,0,2,0,Bond,EUR,Italian 10 year bond BTP,0.005
 BTP3,1000,0,2,0,Bond,EUR,Short-Term Euro-BTP Italian Government Bond,0.005
 BUND,1000,0,2,0,Bond,EUR,German 10 year bond Bund,0.005
-BUTTER,200,0,0.85,0,Ags,USD,CME Cash-Settled Butter Futures,0.5
+BUTTER,200,0,2.9,0,Ags,USD,CME Cash-Settled Butter Futures,0.5
 BUXL,1000,0,2,0,Bond,EUR,German Buxl 15 to 30 year bond,0.013
 CAC,10,0,2,0,Equity,EUR,French equity index CAC40,0.25
 CAD,100000,0,1.5,0,FX,USD,CADUSD currency,3.4E-05
 CAD10,1000,,,,Bond,CAD,Canadian 10 year bond,
 CADSTIR,25,,,,STIR,CAD,Canadian STIR Bank acceptance,
-CANOLA,20,0,2,0,Ags,CAD,Rapeseed (Canola) in CAD,2
+CANOLA,20,0,2.4,0,Ags,CAD,Rapeseed (Canola) in CAD,1
 CH10,1000,0,4,0,Bond,CHF,Swiss Federal Long-Term Bonds,0.181353591160219
 CHEESE,20000,0,0.85,0,Ags,USD,Cheese,0.005360341151386
 CHF,125000,0,1.5,0,FX,USD,CHFUSD currency,5E-05
-CLP,50000000,0,0.85,0,FX,USD,Chilean peso,
+CLP,50000000,0,0.85,0,FX,USD,Chilean peso,0.00001
 CNH,100000,0,11.2,0,FX,CNH,SGX US Dollar in offshore Chinese Renminbi (CNH),0.0004
 CNH-onshore,500000,0,1.8,0,FX,USD,SGX onshore Chinese Renminbi (CNY) in US Dollar Futures (CY@SGX),0.00015
 COCOA,10,0,3,0,Ags,USD,Cocoa NY,0.5
@@ -177,7 +177,7 @@ LIBOR1,2500,0,0.85,0,Bond,USD,1 Month LIBOR (Int. Rate),0.01
 LIVECOW,400,0,2.9,0,Ags,USD,Live cattle,0.025
 LUMBER,110,0,0.85,0,Ags,USD,Random Length Lumber,5.4
 MID-DAX,5,0,2,0,Equity,EUR,Midcap DAX,25
-MILK,2000,0,1.5,0,Ags,USD,Milk class III,0.055882352941177
+MILK,2000,0,2.9,0,Ags,USD,Milk class III,0.02
 MILKDRY,440,0,0.85,0,Ags,USD,NON FAT DRY MILK INDEX,1.11779940031748
 MILKWET,2000,0,0.85,0,Ags,USD,Class IV Milk - 200k lbs,0.3
 MSCIASIA,100,0,2.4,0,Equity,USD,MSCI Emerging Markets Asia,0.4
