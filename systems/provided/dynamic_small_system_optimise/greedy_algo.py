@@ -12,25 +12,27 @@ def greedy_algo_across_integer_values(
     best_value = obj_instance.evaluate(weight_start)
     best_solution = weight_start
 
-    at_limit = [False] * len(weight_start)
+    for tier_index in range(obj_instance.tier_count):
+        at_limit = obj_instance.locked_entries_by_tier(tier_index)
+        #at_limit = [False] * len(weight_start)
 
-    done = False
+        done = False
 
-    while not done:
-        new_best_value, new_solution, at_limit = _find_possible_new_best_live(
-            best_solution=best_solution,
-            best_value=best_value,
-            obj_instance=obj_instance,
-            at_limit=at_limit,
-        )
+        while not done:
+            new_best_value, new_solution, at_limit = _find_possible_new_best_live(
+                best_solution=best_solution,
+                best_value=best_value,
+                obj_instance=obj_instance,
+                at_limit=at_limit,
+            )
 
-        if new_best_value < best_value:
-            # reached a new optimium
-            best_value = new_best_value
-            best_solution = new_solution
-        else:
-            # we can't do any better
-            break
+            if new_best_value < best_value:
+                # reached a new optimium
+                best_value = new_best_value
+                best_solution = new_solution
+            else:
+                # we can't do any better
+                break
 
     return best_solution
 

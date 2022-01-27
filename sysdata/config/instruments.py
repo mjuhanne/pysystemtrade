@@ -107,10 +107,16 @@ def get_entry_for_key_in_dict(key: str, check_dict: dict, is_include_dict: bool 
 
 
 def get_duplicate_list_of_instruments_to_remove_from_config(config: Config) -> list:
+    ignore_duplicate_instrument_config = config.get_element_or_missing_data(
+        "ignore_duplicate_instruments_list"
+    )
+    if ignore_duplicate_instrument_config is not missing_data:
+        if ignore_duplicate_instrument_config == True:
+            return []
+
     duplicate_instruments_config = config.get_element_or_missing_data(
         "duplicate_instruments"
     )
-
     if duplicate_instruments_config is missing_data:
         return []
     exclude_dict = duplicate_instruments_config.get("exclude", missing_data)

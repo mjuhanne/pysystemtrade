@@ -15,6 +15,8 @@ from sysobjects.rolls import rollParameters
 VIRTUAL_FUTURES_CONTRACT_DATE = "21000100"
 VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE = "21000131"
 
+DEFAULT_LOT_VALUE = 5000
+
 class virtualFuturesData(object):
 
     def __init__():
@@ -30,6 +32,10 @@ class virtualFuturesData(object):
     @classmethod
     def get_expiration_date(self) -> str:
         return VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE
+
+    @classmethod
+    def get_lot_size_from_price(self, instrument_code, prices) -> float:
+        return DEFAULT_LOT_VALUE / prices[-1]
 
     @classmethod
     def get_current_contract_dict(self, instrument_code):
