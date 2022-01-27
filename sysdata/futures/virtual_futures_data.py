@@ -40,8 +40,8 @@ class virtualFuturesData(object):
     @classmethod
     def get_current_contract_dict(self, instrument_code):
         date_str = self.get_virtual_futures_contract(instrument_code).date_str
-        return setOfNamedContracts( 
-            dict({'PRICE':date_str, 'FORWARD':date_str, 'CARRY':'nan'})
+        return setOfNamedContracts(
+            dict({'PRICE':date_str, 'FORWARD':date_str, 'CARRY':date_str})
         )
 
     @classmethod
