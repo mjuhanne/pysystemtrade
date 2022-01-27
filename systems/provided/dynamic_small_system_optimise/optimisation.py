@@ -37,6 +37,7 @@ class objectiveFunctionForGreedy:
         per_contract_value: portfolioWeights,
         costs: meanEstimates,
         speed_control: speedControlForDynamicOpt,
+        tiers: dict,
         previous_positions: portfolioWeights = arg_not_supplied,
         constraints: constraintsForDynamicOpt = arg_not_supplied,
         maximum_positions: portfolioWeights = arg_not_supplied,
@@ -72,6 +73,8 @@ class objectiveFunctionForGreedy:
         self.maximum_position_weights = maximum_position_weights
 
         self.maximum_positions = maximum_positions
+
+        self.tiers = tiers
 
         self.log = log
 
@@ -261,6 +264,17 @@ class objectiveFunctionForGreedy:
             )
 
         return trade_costs
+
+    @property
+    def tier_count(self) -> int:
+        return len(self.tiers)
+
+    def locked_entries_by_tier(self, tier_index) -> list:
+        tier = self.tiers[tier_index]
+        return [key not in tier 
+            for key in self.keys_with_valid_data]
+
+
 
     @property
     def trade_shadow_cost(self):

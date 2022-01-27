@@ -6,6 +6,7 @@ import pandas as pd
 from syscore.genutils import progressBar
 from syscore.objects import arg_not_supplied, missing_data
 from syscore.pdutils import calculate_cost_deflator, get_row_of_series
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from systems.provided.dynamic_small_system_optimise.optimisation import (
     objectiveFunctionForGreedy,
     constraintsForDynamicOpt,
@@ -52,6 +53,9 @@ class optimisedPositions(SystemStage):
             show_each_time=True
         )
         previous_optimal_positions = portfolioWeights.allzeros(self.instrument_list())
+
+        #FIXME! in production, where previous positions come from??
+
         position_list = []
         for relevant_date in common_index:
             # self.log.msg(relevant_date)
@@ -62,6 +66,8 @@ class optimisedPositions(SystemStage):
             previous_optimal_positions = copy(optimal_positions)
             progress.iterate()
         progress.finished()
+
+        # FIXME! multiply with get_lot_size!
         position_df = pd.DataFrame(position_list, index=common_index)
 
         return position_df
@@ -106,6 +112,7 @@ class optimisedPositions(SystemStage):
             relevant_date
         )
 
+        tiers = self.get_tiers()
         costs = self.get_costs_per_contract_as_proportion_of_capital_all_instruments(
             relevant_date
         )
@@ -121,9 +128,23 @@ class optimisedPositions(SystemStage):
             constraints=constraints,
             maximum_positions=maximum_positions,
             speed_control=speed_control,
+            tiers=tiers,
         )
 
         return obj_instance
+
+    def get_tiers(self):
+        tiers = self.parent.config.get_element_or_missing_data("dynamic_optimization_tiers")
+        if tiers is missing_data:
+            tiers = dict( { 0: [], 1: [] } )
+            for instr in self.instrument_list():
+                if virtualFuturesData.is_virtual(instr):
+                    tiers[1].append(instr)
+                else:
+                    tiers[0].append(instr)
+        return tiers
+            
+
 
     def get_constraints(self) -> constraintsForDynamicOpt:
         ## 'reduce only' is as good as do not trade in backtesting
@@ -291,6 +312,10 @@ class optimisedPositions(SystemStage):
         return self.accounts_stage().get_raw_cost_data(instrument_code)
 
     def get_contract_multiplier(self, instrument_code: str) -> float:
+        if virtualFuturesData.is_virtual(instrument_code):
+            return float(virtualFuturesData.get_lot_size_from_price(
+                instrument_code, self.get_raw_price(instrument_code)
+            ))
         return float(self.data.get_value_of_block_price_move(instrument_code))
 
     def get_raw_price(self, instrument_code: str) -> pd.Series:
