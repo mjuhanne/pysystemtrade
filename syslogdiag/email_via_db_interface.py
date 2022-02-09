@@ -148,7 +148,9 @@ class dataEmailControl:
         # Check data has the right elements to do this
         # uniquely, we don't allow a default data or this causes circular
         # imports
-        data.add_class_list([mongoEmailControlData])
+        # Also make sure that mongoEmailControlData will be accessible with data.db_email_control instance 
+        # regardless of dataBlobs default keep_original_prefix setting
+        data.add_class_list([mongoEmailControlData], keep_original_prefix=False)
         self.data = data
 
     def get_time_last_email_sent_with_this_subject(self, subject):

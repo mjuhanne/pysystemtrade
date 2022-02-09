@@ -92,16 +92,16 @@ class dataBlob(object):
             delattr(self, attr_name)
             self.add_class_object(class_object)
         
-    def add_class_list(self, class_list: list):
+    def add_class_list(self, class_list: list, keep_original_prefix: bool=arg_not_supplied):
         for class_object in class_list:
-            self.add_class_object(class_object)
+            self.add_class_object(class_object, keep_original_prefix)
 
-    def add_class_object(self, class_object):
+    def add_class_object(self, class_object, keep_original_prefix: bool=arg_not_supplied):
         class_name = get_class_name(class_object)
-        attr_name = self._get_new_name(class_name)
+        attr_name = self._get_new_name(class_name, keep_original_prefix)
         if not self._already_existing_class_name(attr_name):
             resolved_instance = self._get_resolved_instance_of_class(class_object)
-            self._resolve_names_and_add(resolved_instance, class_name)
+            self._resolve_names_and_add(resolved_instance, class_name, keep_original_prefix)
 
     def _get_resolved_instance_of_class(self, class_object):
         class_adding_method = self._get_class_adding_method(class_object)
@@ -241,15 +241,20 @@ class dataBlob(object):
 
         return log
 
-    def _resolve_names_and_add(self, resolved_instance, class_name: str):
-        attr_name = self._get_new_name(class_name)
+    def _resolve_names_and_add(self, resolved_instance, class_name: str, keep_original_prefix: bool):
+        attr_name = self._get_new_name(class_name, keep_original_prefix)
         self._add_new_class_with_new_name(resolved_instance, attr_name)
 
-    def _get_new_name(self, class_name: str) -> str:
+    def _get_new_name(self, class_name: str, keep_original_prefix: bool) -> str:
         split_up_name = camel_case_split(class_name)
-        attr_name = identifying_name(
-            split_up_name, keep_original_prefix=self._keep_original_prefix
-        )
+        if keep_original_prefix is not arg_not_supplied:
+            attr_name = identifying_name(
+                split_up_name, keep_original_prefix=keep_original_prefix
+            )
+        else:
+            attr_name = identifying_name(
+                split_up_name, keep_original_prefix=self._keep_original_prefix
+            )
 
         return attr_name
 
