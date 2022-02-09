@@ -200,7 +200,10 @@ class dataBlob(object):
         log = self._get_specific_logger(class_object)
 
         try:
-            resolved_instance = class_object(datapath=datapath, log=log, config=config)
+            if config is arg_not_supplied:
+                resolved_instance = class_object(datapath = datapath, log = log)
+            else:
+                resolved_instance = class_object(datapath = datapath, log = log, config = config)
         except Exception as e:
             class_name = get_class_name(class_object)
             msg = (
