@@ -11,11 +11,15 @@ from sysproduction.data.prices import diagPrices
 from sysobjects.dict_of_named_futures_per_contract_prices import setOfNamedContracts
 from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
 from sysobjects.rolls import rollParameters
+from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
 
 VIRTUAL_FUTURES_CONTRACT_DATE = "21000100"
 VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE = "21000131"
 
 DEFAULT_LOT_VALUE = 5000
+
+
+mongodb = mongoFuturesInstrumentData()
 
 class virtualFuturesData(object):
 
@@ -24,6 +28,20 @@ class virtualFuturesData(object):
 
     def __repr__(self):
         return "Virtual Futures Data"
+
+    @classmethod
+    def get_all_instruments_tag(self, instrument_code:str):
+        if self.is_virtual(instrument_code):
+            return 'V_ALL'
+        return 'ALL'
+
+    @classmethod
+    def get_asset_class_tag(self, instrument_code:str):
+        ac = mongodb.get_instrument_data(instrument_code).meta_data.AssetClass
+        if self.is_virtual(instrument_code):
+            return 'V_AC_' + ac
+        return 'AC_' + ac
+
 
     @classmethod
     def get_contract_date(self) -> str:
