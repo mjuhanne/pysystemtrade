@@ -1,7 +1,8 @@
 import pandas as pd
 
 from syscore.pdutils import turnover
-
+from syscore.objects import missing_data, missingData
+from systems.hedge import Hedge
 from systems.system_cache import diagnostic, output, dont_cache
 from systems.accounts.account_costs import accountCosts
 from systems.accounts.account_buffering_system import accountBufferingSystemLevel
@@ -45,9 +46,15 @@ class accountInstruments(accountCosts, accountBufferingSystemLevel):
             instrument_code=instrument_code,
         )
 
-        positions = self.get_buffered_position(
-            instrument_code, roundpositions=roundpositions
-        )
+        hedge = self.hedge_stage
+        if hedge is missing_data:
+            positions = self.get_buffered_position(
+                instrument_code, roundpositions=roundpositions
+            )
+        else:
+            positions = hedge.get_buffered_position(
+                instrument_code, roundpositions=roundpositions
+            )
 
         instrument_pandl = self._pandl_for_instrument_with_positions(
             instrument_code,
@@ -213,3 +220,9 @@ class accountInstruments(accountCosts, accountBufferingSystemLevel):
         account_curve = accountCurve(pandl_calculator, weighted=True)
 
         return account_curve
+
+    @property
+    def hedge_stage(self) -> Hedge:
+        hedge_stage = getattr(self.parent, "hedge", missing_data)
+
+        return hedge_stage
