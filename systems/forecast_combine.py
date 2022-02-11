@@ -1345,12 +1345,13 @@ def _get_fixed_weights_from_config(
             % (instrument_code, str(fixed_weights))
         )
     else:
-        if virtualFuturesData.is_virtual(instrument_code):
-            if 'V_ALL' in forecast_weights_config:
-                return forecast_weights_config['V_ALL']
+        asset_class_tag = virtualFuturesData.get_asset_class_tag(instrument_code)
+        if asset_class_tag in forecast_weights_config:
+                return forecast_weights_config[asset_class_tag]
         else:
-            if 'ALL' in forecast_weights_config:
-                return forecast_weights_config['ALL']
+            all_instruments_tag = virtualFuturesData.get_all_instruments_tag(instrument_code)
+            if all_instruments_tag in forecast_weights_config:
+                return forecast_weights_config[all_instruments_tag]
 
         # assume it's a non nested dict
         fixed_weights = forecast_weights_config
@@ -1414,12 +1415,16 @@ def _get_list_of_rules_from_config_for_instrument(
             # nested dict
             rules = config.forecast_weights[instrument_code].keys()
         else:
-            if virtualFuturesData.is_virtual(instrument_code):
-                if 'V_ALL' in config.forecast_weights:
-                    return config.forecast_weights['V_ALL'].keys()
+
+            asset_class_tag = virtualFuturesData.get_asset_class_tag(instrument_code)
+            if asset_class_tag in config.forecast_weights:
+                    return config.forecast_weights[asset_class_tag].keys()
+
             else:
-                if 'ALL' in config.forecast_weights:
-                    return config.forecast_weights['ALL'].keys()
+                all_instruments_tag = virtualFuturesData.get_all_instruments_tag(instrument_code)
+
+                if all_instruments_tag in config.forecast_weights:
+                    return config.forecast_weights[all_instruments_tag].keys()
 
             # seems it's a non nested dict (weights same across instruments), but let's check
             # that just in case it IS nested dict but instrument weight is missing
