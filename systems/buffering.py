@@ -48,7 +48,10 @@ def calculate_buffers(instrument_code: str,
         instrument_code=instrument_code,
     )
 
-    buffer_method = config.buffer_method
+    if virtualFuturesData.is_virtual(instrument_code):
+        buffer_method = config.virtual_futures_buffer_method
+    else:
+        buffer_method = config.buffer_method
 
     if buffer_method == "forecast":
         log.msg(
