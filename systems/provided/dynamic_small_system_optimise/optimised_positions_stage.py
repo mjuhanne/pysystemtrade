@@ -49,8 +49,6 @@ class optimisedPositions(SystemStage):
         p = progressBar(len(common_index), show_timings=True, show_each_time=True)
         previous_optimal_positions = portfolioWeights.allzeros(self.instrument_list())
 
-        #FIXME! in production, where previous positions come from??
-
         position_list = []
         for relevant_date in common_index:
             # self.log.msg(relevant_date)
@@ -62,7 +60,6 @@ class optimisedPositions(SystemStage):
             p.iterate()
         p.finished()
 
-        # FIXME! multiply with get_lot_size!
         position_df = pd.DataFrame(position_list, index=common_index)
 
         return position_df
@@ -82,6 +79,9 @@ class optimisedPositions(SystemStage):
 
         try:
             optimal_positions = obj_instance.optimise_positions()
+            # Adjust for fake contract multiplier when using virtual futures
+            optimal_positions = self.adjust_by_virtual_futures_lot_size(optimal_positions, optimal_positions.assets)
+
         except Exception as e:
             msg = "Error %s when optimising at %s with previous positions %s" % (
                 str(e),
@@ -106,6 +106,13 @@ class optimisedPositions(SystemStage):
         contracts_optimal = self.original_position_contracts_for_relevant_date(
             relevant_date
         )
+
+        # Adjust for fake contract multiplier when using virtual futures
+        per_contract_value = self.adjust_by_virtual_futures_lot_size(per_contract_value, per_contract_value.assets)
+        contracts_optimal = self.adjust_by_virtual_futures_lot_size(contracts_optimal, contracts_optimal.assets, multiply=False)
+        previous_positions = self.adjust_by_virtual_futures_lot_size(previous_positions, previous_positions.assets, multiply=False)
+        maximum_positions = self.adjust_by_virtual_futures_lot_size(maximum_positions, maximum_positions.assets, multiply=False)
+
 
         tiers = self.get_tiers()
         costs = self.get_costs_per_contract_as_proportion_of_capital_all_instruments(
@@ -257,6 +264,20 @@ class optimisedPositions(SystemStage):
         return self.portfolio_stage.get_covariance_matrix(
             relevant_date=relevant_date
         )
+
+
+    def adjust_by_virtual_futures_lot_size(self, values, instruments, multiply=True):
+        for instrument_code in instruments:
+            if virtualFuturesData.is_virtual(instrument_code):
+                # TODO: use a time series instead of last price?
+                mult = float(virtualFuturesData.get_lot_size_from_price(
+                    instrument_code, self.get_raw_price(instrument_code)
+                ))
+                if multiply:
+                    values[instrument_code] *= mult
+                else:
+                    values[instrument_code] /= mult
+        return values
 
     def get_per_contract_value(
         self, relevant_date: datetime.datetime = arg_not_supplied
