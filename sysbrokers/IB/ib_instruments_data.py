@@ -28,8 +28,8 @@ def read_ib_config_from_file() -> IBconfig:
     df = pd.read_csv(IB_FUTURES_CONFIG_FILE)
     try:
         private_df = pd.read_csv(PRIVATE_IB_FUTURES_CONFIG_FILE)
-        df = df.join(private_df, on='Instrument')
-    except:
+        df = pd.concat([df,private_df])
+    except BaseException as e:
         pass
     return IBconfig(df)
 
