@@ -5,6 +5,7 @@ from ib_insync.order import (
     Order as ibOrder,
 )
 from syscore.objects import arg_not_supplied, missing_order, missing_contract
+from sysbrokers.IB.client.ib_client import reconnect
 from sysbrokers.IB.client.ib_contracts_client import ibContractsClient
 from sysbrokers.IB.ib_translate_broker_order_objects import (
     tradeWithContract,
@@ -27,6 +28,8 @@ from sysobjects.contracts import futuresContract
 
 
 class ibOrdersClient(ibContractsClient):
+
+    @reconnect
     def broker_get_orders(
         self, account_id: str = arg_not_supplied
     ) -> listOfTradesWithContracts:
@@ -73,6 +76,7 @@ class ibOrdersClient(ibContractsClient):
 
         return trade_with_contract
 
+    @reconnect
     def broker_submit_order(
         self,
         futures_contract_with_ib_data: futuresContract,
@@ -142,11 +146,13 @@ class ibOrdersClient(ibContractsClient):
 
         return ib_order
 
+    @reconnect
     def ib_cancel_order(self, original_order_object: ibOrder):
         new_trade_object = self.ib.cancelOrder(original_order_object)
 
         return new_trade_object
 
+    @reconnect
     def modify_limit_price_given_original_objects(
         self,
         original_order_object: ibOrder,

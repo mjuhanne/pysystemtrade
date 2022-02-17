@@ -14,6 +14,9 @@ from syslogdiag.log_to_screen import logtoscreen
 
 from sysdata.config.production_config import get_production_config
 
+from asyncio.exceptions import TimeoutError
+class ClientIdAlreadyInUseError(ConnectionError): ...
+
 
 class connectionIB(object):
     """
@@ -60,10 +63,11 @@ class connectionIB(object):
         )
 
         ib = IB()
+        ib.client.apiError += self.apiError
 
         if alternative_connection:
             # connect without account id
-            ib.connect(ipaddress, port, clientId=client_id)
+            account = ''
         else:
             if account is arg_not_supplied:
                 ## not passed get from config
@@ -72,16 +76,44 @@ class connectionIB(object):
             ## that may still return missing data...
             if account is missing_data:
                 self.log.error("Broker account ID not found in private config - may cause issues")
-                ib.connect(ipaddress, port, clientId=client_id)
+                account = ''
             else:
                 ## connect using account
-                ib.connect(ipaddress, port, clientId=client_id, account=account)
+                pass
+
+        self._ib = ib
+        self._account = account
+
+        self.connect()
+
+
+    def connect(self):
+        self._is_client_id_already_in_use = False
+        try:
+            self.ib.connect(
+                self._ib_connection_config['ipaddress'], 
+                self._ib_connection_config['port'],
+                clientId=self.client_id(),
+                account=self.account)
+        except TimeoutError:
+            # This exception can be raised when socket connection to gateway is established but it is closed by peer 
+            # (because client ID is already in use). However it can also be raised when gateway is down
+            if self._is_client_id_already_in_use:
+                raise ClientIdAlreadyInUseError("Client id %d already in use!" % self.client_id())
+            raise ConnectionRefusedError("Gateway is down")
+
+        except ConnectionRefusedError:
+            # This exception is raised when gateway is not responding
+            raise ConnectionRefusedError("Gateway is down")
 
         # Sometimes takes a few seconds to resolve... only have to do this once per process so no biggie
         time.sleep(1)
 
-        self._ib = ib
-        self._account = account
+
+    def apiError(self, msg):
+        # bit hacky but ib_insync doesn't raise a separate Exception for this error so this is an only way to distinguish it
+        if "already in use" in msg:
+            self._is_client_id_already_in_use = True
 
     @property
     def ib(self):
