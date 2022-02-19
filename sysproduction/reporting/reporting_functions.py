@@ -37,7 +37,11 @@ def run_report_with_data_blob(report_config: reportConfig, data: dataBlob):
     report_kwargs = report_config.kwargs
 
     report_results = report_function(data, **report_kwargs)
-    parsed_report = parse_report_results(report_results)
+    parsed_report = parse_report_results(report_results, "plain")
+    if report_config.formatting == "html":
+        parsed_report_html = parse_report_results(report_results, "html")
+    else:
+        parsed_report_html = None
     output = report_config.output
 
     # We either print or email
@@ -45,7 +49,7 @@ def run_report_with_data_blob(report_config: reportConfig, data: dataBlob):
         print(parsed_report)
     elif output == "email":
         send_production_mail_msg(
-            data, parsed_report, subject=report_config.title, email_is_report=True
+            data, parsed_report, parsed_report_html, subject=report_config.title, email_is_report=True
         )
     elif output == "file":
         filename_with_spaces = report_config.title
@@ -55,7 +59,7 @@ def run_report_with_data_blob(report_config: reportConfig, data: dataBlob):
         raise Exception("Report config %s not recognised!" % output)
 
 
-def parse_report_results(report_results: list):
+def parse_report_results(report_results: list, formatting):
     """
     Parse report results into human readable text for display, email, or christmas present
 
@@ -65,20 +69,29 @@ def parse_report_results(report_results: list):
     output_string = ""
     for report_item in report_results:
         if isinstance(report_item, header):
-            parsed_item = parse_header(report_item)
+            parsed_item = parse_header(report_item, formatting)
         elif isinstance(report_item, body_text):
-            parsed_item = parse_body(report_item)
+            parsed_item = parse_body(report_item, formatting)
         elif isinstance(report_item, table):
-            parsed_item = parse_table(report_item)
+            parsed_item = parse_table(report_item, formatting)
         else:
             parsed_item = " %s failed to parse in report\n" % str(report_item)
 
         output_string = output_string + parsed_item
 
+    if formatting == "html":
+        output_string = "<html>" + output_string + "</html>"
     return output_string
 
 
-def parse_table(report_table: table) -> str:
+def parse_table(report_table: table, formatting) -> str:
+    if formatting == "html":
+        if isinstance(report_table.Body, pd.Series):
+            html = pd.DataFrame(report_table.Body).to_html()
+        else:
+            html = report_table.Body.to_html()
+        return  "<h3>" + report_table.Heading + "</h3>" + html
+
     table_header = report_table.Heading
     table_body = str(report_table.Body)
     table_header_centred = centralise_text(table_header, table_body)
@@ -94,12 +107,16 @@ def parse_table(report_table: table) -> str:
     return table_string
 
 
-def parse_body(report_body: body_text) -> str:
+def parse_body(report_body: body_text, formatting) -> str:
+    if formatting == "html":
+        return "<p>" + report_body.Text + "</p>"
     body_text = report_body.Text
     return "%s\n" % body_text
 
 
-def parse_header(report_header: header) -> str:
+def parse_header(report_header: header, formatting) -> str:
+    if formatting == "html":
+        return "<h2>" + report_header.Heading + "</h2>"
     header_line = landing_strip(80, "*")
     header_text = centralise_text(report_header.Heading, header_line)
 

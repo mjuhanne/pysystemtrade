@@ -35,6 +35,22 @@ def send_mail_msg(body, subject):
     _send_msg(msg, subject)
 
 
+def send_mail_html(body, body_html, subject):
+    """
+    Sends an email of particular text file with subject line
+
+    """
+
+    # Create a combined text/plain and text/html message. The former is backup in case e-mail reader can't render html
+    msg = MIMEMultipart("alternative")
+
+    msg.attach(MIMEText(body, "plain"))
+    msg.attach(MIMEText(body_html, "html"))
+
+    _send_msg(msg, subject)
+
+
+
 def send_mail_pdfs(preamble, filelist, subject):
     """
     Sends an email of files with preamble and subject line
