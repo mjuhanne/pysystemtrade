@@ -4,10 +4,10 @@ from syscore.dateutils import SECONDS_PER_DAY
 from syscore.objects import missing_data
 from syslogdiag.mongo_email_control import mongoEmailControlData
 
-from syslogdiag.emailing import send_mail_msg
+from syslogdiag.emailing import send_mail_msg, send_mail_html
 
 
-def send_production_mail_msg(data, body: str, subject: str, email_is_report=False):
+def send_production_mail_msg(data, body: str, body_html: str, subject: str, email_is_report=False):
     """
     Sends an email of particular text file with subject line
     After checking that we aren't sending too many emails per day
@@ -19,7 +19,7 @@ def send_production_mail_msg(data, body: str, subject: str, email_is_report=Fals
 
     if send_email:
         send_email_and_record_date_or_store_on_fail(
-            data, body, subject, email_is_report=email_is_report
+            data, body, body_html, subject, email_is_report=email_is_report
         )
     else:
         # won't send an email to avoid clogging up the inbox
@@ -29,10 +29,13 @@ def send_production_mail_msg(data, body: str, subject: str, email_is_report=Fals
 
 
 def send_email_and_record_date_or_store_on_fail(
-    data, body: str, subject: str, email_is_report: bool = False
+    data, body: str, body_html: str, subject: str, email_is_report: bool = False, html: bool = False,
 ):
     try:
-        send_mail_msg(body, subject)
+        if body_html is not None:
+            send_mail_html(body, body_html, subject)
+        else:
+            send_mail_msg(body, subject)
         record_date_of_email_send(data, subject)
         data.log.msg("Sent email subject %s" % subject)
     except Exception as e:
