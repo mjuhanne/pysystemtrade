@@ -16,7 +16,7 @@ from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
 VIRTUAL_FUTURES_CONTRACT_DATE = "21000100"
 VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE = "21000131"
 
-DEFAULT_LOT_VALUE = 5000
+DEFAULT_LOT_VALUE = 3000
 
 
 mongodb = mongoFuturesInstrumentData()
@@ -81,6 +81,17 @@ class virtualFuturesData(object):
     @classmethod
     def get_virtual_futures_contract(self, instrument_code):
         return futuresContract( futuresInstrument(instrument_code), contractDate(VIRTUAL_FUTURES_CONTRACT_DATE) )
+
+    @classmethod
+    def get_list_of_virtual_futures_instruments_with_price_data(self, data:dataBlob):
+        diag_prices = diagPrices(data)
+        instrument_list = diag_prices.get_list_of_instruments_with_contract_prices()
+        virtual_instrument_list = []
+        for instr in instrument_list:
+            if self.is_virtual(instr):
+                virtual_instrument_list.append(instr)
+        return virtual_instrument_list
+
 
     @classmethod
     def get_prices(self, data:dataBlob, instrument_code):
