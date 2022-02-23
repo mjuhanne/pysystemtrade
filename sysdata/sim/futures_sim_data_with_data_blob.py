@@ -1,3 +1,4 @@
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 from sysdata.sim.futures_sim_data import futuresSimData
 
 from sysdata.futures.adjusted_prices import futuresAdjustedPricesData
@@ -52,7 +53,8 @@ class genericBlobUsingFuturesSimData(futuresSimData):
         return self.data.db_roll_parameters
 
     def get_instrument_list(self):
-        return self.db_futures_adjusted_prices_data.get_list_of_instruments()
+        return self.db_futures_adjusted_prices_data.get_list_of_instruments() \
+            + virtualFuturesData.get_list_of_virtual_futures_instruments_with_price_data(self.data)
 
     def  _get_fx_data_for_date_range(self, currency1: str, currency2: str,
                                       start_date, end_date) -> fxPrices:
@@ -82,13 +84,19 @@ class genericBlobUsingFuturesSimData(futuresSimData):
     def get_backadjusted_futures_price(
         self, instrument_code: str
     ) -> futuresAdjustedPrices:
-        data = self.db_futures_adjusted_prices_data.get_adjusted_prices(instrument_code)
+        if virtualFuturesData.is_virtual(instrument_code):
+            data = virtualFuturesData.get_adjusted_prices(self.data, instrument_code)
+        else:
+            data = self.db_futures_adjusted_prices_data.get_adjusted_prices(instrument_code)
 
         return data
 
     def get_multiple_prices_for_date_range(self, instrument_code: str,
                                             start_date, end_date) -> futuresMultiplePrices:
-        data = self.db_futures_multiple_prices_data.get_multiple_prices(instrument_code)
+        if virtualFuturesData.is_virtual(instrument_code):
+            data = virtualFuturesData.get_multiple_prices(self.data, instrument_code)
+        else:
+            data = self.db_futures_multiple_prices_data.get_multiple_prices(instrument_code)
 
         return data[start_date:end_date]
 
