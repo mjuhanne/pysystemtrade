@@ -31,6 +31,7 @@ from sysdata.mongodb.mongo_futures_contracts import mongoFuturesContractData
 from sysdata.futures.multiple_prices import futuresMultiplePricesData
 from sysdata.futures.adjusted_prices import futuresAdjustedPricesData
 from sysdata.futures.futures_per_contract_prices import futuresContractPriceData
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 from sysdata.data_blob import dataBlob
 
@@ -85,8 +86,9 @@ class diagPrices(productionDataLayerGeneric):
         list_of_instruments = (
             self.db_futures_multiple_prices_data.get_list_of_instruments()
         )
+        list_of_virtual_instruments = virtualFuturesData.get_list_of_virtual_futures_instruments_with_price_data(self.data)
 
-        return list_of_instruments
+        return list_of_instruments + list_of_virtual_instruments
 
     def get_multiple_prices(self, instrument_code: str) -> futuresMultiplePrices:
         multiple_prices = self.db_futures_multiple_prices_data.get_multiple_prices(

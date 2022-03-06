@@ -7,7 +7,6 @@ from sysobjects.contracts import futuresContract
 from sysobjects.instruments import futuresInstrument
 from sysobjects.contract_dates_and_expiries import contractDate
 from sysobjects.multiple_prices import futuresMultiplePrices
-from sysproduction.data.prices import diagPrices
 from sysobjects.dict_of_named_futures_per_contract_prices import setOfNamedContracts
 from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
 from sysobjects.rolls import rollParameters
@@ -84,8 +83,7 @@ class virtualFuturesData(object):
 
     @classmethod
     def get_list_of_virtual_futures_instruments_with_price_data(self, data:dataBlob):
-        diag_prices = diagPrices(data)
-        instrument_list = diag_prices.get_list_of_instruments_with_contract_prices()
+        instrument_list = data.db_futures_contract_price.get_list_of_instrument_codes_with_price_data()
         virtual_instrument_list = []
         for instr in instrument_list:
             if self.is_virtual(instr):
@@ -95,9 +93,8 @@ class virtualFuturesData(object):
 
     @classmethod
     def get_prices(self, data:dataBlob, instrument_code):
-        diag_prices = diagPrices(data)
         contract = self.get_virtual_futures_contract(instrument_code)
-        price_series = diag_prices.get_prices_for_contract_object(contract)
+        price_series = data.db_futures_contract_price.get_prices_for_contract_object(contract)
         price_series = price_series[~price_series.index.duplicated()]
         return price_series
 
