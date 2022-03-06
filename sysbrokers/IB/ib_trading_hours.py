@@ -130,6 +130,7 @@ def get_conservative_trading_time_for_time_zone(time_zone_id: str) -> openingTim
         "JST": 1,
         "Japan": 1,
         "Hongkong": 1,
+        "Australia/NSW": 0,
 
     }
 
@@ -156,6 +157,7 @@ def get_conservative_trading_time_for_time_zone(time_zone_id: str) -> openingTim
         "JST": 6,
         "Japan": 6,
         "Hongkong": 6,
+        "Australia/NSW": 4,
     }
 
     conservative_start_time = datetime.time(start_times[time_zone_id])
@@ -184,7 +186,7 @@ def get_time_difference(time_zone_id: str) -> int:
         "US/Central": 6,
         "GB-Eire": 0,
         "Hongkong": -8,
-        "Australia/NSW": 11,
+        "Australia/NSW": -11,
         "": 0
     }
     diff_hours = time_diff_dict.get(time_zone_id, None)
