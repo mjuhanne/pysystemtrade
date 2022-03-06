@@ -10,14 +10,17 @@ from sysbrokers.broker_instrument_data import brokerFuturesInstrumentData
 
 from syscore.fileutils import get_filename_for_package
 from syscore.genutils import value_or_npnan
-from syscore.objects import missing_instrument, missing_file
+from syscore.objects import missing_instrument, missing_file, missing_data
 
 from sysobjects.instruments import futuresInstrument
 
 from syslogdiag.log_to_screen import logtoscreen
 
+from sysdata.config.production_config import get_production_config
+
+config = get_production_config()
+
 IB_FUTURES_CONFIG_FILE = get_filename_for_package("sysbrokers.IB.ib_config_futures.csv")
-PRIVATE_IB_FUTURES_CONFIG_FILE = get_filename_for_package("private.ib_config_futures.csv")
 
 
 class IBconfig(pd.DataFrame):
@@ -26,11 +29,14 @@ class IBconfig(pd.DataFrame):
 
 def read_ib_config_from_file() -> IBconfig:
     df = pd.read_csv(IB_FUTURES_CONFIG_FILE)
-    try:
-        private_df = pd.read_csv(PRIVATE_IB_FUTURES_CONFIG_FILE)
-        df = pd.concat([df,private_df])
-    except BaseException as e:
-        pass
+    config_files = config.get_element_or_missing_data("ib_additional_config_files")
+    if config_files is not missing_data:
+        for key,file in config_files.items():
+            try:
+                private_df = pd.read_csv(get_filename_for_package(file))
+                df = pd.concat([df,private_df])
+            except BaseException as e:
+                print("Error (%s) reading additional IB config files" % (str(e)))
     return IBconfig(df)
 
 
