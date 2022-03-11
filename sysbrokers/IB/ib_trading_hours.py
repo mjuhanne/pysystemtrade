@@ -17,7 +17,7 @@ def get_conservative_trading_hours(ib_contract_details: ibContractDetails) -> li
     return trading_hours_adjusted_to_be_conservative
 
 
-def get_trading_hours(ib_contract_details: ibContractDetails) -> listOfOpeningTimes:
+def get_trading_hours(ib_contract_details: ibContractDetails, conservative_hours=True) -> listOfOpeningTimes:
     try:
         time_zone_id = ib_contract_details.timeZoneId
         time_zone_adjustment = get_time_difference(time_zone_id) # exchange local time to UTC+0
@@ -28,6 +28,7 @@ def get_trading_hours(ib_contract_details: ibContractDetails) -> listOfOpeningTi
             trading_hours_string,
             adjustment_hours=time_zone_adjustment,
             one_off_adjustment=one_off_adjustment,
+            conservative_hours=conservative_hours,
         )
     except Exception as e:
         raise e
@@ -42,6 +43,7 @@ def parse_trading_hours_string(
     trading_hours_string: str,
     adjustment_hours: int = 0,
     one_off_adjustment: tuple = NO_ADJUSTMENTS,
+    conservative_hours=True
     ) -> listOfOpeningTimes:
 
     day_by_day = trading_hours_string.split(";")
@@ -50,6 +52,7 @@ def parse_trading_hours_string(
             string_for_day,
             adjustment_hours=adjustment_hours,
             one_off_adjustment=one_off_adjustment,
+            conservative_hours=conservative_hours,
         )
         for string_for_day in day_by_day
     ]
@@ -67,6 +70,7 @@ def parse_trading_for_day(
     string_for_day: str,
     adjustment_hours: int = 0,
     one_off_adjustment: tuple = NO_ADJUSTMENTS,
+    conservative_hours = True,
     ) -> openingTimes:
 
     start_and_end = string_for_day.split("-")
@@ -77,10 +81,13 @@ def parse_trading_for_day(
     start_phrase = start_and_end[0]
     end_phrase = start_and_end[1]
 
-    # Doesn't deal with DST. We will be conservative and only trade 1 hour
-    # after and 1 hour before
-    adjust_start = 1 + one_off_adjustment[0]
-    adjust_end = -1 + one_off_adjustment[-1]
+    adjust_start = one_off_adjustment[0]
+    adjust_end = one_off_adjustment[-1]
+    if conservative_hours:
+        # Doesn't deal with DST. We will be conservative and only trade 1 hour
+        # after and 1 hour before
+        adjust_start += 1
+        adjust_end -= 1
 
     start_dt = parse_phrase(
         start_phrase, adjustment_hours=adjustment_hours, additional_adjust=adjust_start
