@@ -6,6 +6,7 @@ This 'core' is inherited by all the other classes and just initialises, plus doe
 """
 from collections import namedtuple
 from syscore.objects import arg_not_supplied, failure, success
+from sysdata.config.production_config import get_production_config
 
 
 from sysdata.data_blob import dataBlob
@@ -27,6 +28,7 @@ class stackHandlerCore(object):
 
         self._data = data
         self._log = data.log
+        self._config = get_production_config()
 
         order_data = dataOrders(data)
 
@@ -37,6 +39,10 @@ class stackHandlerCore(object):
         self._instrument_stack = instrument_stack
         self._contract_stack = contract_stack
         self._broker_stack = broker_stack
+
+    @property
+    def config(self):
+        return self._config
 
     @property
     def data(self):

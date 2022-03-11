@@ -1,6 +1,9 @@
+from syscore.dateutils import Frequency
+from sysdata.config.configdata import Config
 from sysexecution.stack_handler.stackHandlerCore import stackHandlerCore
 from sysobjects.contracts import futuresContract
 from syscore.objects import missing_data, no_market_permissions
+from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 
 class stackHandlerAdditionalSampling(stackHandlerCore):
@@ -45,16 +48,54 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
 
         self.refresh_sampling_without_checks(contract)
 
+    def is_sampling_omitted_for_instrument(self, instrument_code:str):
+        omit_list = self.config.get_element_or_missing_data("omit_sampling_for_instruments")
+        if omit_list is not missing_data:
+            for omit_instrument in omit_list:
+                # Not very versatile wildcard functionality
+                if omit_instrument[-1] == '*':
+                    partial_instrument_code = omit_instrument[:-1]
+                    if partial_instrument_code == instrument_code[:len(partial_instrument_code)]:
+                        return True
+                else:
+                    if instrument_code == omit_instrument:
+                        return True
+        return False
+
     def is_contract_currently_okay_to_sample(self, contract: futuresContract) -> bool:
+        if self.is_sampling_omitted_for_instrument(contract.instrument_code):
+            return False
         data_broker = self.data_broker
         okay_to_sample = data_broker.is_contract_okay_to_trade(contract)
-
         return okay_to_sample
 
     def refresh_sampling_without_checks(self, contract: futuresContract):
+        intraday_prices = self.get_intraday_prices(contract)
+        if intraday_prices is not missing_data:
+            self.add_intraday_prices_to_db(contract, intraday_prices)
+
+        if not virtualFuturesData.is_virtual(contract.instrument_code):
+            carry_contract_date = self.data_contracts._get_carry_contract_id(contract.instrument_code)
+            carry_contract = futuresContract.from_two_strings(contract.instrument_code, carry_contract_date)
+            intraday_prices = self.get_intraday_prices(carry_contract)
+            if intraday_prices is not missing_data:
+                self.add_intraday_prices_to_db(carry_contract, intraday_prices)
+
         average_spread = self.get_average_spread(contract)
         if average_spread is not missing_data:
             self.add_spread_data_to_db(contract, average_spread)
+
+    def get_intraday_prices(self, contract: futuresContract):
+        data_broker = self.data_broker
+        intraday_prices = data_broker.get_prices_at_frequency_for_contract_object(contract, Frequency.Hour)
+        if intraday_prices is no_market_permissions:
+            return missing_data
+        return intraday_prices
+
+    def add_intraday_prices_to_db(self, contract: futuresContract, intraday_prices):
+        update_prices = self.update_prices
+        update_prices.add_intraday_prices(contract, intraday_prices)
+
 
     def get_average_spread(self, contract: futuresContract) -> float:
         data_broker = self.data_broker
