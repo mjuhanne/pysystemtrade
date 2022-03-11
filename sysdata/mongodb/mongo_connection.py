@@ -2,6 +2,7 @@ from pymongo import MongoClient, ASCENDING
 from copy import copy
 import numpy as np
 import re
+from os import getpid
 
 from syscore.objects import arg_not_supplied
 from sysdata.config.production_config import get_production_config
@@ -63,7 +64,7 @@ class MongoClientFactory(object):
         self.mongo_clients = {}
 
     def get_mongo_client(self, host, port):
-        key = (host, port)
+        key = (host, port, getpid())
         if key in self.mongo_clients:
             return self.mongo_clients.get(key)
         else:

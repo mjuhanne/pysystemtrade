@@ -867,7 +867,7 @@ class Portfolios(SystemStage):
             self.log.msg("No risk overlay in config: won't apply risk scaling")
             return 1.0
 
-        normal_risk = self.get_portfolio_risk_for_original_positions()
+        normal_risk = self.get_portfolio_risk_for_original_positions(show_progressbar=risk_overlay_config['show_progressbar'])
         shocked_vol_risk = self.get_portfolio_risk_for_original_positions_with_shocked_vol()
         sum_abs_risk = self.get_sum_annualised_risk_for_original_positions()
         leverage = self.get_leverage_for_original_position()
@@ -912,9 +912,9 @@ class Portfolios(SystemStage):
 
 
     @diagnostic()
-    def get_portfolio_risk_for_original_positions(self) -> pd.Series:
+    def get_portfolio_risk_for_original_positions(self, show_progressbar=True) -> pd.Series:
         weights = self.get_original_portfolio_weight_df()
-        return self.get_portfolio_risk_given_weights(weights)
+        return self.get_portfolio_risk_given_weights(weights, show_progressbar=show_progressbar)
 
     @diagnostic()
     def get_portfolio_risk_for_original_positions_with_shocked_vol(self) -> pd.Series:
@@ -923,14 +923,19 @@ class Portfolios(SystemStage):
 
     def get_portfolio_risk_given_weights(
         self, portfolio_weights: seriesOfPortfolioWeights,
-            use_shocked_vol = False
+            use_shocked_vol = False,
+            show_progressbar = True,
     ) -> pd.Series:
 
         list_of_correlations = self.get_list_of_instrument_returns_correlations()
         pd_of_stdev = self.get_stdev_df(shocked=use_shocked_vol)
+        show_progressbar = self.config.get_element_or_arg_not_supplied("show_progressbar")
+        n_processes = self.config.get_element_or_arg_not_supplied("n_processes")
         risk_series = calc_portfolio_risk_series(portfolio_weights=portfolio_weights,
                                                  list_of_correlations=list_of_correlations,
-                                                 pd_of_stdev = pd_of_stdev)
+                                                 pd_of_stdev = pd_of_stdev,
+                                                 n_processes = n_processes,
+                                                 show_progressbar = show_progressbar)
 
         return risk_series
 

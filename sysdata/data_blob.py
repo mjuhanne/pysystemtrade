@@ -70,6 +70,7 @@ class dataBlob(object):
         self._keep_original_prefix = keep_original_prefix
 
         self._attr_list = []
+        self._mongo_connection_class_objects = []
 
         if class_list is arg_not_supplied:
             # can set up dynamically later
@@ -81,7 +82,18 @@ class dataBlob(object):
 
     def __repr__(self):
         return "dataBlob with elements: %s" % ",".join(self._attr_list)
-
+    
+    def reconnect_mongo_classes(self):
+        delattr(self, "_mongo_db")
+        delattr(self, "_log")
+        mongo_connection_class_objects = self._mongo_connection_class_objects
+        self._mongo_connection_class_objects = []
+        for class_object in mongo_connection_class_objects:
+            class_name = get_class_name(class_object)
+            attr_name = self._get_new_name(class_name)
+            delattr(self, attr_name)
+            self.add_class_object(class_object)
+        
     def add_class_list(self, class_list: list):
         for class_object in class_list:
             self.add_class_object(class_object)
@@ -166,6 +178,7 @@ class dataBlob(object):
         log = self._get_specific_logger(class_object)
         try:
             resolved_instance = class_object(mongo_db=self.mongo_db, log=log)
+            self._mongo_connection_class_objects.append(class_object)
         except Exception as e:
             class_name = get_class_name(class_object)
             msg = (
@@ -182,6 +195,7 @@ class dataBlob(object):
         log = self._get_specific_logger(class_object)
         try:
             resolved_instance = class_object(mongo_db=self.mongo_db, log=log)
+            self._mongo_connection_class_objects.append(class_object)
         except Exception as e:
             class_name = get_class_name(class_object)
             msg = (
