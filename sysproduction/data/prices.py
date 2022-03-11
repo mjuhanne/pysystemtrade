@@ -12,6 +12,7 @@ from sysobjects.spreads import spreadsForInstrument
 
 from sysdata.arctic.arctic_futures_per_contract_prices import (
     arcticFuturesContractPriceData,
+    arcticFuturesContractIntradayPriceData,
     futuresContractPrices,
 )
 from sysdata.arctic.arctic_multiple_prices import (
@@ -202,6 +203,7 @@ class updatePrices(productionDataLayerGeneric):
         data.add_class_list(
             [
                 arcticFuturesContractPriceData,
+                arcticFuturesContractIntradayPriceData,
                 arcticFuturesMultiplePricesData,
                 mongoFuturesContractData,
                 arcticFuturesAdjustedPricesData,
@@ -224,6 +226,21 @@ class updatePrices(productionDataLayerGeneric):
             )
         )
         return error_or_rows_added
+
+    def add_intraday_prices(
+        self,
+        contract_object: futuresContract,
+        new_prices: futuresContractPrices,
+        check_for_spike: bool = True,
+    ) -> int:
+
+        error_or_rows_added = (
+            self.db_futures_contract_intraday_price_data.update_prices_for_contract(
+                contract_object, new_prices, check_for_spike=check_for_spike
+            )
+        )
+        return error_or_rows_added
+
 
     def add_multiple_prices(
         self,
@@ -265,6 +282,10 @@ class updatePrices(productionDataLayerGeneric):
     @property
     def db_futures_contract_price_data(self) -> futuresContractPriceData:
         return self.data.db_futures_contract_price
+
+    @property
+    def db_futures_contract_intraday_price_data(self) -> futuresContractPriceData:
+        return self.data.db_futures_contract_intraday_price
 
     @property
     def db_spreads_for_instrument_data(self) -> spreadsForInstrumentData:
