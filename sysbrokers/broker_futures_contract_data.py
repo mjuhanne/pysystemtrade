@@ -20,9 +20,13 @@ class brokerFuturesContractData(futuresContractData):
     def get_min_tick_size_for_contract(self, contract_object: futuresContract) -> float:
         raise NotImplementedError
 
-    def is_contract_okay_to_trade(self, futures_contract: futuresContract) -> bool:
+    def is_contract_okay_to_trade(self, futures_contract: futuresContract, 
+        conservative_hours=True ) -> bool:
         new_log = futures_contract.log(self.log)
-        trading_hours = self.get_trading_hours_for_contract(futures_contract)
+        trading_hours = self.get_trading_hours_for_contract(
+            futures_contract,
+            conservative_hours
+        )
         if trading_hours is missing_contract:
             new_log.critical(
                 "Error! Cannot find active contract! Expired? interactive_update_roll_status.py not executed?"

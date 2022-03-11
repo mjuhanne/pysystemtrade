@@ -2,7 +2,8 @@ from copy import copy
 from syscore.objects import (
     missing_order,
     resolve_function,
-    no_market_permissions
+    no_market_permissions,
+    missing_data
 )
 from sysproduction.data.controls import dataTradeLimits
 
@@ -81,6 +82,14 @@ class stackHandlerCreateBrokerOrders(stackHandlerForFills):
 
         self.post_trade_processing(completed_broker_order_with_controls)
 
+    def has_strategy_conservative_hours(self, strategy_name):
+        non_conservative_hours_strategies = self.config.get_element_or_missing_data(
+            "strategies_with_non_conservative_hours")
+        if non_conservative_hours_strategies is not missing_data:
+            if strategy_name in non_conservative_hours_strategies:
+                return False
+        return True
+
     def preprocess_contract_order(
         self, original_contract_order: contractOrder
     ) -> contractOrder:
@@ -108,9 +117,11 @@ class stackHandlerCreateBrokerOrders(stackHandlerForFills):
             original_contract_order.instrument_code
         )
 
+        conservative_hours = self.has_strategy_conservative_hours(original_contract_order.strategy_name)
         market_closed = not (
             data_broker.is_contract_okay_to_trade(
-                original_contract_order.futures_contract
+                original_contract_order.futures_contract,
+                conservative_hours=conservative_hours
             )
         )
         if instrument_locked or market_closed:

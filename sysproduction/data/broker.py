@@ -177,9 +177,10 @@ class dataBroker(productionDataLayerGeneric):
 
         return result
 
-    def is_contract_okay_to_trade(self, contract: futuresContract) -> bool:
+    def is_contract_okay_to_trade(self, contract: futuresContract, conservative_hours=True) -> bool:
         check_open = self.broker_futures_contract_data.is_contract_okay_to_trade(
-            contract
+            contract,
+            conservative_hours
         )
         return check_open
 

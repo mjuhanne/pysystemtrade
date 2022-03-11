@@ -159,7 +159,7 @@ class ibFuturesContractData(brokerFuturesContractData):
 
 
 
-    def get_trading_hours_for_contract(self, futures_contract: futuresContract) -> list:
+    def get_trading_hours_for_contract(self, futures_contract: futuresContract, conservative_hours=True) -> list:
         """
 
         :param futures_contract:
@@ -175,7 +175,7 @@ class ibFuturesContractData(brokerFuturesContractData):
             return missing_contract
 
         trading_hours = self.ib_client.ib_get_trading_hours(
-            contract_object_with_ib_data
+            contract_object_with_ib_data, conservative_hours
         )
 
         if trading_hours is missing_contract:
