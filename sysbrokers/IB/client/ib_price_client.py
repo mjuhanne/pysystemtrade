@@ -246,10 +246,17 @@ class ibPriceClient(ibContractsClient):
 
                 startDateTime = endDateTime + barSize
 
-        if len(price_data_raw) == 0:
+        if price_data_raw is None or len(price_data_raw) == 0:
+            if self.get_last_error(ibcontract) == IB_ERROR__NO_MARKET_PERMISSIONS:
+                return no_market_permissions
+
+            if self.get_last_error(ibcontract) == IB_ERROR__NO_HEAD_TIME_STAMP:
+                return missing_data
+
+            # Other error
             raise Exception(
                 "Could not fetch %s for contract %s (startTime %s, freq %s)"
-                % (whatToShow, startDateTime, str(bar_freq))
+                % (whatToShow, str(ibcontract), startDateTime, str(bar_freq))
             )
 
         price_data_as_df = self._raw_ib_data_to_df(
