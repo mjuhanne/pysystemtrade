@@ -100,6 +100,14 @@ class virtualFuturesData(object):
 
 
     @classmethod
+    def get_intraday_prices(self, data:dataBlob, instrument_code):
+        contract = self.get_virtual_futures_contract(instrument_code)
+        price_series = data.db_futures_contract_intraday_price.get_prices_for_contract_object(contract)
+        price_series = price_series[~price_series.index.duplicated()]
+        return price_series
+
+
+    @classmethod
     def get_adjusted_prices(self, data:dataBlob, instrument_code):
         price_series = self.get_prices(data, instrument_code)
         return futuresAdjustedPrices(price_series['FINAL'])
@@ -113,6 +121,8 @@ class virtualFuturesData(object):
         p['PRICE_CONTRACT'] = VIRTUAL_FUTURES_CONTRACT_DATE
         p['FORWARD'] = price_series['FINAL']
         p['FORWARD_CONTRACT'] = VIRTUAL_FUTURES_CONTRACT_DATE
+        p['CARRY'] = price_series['FINAL']
+        p['CARRY_CONTRACT'] = VIRTUAL_FUTURES_CONTRACT_DATE
         return futuresMultiplePrices( p )
 
 
