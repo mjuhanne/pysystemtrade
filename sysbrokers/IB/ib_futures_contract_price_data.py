@@ -229,6 +229,9 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
             allow_expired=allow_expired,
         )
 
+        if price_data is no_market_permissions:
+            return no_market_permissions
+
         if price_data is missing_data:
             new_log.warn(
                 "Something went wrong getting IB price data for %s"

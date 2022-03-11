@@ -94,6 +94,10 @@ class ibClient(object):
                 contract.symbol,
                 contract.lastTradeDateOrContractMonth,
             )
+            # Sometimes error code is 162 ("No time stamp") 
+            # even though it should be 10187 ("no market permissions") ..?
+            if "No market data permissions" in error_string:
+                error_code = IB_ERROR__NO_MARKET_PERMISSIONS
             self._last_errors[contract.conId] = error_code
 
         msg = "Reqid %d: %d %s %s" % (reqid, error_code, error_string, contract_str)
