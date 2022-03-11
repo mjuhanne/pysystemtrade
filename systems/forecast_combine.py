@@ -31,6 +31,7 @@ from systems.stage import SystemStage
 from systems.system_cache import diagnostic, dont_cache, input, output
 from systems.forecasting import Rules
 from systems.forecast_scale_cap import ForecastScaleCap
+from systems.multiprocessing import parallelize_stage_function_and_cache_results
 
 
 class ForecastCombine(SystemStage):
@@ -1319,6 +1320,22 @@ class ForecastCombine(SystemStage):
         """
 
         return self.forecast_scale_cap_stage.get_forecast_floor()
+
+
+    def precalculate_forecasts(self):
+        """
+        Precalculate scaled forecasts using multiprocessing
+        """
+        instrument_list = self.parent.get_instrument_list()
+        jobs = []
+        for instrument_code in instrument_list:
+            for rule in self.get_trading_rule_list(instrument_code):
+                jobs.append( (instrument_code, rule) )
+                
+        func = self.forecast_scale_cap_stage.get_scaled_forecast
+        stage = self.forecast_scale_cap_stage
+        parallelize_stage_function_and_cache_results(stage, func, jobs)
+
 
 
 def _cap_combined_forecast(

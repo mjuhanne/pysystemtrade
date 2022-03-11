@@ -13,6 +13,9 @@ from sysquant.estimators.covariance import (
     covariance_from_stdev_and_correlation,
 )
 from sysquant.optimisation.weights import portfolioWeights, seriesOfPortfolioWeights
+from syscore.objects import arg_not_supplied
+from systems.multiprocessing import divide_jobs_for_processes
+from multiprocessing import Pool
 
 def calc_sum_annualised_risk_given_portfolio_weights(
         portfolio_weights: seriesOfPortfolioWeights,
@@ -26,22 +29,28 @@ def calc_sum_annualised_risk_given_portfolio_weights(
 
     return risk_series
 
-def calc_portfolio_risk_series(
+
+def _do_calc_portfolio_risk_series(
         portfolio_weights: seriesOfPortfolioWeights,
         list_of_correlations: CorrelationList,
-        pd_of_stdev: seriesOfStdevEstimates) -> pd.Series:
+        pd_of_stdev: seriesOfStdevEstimates,
+        show_progressbar: bool,
+        relevant_dates: list,
+    ) -> list:
 
+    if show_progressbar:
+	    progress = progressBar(
+	        len(relevant_dates),
+	        suffix="Calculating portfolio risk",
+	        show_timings=True,
+	        show_each_time=False
+	    )
+
+        
     risk_series = []
-    common_index = list(portfolio_weights.index)
-    progress = progressBar(
-        len(common_index),
-        suffix="Calculating portfolio risk",
-        show_timings=True,
-        show_each_time=False
-    )
-
-    for relevant_date in common_index:
-        progress.iterate()
+    for relevant_date in relevant_dates:
+        if show_progressbar:
+            progress.iterate()
         weights_on_date = portfolio_weights.get_weights_on_date(relevant_date)
 
         covariance = get_covariance_matrix(list_of_correlations = list_of_correlations,
@@ -51,7 +60,31 @@ def calc_portfolio_risk_series(
         risk_on_date = weights_on_date.portfolio_stdev(covariance)
         risk_series.append(risk_on_date)
 
-    progress.finished()
+    if show_progressbar:
+        progress.finished()
+    return risk_series
+
+
+def calc_portfolio_risk_series(
+        portfolio_weights: seriesOfPortfolioWeights,
+        list_of_correlations: CorrelationList,
+        pd_of_stdev: seriesOfStdevEstimates,
+        n_processes,
+        show_progressbar: bool) -> pd.Series:
+
+    common_index = list(portfolio_weights.index)
+    if n_processes is arg_not_supplied:
+        risk_series = _do_calc_portfolio_risk_series(portfolio_weights, list_of_correlations, pd_of_stdev, show_progressbar, common_index)
+    else:
+        risk_series = []
+        args_per_process = divide_jobs_for_processes(n_processes, 
+            [portfolio_weights, list_of_correlations, pd_of_stdev, show_progressbar],
+            common_index
+        )
+        with Pool(n_processes) as p:
+             for i, partial_risk_series in enumerate(p.starmap(_do_calc_portfolio_risk_series, args_per_process),1):
+                 risk_series += partial_risk_series
+
     risk_series = pd.Series(risk_series, common_index)
 
     return risk_series
