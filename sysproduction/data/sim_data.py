@@ -8,6 +8,9 @@ from sysdata.arctic.arctic_spotfx_prices import arcticFxPricesData
 from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
 from sysdata.mongodb.mongo_roll_data import mongoRollParametersData
 
+from sysdata.arctic.arctic_futures_per_contract_prices import arcticFuturesContractPriceData
+from sysdata.arctic.arctic_futures_per_contract_prices import arcticFuturesContractIntradayPriceData
+
 
 def get_sim_data_object_for_production(data=arg_not_supplied) -> dataBlob:
     # Check data has the right elements to do this
@@ -21,6 +24,9 @@ def get_sim_data_object_for_production(data=arg_not_supplied) -> dataBlob:
             arcticFxPricesData,
             mongoFuturesInstrumentData,
             mongoRollParametersData,
+
+            arcticFuturesContractPriceData, # for virtual instruments
+            arcticFuturesContractIntradayPriceData, # for appending last intraday prices
         ]
     )
 
