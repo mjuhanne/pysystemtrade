@@ -11,10 +11,12 @@ from sysdata.futures.futures_per_contract_prices import (
 from sysobjects.futures_per_contract_prices import futuresContractPrices
 from sysobjects.contracts import futuresContract, get_code_and_id_from_contract_key
 from syslogdiag.log_to_screen import logtoscreen
+from syscore.dateutils import Frequency, from_config_frequency_pandas_resample
 
 import pandas as pd
 
 CONTRACT_COLLECTION = "futures_contract_prices"
+INTRADAY_FREQ = Frequency.Hour
 
 
 class arcticFuturesContractPriceData(futuresContractPriceData):
@@ -23,12 +25,16 @@ class arcticFuturesContractPriceData(futuresContractPriceData):
     """
 
     def __init__(
-        self, mongo_db=None, log=logtoscreen("arcticFuturesContractPriceData")
+        self, mongo_db=None, log=logtoscreen("arcticFuturesContractPriceData"), freq:Frequency = Frequency.Day
     ):
 
         super().__init__(log=log)
 
-        self._arctic_connection = arcticData(CONTRACT_COLLECTION, mongo_db=mongo_db)
+        contract_collection = CONTRACT_COLLECTION
+        if freq != Frequency.Day:
+            contract_collection += "_" + from_config_frequency_pandas_resample(freq)
+
+        self._arctic_connection = arcticData(contract_collection, mongo_db=mongo_db)
 
     def __repr__(self):
         return repr(self._arctic_connection)
@@ -144,3 +150,11 @@ def from_contract_to_key(contract: futuresContract):
 
 def from_tuple_to_key(keytuple):
     return keytuple[0] + "." + keytuple[1]
+
+class arcticFuturesContractIntradayPriceData(arcticFuturesContractPriceData):
+    def __init__(
+        self, mongo_db=None, log=logtoscreen("arcticFuturesContractIntradayPriceData")
+    ):
+
+        super().__init__(mongo_db=mongo_db, log=log, freq=INTRADAY_FREQ)
+
