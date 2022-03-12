@@ -52,6 +52,7 @@ mongo_port: 27017
 echo_extension: '.txt'
 # Spike checker
 max_price_spike: 8
+max_intraday_price_spike: 12
 #
 # Price frequency (we collect daily data, and separately this frequency
 intraday_frequency: H

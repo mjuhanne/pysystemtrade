@@ -193,8 +193,15 @@ def _first_spike_in_data(
         change_in_avg_units, first_date_in_new_data=first_date_in_new_data
     )
 
-    first_spike = _check_for_spikes_in_change_in_avg_units(change_in_avg_units_to_check)
+    if len(data_to_check) < 2:
+        return no_spike
+    time_period = data_to_check.index[-1] - data_to_check.index[-2]
+    if time_period < datetime.timedelta(days=1):
+        daily_prices = False
+    else:
+        daily_prices = True
 
+    first_spike = _check_for_spikes_in_change_in_avg_units(change_in_avg_units_to_check, daily_prices)
     return first_spike
 
 
@@ -257,10 +264,16 @@ def _get_change_in_avg_units_to_check(
 
 
 production_config = get_production_config()
-max_spike = production_config.max_price_spike
+max_spike_daily = production_config.max_price_spike
+max_spike_intraday = production_config.max_intraday_price_spike
 
 
-def _check_for_spikes_in_change_in_avg_units(change_in_avg_units_to_check: pd.Series):
+def _check_for_spikes_in_change_in_avg_units(change_in_avg_units_to_check: pd.Series, daily_prices=True):
+
+    if daily_prices:
+        max_spike = max_spike_daily
+    else:
+        max_spike = max_spike_intraday
 
     if any(change_in_avg_units_to_check > max_spike):
         first_spike = change_in_avg_units_to_check.index[
