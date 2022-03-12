@@ -13,7 +13,7 @@ class brokerClientIdData(baseData):
         idoffset: int = 0,
         log=logtoscreen("brokerClientIdTracker"),
     ):
-
+        log = log.setup(clientid="")
         super().__init__(log=log)
 
         self._idoffset = idoffset

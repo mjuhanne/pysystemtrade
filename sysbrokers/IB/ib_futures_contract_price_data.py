@@ -273,6 +273,8 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
             contract_object_with_ib_data,
             trade_list_for_multiple_legs=trade_list_for_multiple_legs,
         )
+        if ticker_with_bs is no_market_permissions:
+            return no_market_permissions
 
         ticker_object = ibTickerObject(ticker_with_bs, self.ib_client)
 

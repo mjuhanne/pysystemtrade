@@ -19,17 +19,20 @@ PACING_INTERVAL_SECONDS = 0.5
 STALE_SECONDS_ALLOWED_ACCOUNT_SUMMARY = 600
 
 IB_ERROR__NO_MARKET_PERMISSIONS = 10187
+IB_ERROR__NO_MARKET_DATA_DURING_COMPETING_LIVE_SESSION = 10197
 IB_ERROR__INVALID_CONTRACT      = 200
 IB_ERROR__NO_HEAD_TIME_STAMP    = 162
 
 IB_ERROR_TYPES = {
     IB_ERROR__INVALID_CONTRACT: "invalid_contract", 
     IB_ERROR__NO_MARKET_PERMISSIONS: "no market permissions",
+    IB_ERROR__NO_MARKET_DATA_DURING_COMPETING_LIVE_SESSION: "no market data during competing live session",
     IB_ERROR__NO_HEAD_TIME_STAMP: "no head time stamp",
     }
 IB_IS_ERROR = [
     IB_ERROR__INVALID_CONTRACT, 
     IB_ERROR__NO_MARKET_PERMISSIONS,
+    IB_ERROR__NO_MARKET_DATA_DURING_COMPETING_LIVE_SESSION,
     IB_ERROR__NO_HEAD_TIME_STAMP,
     ]
 
@@ -55,7 +58,7 @@ class ibClient(object):
         ibconnection.ib.errorEvent += self.error_handler
 
         self._ib_connnection = ibconnection
-        self._log = log
+        self._log = log.setup(clientid=ibconnection.client_id())
         self._last_errors = dict()
 
     @property
@@ -97,6 +100,12 @@ class ibClient(object):
             # Sometimes error code is 162 ("No time stamp") 
             # even though it should be 10187 ("no market permissions") ..?
             if "No market data permissions" in error_string:
+                error_code = IB_ERROR__NO_MARKET_PERMISSIONS
+
+            # This is a special case where another client
+            # is connected and this client is deprived of market data. We must
+            # handle it like there is no market permissions
+            if error_code == IB_ERROR__NO_MARKET_DATA_DURING_COMPETING_LIVE_SESSION:
                 error_code = IB_ERROR__NO_MARKET_PERMISSIONS
             self._last_errors[contract.conId] = error_code
 
