@@ -2,6 +2,7 @@ from copy import copy
 from sysbrokers.IB.ib_capital_data import ibCapitalData
 from sysbrokers.IB.ib_Fx_prices_data import ibFxPricesData
 from sysbrokers.IB.ib_futures_contract_price_data import ibFuturesContractPriceData
+from sysbrokers.IB.ib_futures_contract_delayed_price_data import ibFuturesContractDelayedPriceData
 from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
 from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
 from sysbrokers.IB.ib_contract_position_data import ibContractPositionData
@@ -57,6 +58,7 @@ class dataBroker(productionDataLayerGeneric):
             [
                 ibFxPricesData,
                 ibFuturesContractPriceData,
+                ibFuturesContractDelayedPriceData,
                 ibFuturesContractData,
                 ibContractPositionData,
                 ibExecutionStackData,
@@ -76,6 +78,10 @@ class dataBroker(productionDataLayerGeneric):
     @property
     def broker_futures_contract_price_data(self) -> brokerFuturesContractPriceData:
         return self.data.broker_futures_contract_price
+
+    @property
+    def broker_futures_contract_delayed_price_data(self) -> brokerFuturesContractPriceData:
+        return self.data.broker_futures_contract_delayed_price
 
     @property
     def broker_futures_contract_data(self) -> brokerFuturesContractData:
@@ -135,16 +141,26 @@ class dataBroker(productionDataLayerGeneric):
         self, contract_object: futuresContract, frequency: Frequency
     ) -> futuresContractPrices:
 
-        return self.broker_futures_contract_price_data.get_prices_at_frequency_for_contract_object(
+        prices = self.broker_futures_contract_price_data.get_prices_at_frequency_for_contract_object(
             contract_object, frequency
         )
+        if prices is no_market_permissions:
+            prices = self.broker_futures_contract_delayed_price_data.get_prices_at_frequency_for_contract_object(
+                contract_object, frequency
+            )
+        return prices
 
     def get_recent_bid_ask_tick_data_for_contract_object(
         self, contract: futuresContract
     ) -> dataFrameOfRecentTicks:
-        return self.broker_futures_contract_price_data.get_recent_bid_ask_tick_data_for_contract_object(
+        tick_data = self.broker_futures_contract_price_data.get_recent_bid_ask_tick_data_for_contract_object(
             contract
         )
+        if tick_data is no_market_permissions:
+            tick_data = self.broker_futures_contract_delayed_price_data.get_recent_bid_ask_tick_data_for_contract_object(
+                contract
+            )
+        return tick_data
 
     def get_actual_expiry_date_for_single_contract(
         self, contract_object: futuresContract
@@ -269,6 +285,10 @@ class dataBroker(productionDataLayerGeneric):
         ticker_object = (
             self.broker_futures_contract_price_data.get_ticker_object_for_order(order)
         )
+        if ticker_object is no_market_permissions:
+            ticker_object = (
+                self.broker_futures_contract_delayed_price_data.get_ticker_object_for_order(order)
+            )
         return ticker_object
 
     def cancel_market_data_for_order(self, order: brokerOrder):
