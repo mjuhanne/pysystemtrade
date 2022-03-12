@@ -1,6 +1,7 @@
 from sysbrokers.IB.ib_capital_data import ibCapitalData
 from sysbrokers.IB.ib_Fx_prices_data import ibFxPricesData
 from sysbrokers.IB.ib_futures_contract_price_data import ibFuturesContractPriceData
+from sysbrokers.IB.ib_futures_contract_delayed_price_data import ibFuturesContractDelayedPriceData
 from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
 from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
 from sysbrokers.IB.ib_contract_position_data import ibContractPositionData
@@ -37,6 +38,7 @@ def get_ib_class_list():
     return [
         ibFxPricesData,
         ibFuturesContractPriceData,
+        ibFuturesContractDelayedPriceData,
         ibFuturesContractData,
         ibContractPositionData,
         ibExecutionStackData,

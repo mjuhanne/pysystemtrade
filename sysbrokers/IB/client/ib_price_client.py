@@ -3,8 +3,9 @@ from datetime import timedelta
 
 import datetime
 import pandas as pd
+import numpy as np
 
-from ib_insync import Contract as ibContract
+from ib_insync import Contract as ibContract, Ticker
 from ib_insync import util
 
 from sysbrokers.IB.client.ib_client import (
@@ -30,6 +31,11 @@ from syslogdiag.log_to_screen import logtoscreen
 from sysobjects.contracts import futuresContract
 from sysexecution.trade_qty import tradeQuantity
 
+IB_MARKET_DATE_TYPE__LIVE = 1
+IB_MARKET_DATE_TYPE__FROZEN = 2
+IB_MARKET_DATE_TYPE__DELAYED = 3
+IB_MARKET_DATE_TYPE__FROZEN_DELAYED = 4
+TICKER_TIMEOUT = timedelta(seconds=10)
 
 class tickerWithBS(object):
     def __init__(self, ticker, BorS: str):
@@ -74,6 +80,9 @@ class ibPriceClient(ibContractsClient):
 
         return price_data
 
+    def set_market_data_type(self, market_data_type):
+        self.ib.reqMarketDataType(market_data_type)
+
     def get_ticker_object(
         self,
         contract_object_with_ib_data: futuresContract,
@@ -96,6 +105,8 @@ class ibPriceClient(ibContractsClient):
 
         self.ib.reqMktData(ibcontract, "", False, False)
         ticker = self.ib.ticker(ibcontract)
+        if self.get_last_error(ibcontract) == IB_ERROR__NO_MARKET_PERMISSIONS:
+            return no_market_permissions
 
         ib_BS_str, ib_qty = resolveBS_for_list(trade_list_for_multiple_legs)
 
@@ -163,6 +174,60 @@ class ibPriceClient(ibContractsClient):
                 return no_market_permissions
 
         return tick_data
+
+    def is_ticker_complete(self, ticker:Ticker):
+        wanted_attribute_list = ['bid','ask','open','high','low','close','volume']
+        for wanted_attribute in wanted_attribute_list:
+            value = getattr(ticker,wanted_attribute)
+            if np.isnan(value):
+                return False
+        return True
+
+    def wait_until_ticker_is_complete(self, ticker:Ticker, timeout):
+        start_time = datetime.datetime.now()
+        while datetime.datetime.now() - start_time < timeout:
+            self.ib.sleep(1)
+            if self.is_ticker_complete(ticker):
+                return True
+        return False
+
+
+    def ib_get_delayed_bid_ask_tick_data(
+        self,
+        contract_object_with_ib_data: futuresContract,
+        tick_count=200,
+    ) -> Ticker:
+        """
+
+        :param contract_object_with_ib_data:
+        :return:
+        """
+        specific_log = self.log.setup(
+            instrument_code=contract_object_with_ib_data.instrument_code,
+            contract_date=contract_object_with_ib_data.date_str,
+        )
+        if contract_object_with_ib_data.is_spread_contract():
+            error_msg = "Can't get historical data for combo"
+            specific_log.critical(error_msg)
+            raise Exception(error_msg)
+
+        ibcontract = self.ib_futures_contract(contract_object_with_ib_data)
+
+        if ibcontract is missing_contract:
+            specific_log.warn(
+                "Can't find matching IB contract for %s"
+                % str(contract_object_with_ib_data)
+            )
+            return missing_contract
+
+        tick_data = self.ib.reqMktData(ibcontract)
+        result = self.wait_until_ticker_is_complete(tick_data, TICKER_TIMEOUT)
+        self.ib.cancelMktData(ibcontract)
+        if not result:
+            return missing_data
+
+        return tick_data
+
 
     def _get_generic_data_for_contract(
         self,
