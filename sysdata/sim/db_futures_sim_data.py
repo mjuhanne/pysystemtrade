@@ -7,6 +7,7 @@ from syscore.objects import arg_not_supplied
 
 from sysdata.arctic.arctic_adjusted_prices import arcticFuturesAdjustedPricesData
 from sysdata.arctic.arctic_multiple_prices import arcticFuturesMultiplePricesData
+from sysdata.arctic.arctic_futures_per_contract_prices import arcticFuturesContractPriceData
 from sysdata.arctic.arctic_spotfx_prices import arcticFxPricesData
 from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
 from sysdata.mongodb.mongo_roll_data import mongoRollParametersData
@@ -27,6 +28,7 @@ class dbFuturesSimData(genericBlobUsingFuturesSimData):
                 class_list=[
                     arcticFuturesAdjustedPricesData,
                     arcticFuturesMultiplePricesData,
+                    arcticFuturesContractPriceData, # for virtual futures
                     arcticFxPricesData,
                     mongoFuturesInstrumentData,
                     mongoRollParametersData,

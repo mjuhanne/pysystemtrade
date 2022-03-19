@@ -5,10 +5,11 @@ from sysdata.futures.adjusted_prices import futuresAdjustedPricesData
 from sysdata.fx.spotfx import fxPricesData
 from sysdata.futures.instruments import futuresInstrumentData
 from sysdata.futures.multiple_prices import futuresMultiplePricesData
+from sysdata.futures.futures_per_contract_prices import futuresContractPriceData
 from sysdata.futures.rolls_parameters import rollParametersData
 from sysdata.data_blob import dataBlob
 from sysobjects.contracts import futuresContract
-
+from syscore.objects import missing_data
 
 from sysobjects.instruments import (
     assetClassesAndInstruments,
@@ -49,7 +50,9 @@ class genericBlobUsingFuturesSimData(futuresSimData):
         return self.data.db_futures_adjusted_prices
 
     @property
-    def db_futures_contract_intraday_prices_data(self) -> futuresContractPrices:
+    def db_futures_contract_intraday_prices_data(self) -> futuresContractPriceData:
+        if not hasattr(self.data, "db_futures_contract_intraday_price"):
+            return missing_data
         return self.data.db_futures_contract_intraday_price
 
     @property
@@ -133,7 +136,10 @@ class genericBlobUsingFuturesSimData(futuresSimData):
         else:
             data = self.db_futures_adjusted_prices_data.get_adjusted_prices(instrument_code)
 
-        data = self.append_backadjusted_prices_with_last_intraday_price(instrument_code, data)
+        if hasattr(self.parent.config,'append_prices_with_last_intraday_price'):
+            if self.parent.config.append_prices_with_last_intraday_price:
+                if self.db_futures_contract_intraday_prices_data is not missing_data:
+                    data = self.append_backadjusted_prices_with_last_intraday_price(instrument_code, data)
         self._cached_backadjusted_prices[instrument_code] = data
         return data
 
@@ -191,7 +197,10 @@ class genericBlobUsingFuturesSimData(futuresSimData):
             else:
                 data = self.db_futures_multiple_prices_data.get_multiple_prices(instrument_code)
 
-            data = self.append_multiple_prices_with_last_intraday_price(instrument_code, data)
+            if hasattr(self.parent.config,'append_prices_with_last_intraday_price'):
+                if self.parent.config.append_prices_with_last_intraday_price:
+                    if self.db_futures_contract_intraday_prices_data is not missing_data:
+                        data = self.append_multiple_prices_with_last_intraday_price(instrument_code, data)
             self._cached_multiple_prices[instrument_code] = data
 
         return data[start_date:end_date]
