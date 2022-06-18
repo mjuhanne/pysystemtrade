@@ -3,6 +3,7 @@ import datetime
 from sysbrokers.IB.client.ib_client import (
     ibClient,
     STALE_SECONDS_ALLOWED_ACCOUNT_SUMMARY,
+    reconnect
 )
 
 from syscore.objects import arg_not_supplied
@@ -161,6 +162,7 @@ class ibAccountingClient(ibClient):
     def _record_cache_update(self):
         self._account_summary_data_update = datetime.datetime.now()
 
+    @reconnect
     def _ib_get_account_summary_from_broker(self) -> dict:
 
         account_summary_rawdata = self.ib.accountSummary()

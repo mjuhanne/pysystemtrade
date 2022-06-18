@@ -1,7 +1,7 @@
 from copy import copy
 from ib_insync import Contract
 
-from sysbrokers.IB.client.ib_client import ibClient
+from sysbrokers.IB.client.ib_client import ibClient, reconnect
 from sysbrokers.IB.ib_instruments import (
     ib_futures_instrument_just_symbol,
     futuresInstrumentWithIBConfigData,
@@ -83,6 +83,7 @@ class ibContractsClient(ibClient):
 
         return expiry_date
 
+    @reconnect
     def ib_get_trading_hours(
         self, contract_object_with_ib_data: futuresContract, conservative_hours=True
     ) -> list:
@@ -112,6 +113,7 @@ class ibContractsClient(ibClient):
 
         return trading_hours
 
+    @reconnect
     def ib_get_min_tick_size(
         self, contract_object_with_ib_data: futuresContract
     ) -> float:
@@ -437,6 +439,7 @@ class ibContractsClient(ibClient):
 
         return contract_chain
 
+    @reconnect
     def ib_get_contract_chain(
         self, ibcontract_pattern: Contract, allow_expired: bool = False
     ) -> list:

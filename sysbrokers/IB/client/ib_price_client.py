@@ -9,6 +9,7 @@ from ib_insync import Contract as ibContract, Ticker
 from ib_insync import util
 
 from sysbrokers.IB.client.ib_client import (
+    reconnect,
     IB_ERROR_TYPES, 
     PACING_INTERVAL_SECONDS, 
     IB_ERROR__NO_MARKET_PERMISSIONS,
@@ -86,6 +87,7 @@ class ibPriceClient(ibContractsClient):
     def set_market_data_type(self, market_data_type):
         self.ib.reqMarketDataType(market_data_type)
 
+    @reconnect
     def get_ticker_object(
         self,
         contract_object_with_ib_data: futuresContract,
@@ -117,6 +119,7 @@ class ibPriceClient(ibContractsClient):
 
         return ticker_with_bs
 
+    @reconnect
     def cancel_market_data_for_contract_object(
         self,
         contract_object_with_ib_data: futuresContract,
@@ -139,6 +142,7 @@ class ibPriceClient(ibContractsClient):
 
         self.ib.cancelMktData(ibcontract)
 
+    @reconnect
     def ib_get_recent_bid_ask_tick_data(
         self,
         contract_object_with_ib_data: futuresContract,
@@ -400,6 +404,7 @@ class ibPriceClient(ibContractsClient):
 
     # HISTORICAL DATA
     # Works for FX and futures
+    @reconnect
     def _ib_get_historical_data_of_duration_and_barSize(
         self,
         ibcontract: ibContract,

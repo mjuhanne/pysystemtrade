@@ -1,7 +1,8 @@
 from copy import copy
+from time import sleep
 
-from sysbrokers.IB.ib_connection import connectionIB
-from syscore.objects import arg_not_supplied, get_class_name
+from sysbrokers.IB.ib_connection import connectionIB, ClientIdAlreadyInUseError
+from syscore.objects import arg_not_supplied, get_class_name, missingData
 from syscore.text import camel_case_split
 from sysdata.config.production_config import get_production_config, Config
 from sysdata.mongodb.mongo_connection import mongoDb
@@ -9,7 +10,6 @@ from sysdata.mongodb.mongo_log import logToMongod
 from syslogdiag.logger import logger
 
 from sysdata.mongodb.mongo_IB_client_id import mongoIbBrokerClientIdData, mongoIbBrokerAlternativeClientIdData
-
 
 class dataBlob(object):
     def __init__(
@@ -335,7 +335,7 @@ class dataBlob(object):
                     else:
                         self.db_ib_broker_client_id.release_clientid(id)
                 return ib_conn
-            except Exception as e:
+            except ClientIdAlreadyInUseError as e:
                 failed_ids.append(client_id)
                 client_id = self._get_next_client_id_for_ib(alternative_connection=alternative_connection)
                 attempts += 1
@@ -346,6 +346,19 @@ class dataBlob(object):
                         else:
                             self.db_ib_broker_client_id.release_clientid(id)
                     raise e
+
+            except ConnectionRefusedError as e:
+                # This exception is raised when gateway is down
+                self.log.msg("Gateway not running! Retrying in 10 seconds..")
+                sleep(10)
+                attempts += 1
+                if attempts == 6*5:
+                    # At 5 minutes log and notify user by e-mail
+                    self._raise_and_log_error("Error! Gateway not running!")
+
+            except Exception as e:
+                self.log.msg("Unknown exception: %s" % str(e))
+                raise e
 
 
     def _get_next_client_id_for_ib(self, alternative_connection=False) -> int:

@@ -1,6 +1,7 @@
 import pandas as pd
 from ib_insync import MarketOrder, Forex
 
+from sysbrokers.IB.client.ib_client import reconnect
 from sysbrokers.IB.client.ib_price_client import ibPriceClient
 from sysbrokers.IB.ib_contracts import ibcontractWithLegs
 from sysbrokers.IB.ib_positions import (
@@ -14,6 +15,8 @@ from syscore.dateutils import Frequency, DAILY_PRICE_FREQ
 
 
 class ibFxClient(ibPriceClient):
+    
+    @reconnect
     def broker_fx_balances(self, account_id: str = arg_not_supplied) -> dict:
         if account_id is arg_not_supplied:
             account_summary = self.ib.accountValues()
@@ -24,6 +27,7 @@ class ibFxClient(ibPriceClient):
 
         return fx_balance_dict
 
+    @reconnect
     def broker_fx_market_order(
         self,
         trade: float,

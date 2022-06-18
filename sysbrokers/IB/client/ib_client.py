@@ -1,6 +1,6 @@
 from dateutil.tz import tz
 import datetime
-
+from time import sleep
 from ib_insync import Contract
 from ib_insync import IB
 
@@ -37,6 +37,48 @@ IB_IS_ERROR = [
     ]
 
 
+
+def do_reconnect(self):
+    self.log.warn("Connection to gateway closed prematurely! Reconnecting..")
+    while 1:
+        attempts = 0
+        try:
+            self.ib_connection.connect()
+            self.log.warn("Connection re-established!")
+            # Connection succeeded! Lets wait a bit just in case client needs some time to start
+            sleep(5)
+            break
+            
+        except ConnectionRefusedError:
+            # This exception is raised when gateway is not responding
+            self.log.warn("Gateway not running! Retrying in 10 seconds..")
+            sleep(10)
+            attempts += 1
+            if attempts == 60*5/10:
+                # After 5 minutes log and notify user by e-mail
+                self.log.critical("Error! Gateway still not running after 5 minutes of down time. Continuing to reconnect..")
+
+
+def reconnect(func):
+    def wrapper(self, *args, **kwargs):
+        # Here we attempt to reconnect to gateway if connection has died
+        while 1:
+            try:
+                if not self.ib_connection.ib.isConnected():
+                    do_reconnect(self)
+
+                return func(self, *args, **kwargs)
+            except ConnectionError as e:
+                if self.ib_connection.ib.isConnected():
+                    # This can happen when it was actually the other client instance that was disconnected but we catched 
+                    # the exception intended for that client. We can happily call the IB because this instance is in fact 
+                    # connected
+                    self.log.warn("ConnectionError exception but client still connected. Retrying..")
+                else:
+                    do_reconnect(self)
+    return wrapper
+
+
 class ibClient(object):
     """
     Client specific to interactive brokers
@@ -57,13 +99,13 @@ class ibClient(object):
         # Add error handler
         ibconnection.ib.errorEvent += self.error_handler
 
-        self._ib_connnection = ibconnection
+        self._ib_connection = ibconnection
         self._log = log.setup(clientid=ibconnection.client_id())
         self._last_errors = dict()
 
     @property
     def ib_connection(self) -> connectionIB:
-        return self._ib_connnection
+        return self._ib_connection
 
     @property
     def ib(self) -> IB:
@@ -134,9 +176,11 @@ class ibClient(object):
     def broker_message(self, msg):
         self.log.msg(msg)
 
+    @reconnect
     def refresh(self):
         self.ib.sleep(0.00001)
 
+    @reconnect
     def get_broker_time_local_tz(self) -> datetime.datetime:
         ib_time = self.ib.reqCurrentTime()
         local_ib_time_with_tz = ib_time.astimezone(tz.tzlocal())
