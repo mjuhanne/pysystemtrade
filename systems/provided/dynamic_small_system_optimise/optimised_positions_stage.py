@@ -1,5 +1,6 @@
 import datetime
 from copy import copy
+from numpy import nan
 
 import pandas as pd
 
@@ -54,6 +55,9 @@ class optimisedPositions(SystemStage):
         )
         previous_optimal_positions = portfolioWeights.allzeros(self.instrument_list())
 
+        self.virtual_futures_price_cache = dict()
+        print("Speed control: ", str(self.get_speed_control()))
+                
         position_list = []
         for relevant_date in common_index:
             # self.log.msg(relevant_date)
@@ -85,7 +89,7 @@ class optimisedPositions(SystemStage):
         try:
             optimal_positions = obj_instance.optimise_positions()
             # Adjust for fake contract multiplier when using virtual futures
-            optimal_positions = self.adjust_by_virtual_futures_lot_size(optimal_positions, optimal_positions.assets)
+            optimal_positions = self.adjust_by_virtual_futures_lot_size(relevant_date, optimal_positions, optimal_positions.assets)
 
         except Exception as e:
             msg = "Error %s when optimising at %s with previous positions %s" % (
@@ -113,10 +117,11 @@ class optimisedPositions(SystemStage):
         )
 
         # Adjust for fake contract multiplier when using virtual futures
-        per_contract_value = self.adjust_by_virtual_futures_lot_size(per_contract_value, per_contract_value.assets)
-        contracts_optimal = self.adjust_by_virtual_futures_lot_size(contracts_optimal, contracts_optimal.assets, multiply=False)
-        previous_positions = self.adjust_by_virtual_futures_lot_size(previous_positions, previous_positions.assets, multiply=False)
-        maximum_positions = self.adjust_by_virtual_futures_lot_size(maximum_positions, maximum_positions.assets, multiply=False)
+        per_contract_value = self.adjust_by_virtual_futures_lot_size(relevant_date, per_contract_value, per_contract_value.assets)
+        contracts_optimal = self.adjust_by_virtual_futures_lot_size(relevant_date, contracts_optimal, contracts_optimal.assets, multiply=False)
+        previous_positions = self.adjust_by_virtual_futures_lot_size(relevant_date, previous_positions, previous_positions.assets, multiply=False)
+        if maximum_positions is not arg_not_supplied:
+            maximum_positions = self.adjust_by_virtual_futures_lot_size(relevant_date, maximum_positions, maximum_positions.assets, multiply=False)
 
 
         tiers = self.get_tiers()
@@ -278,17 +283,28 @@ class optimisedPositions(SystemStage):
         )
 
 
-    def adjust_by_virtual_futures_lot_size(self, values, instruments, multiply=True):
+    def adjust_by_virtual_futures_lot_size(self, relevant_date, values, instruments, multiply=True):
+        relevant_date = pd.Timestamp(year=relevant_date.year, month=relevant_date.month, day=relevant_date.day)
         for instrument_code in instruments:
             if virtualFuturesData.is_virtual(instrument_code):
-                # TODO: use a time series instead of last price?
-                mult = float(virtualFuturesData.get_lot_size_from_price(
-                    instrument_code, self.get_raw_price(instrument_code)
-                ))
-                if multiply:
-                    values[instrument_code] *= mult
+                if instrument_code in self.virtual_futures_price_cache:
+                    prices = self.virtual_futures_price_cache[instrument_code]
                 else:
-                    values[instrument_code] /= mult
+                    prices = self.data.daily_prices(instrument_code).ffill()
+                    self.virtual_futures_price_cache[instrument_code] = prices
+
+                try: 
+                    price = prices[relevant_date]
+                    #price = prices[-1]
+                    mult = float(virtualFuturesData.get_lot_size_from_price(
+                        instrument_code, price
+                    ))
+                    if multiply:
+                        values[instrument_code] *= mult
+                    else:
+                        values[instrument_code] /= mult
+                except:
+                    values[instrument_code] = nan
         return values
 
     def get_per_contract_value(
@@ -334,8 +350,9 @@ class optimisedPositions(SystemStage):
 
     def get_contract_multiplier(self, instrument_code: str) -> float:
         if virtualFuturesData.is_virtual(instrument_code):
+            prices = self.virtual_futures_price_cache[instrument_code]
             return float(virtualFuturesData.get_lot_size_from_price(
-                instrument_code, self.get_raw_price(instrument_code)
+                instrument_code, prices[-1]
             ))
         return float(self.data.get_value_of_block_price_move(instrument_code))
 

@@ -51,8 +51,8 @@ class virtualFuturesData(object):
         return VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE
 
     @classmethod
-    def get_lot_size_from_price(self, instrument_code, prices) -> float:
-        return DEFAULT_LOT_VALUE / prices[-1]
+    def get_lot_size_from_price(self, instrument_code, price) -> float:
+        return DEFAULT_LOT_VALUE / price
 
     @classmethod
     def get_current_contract_dict(self, instrument_code):
