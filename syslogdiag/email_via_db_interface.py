@@ -7,7 +7,7 @@ from syslogdiag.mongo_email_control import mongoEmailControlData
 from syslogdiag.emailing import send_mail_msg, send_mail_html
 
 
-def send_production_mail_msg(data, body: str, body_html: str, subject: str, email_is_report=False):
+def send_production_mail_msg(data, body: str, subject: str, email_is_report=False, body_html: str = None):
     """
     Sends an email of particular text file with subject line
     After checking that we aren't sending too many emails per day
@@ -19,7 +19,7 @@ def send_production_mail_msg(data, body: str, body_html: str, subject: str, emai
 
     if send_email:
         send_email_and_record_date_or_store_on_fail(
-            data, body, body_html, subject, email_is_report=email_is_report
+            data, body, subject, email_is_report=email_is_report, body_html=body_html
         )
     else:
         # won't send an email to avoid clogging up the inbox
@@ -29,7 +29,7 @@ def send_production_mail_msg(data, body: str, body_html: str, subject: str, emai
 
 
 def send_email_and_record_date_or_store_on_fail(
-    data, body: str, body_html: str, subject: str, email_is_report: bool = False, html: bool = False,
+    data, body: str, subject: str, email_is_report: bool = False, body_html: str = None
 ):
     try:
         if body_html is not None:

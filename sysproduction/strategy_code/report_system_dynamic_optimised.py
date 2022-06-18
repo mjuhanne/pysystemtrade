@@ -49,7 +49,7 @@ def get_optimal_positions_table_as_df(
             strategy_name
         )
     )
-    as_verbose_pd = list_of_positions.as_verbose_pd()
+    as_verbose_pd = list_of_positions.as_verbose_pd(include_strategy_name=False)
 
     subset_of_pd = as_verbose_pd[
         [

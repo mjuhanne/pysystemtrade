@@ -10,7 +10,7 @@ from sysdata.data_blob import dataBlob
 from syslogdiag.email_via_db_interface import send_production_mail_msg
 
 from sysproduction.reporting.report_configs import reportConfig
-
+from sysproduction.reporting.table_formatting import get_formatted_html_table
 
 def run_report(report_config: reportConfig, data: dataBlob = arg_not_supplied):
     """
@@ -49,7 +49,7 @@ def run_report_with_data_blob(report_config: reportConfig, data: dataBlob):
         print(parsed_report)
     elif output == "email":
         send_production_mail_msg(
-            data, parsed_report, parsed_report_html, subject=report_config.title, email_is_report=True
+            data, parsed_report, subject=report_config.title, email_is_report=True, body_html =parsed_report_html
         )
     elif output == "file":
         filename_with_spaces = report_config.title
@@ -84,13 +84,19 @@ def parse_report_results(report_results: list, formatting):
     return output_string
 
 
+
+def parse_table_as_html(report_table: table) -> str:
+    if isinstance(report_table.Body, pd.Series):
+        df = pd.DataFrame(report_table.Body)
+    else:
+        df = report_table.Body
+    html = get_formatted_html_table(report_table.Heading, df)
+    return  "<h3>" + report_table.Heading + "</h3>" + html
+
+
 def parse_table(report_table: table, formatting) -> str:
     if formatting == "html":
-        if isinstance(report_table.Body, pd.Series):
-            html = pd.DataFrame(report_table.Body).to_html()
-        else:
-            html = report_table.Body.to_html()
-        return  "<h3>" + report_table.Heading + "</h3>" + html
+        return parse_table_as_html(report_table)
 
     table_header = report_table.Heading
     table_body = str(report_table.Body)
