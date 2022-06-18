@@ -25,35 +25,45 @@ IB_ERROR_TYPES = {IB_ERROR__INVALID_CONTRACT: "invalid_contract", IB_ERROR__NO_M
 IB_IS_ERROR = [IB_ERROR__INVALID_CONTRACT, IB_ERROR__NO_MARKET_PERMISSIONS]
 
 
+
+def do_reconnect(self):
+    self.log.warn("Connection to gateway closed prematurely! Reconnecting..")
+    while 1:
+        attempts = 0
+        try:
+            self.ib_connection.connect()
+            self.log.warn("Connection re-established!")
+            # Connection succeeded! Lets wait a bit just in case client needs some time to start
+            sleep(5)
+            break
+            
+        except ConnectionRefusedError:
+            # This exception is raised when gateway is not responding
+            self.log.warn("Gateway not running! Retrying in 10 seconds..")
+            sleep(10)
+            attempts += 1
+            if attempts == 60*5/10:
+                # After 5 minutes log and notify user by e-mail
+                self.log.critical("Error! Gateway still not running after 5 minutes of down time. Continuing to reconnect..")
+
+
 def reconnect(func):
     def wrapper(self, *args, **kwargs):
         # Here we attempt to reconnect to gateway if connection has died
         while 1:
             try:
+                if not self.ib_connection.ib.isConnected():
+                    do_reconnect(self)
+
                 return func(self, *args, **kwargs)
             except ConnectionError as e:
-                print("reconnect wrapper: ConnectionError (%s)" % (str(e)))
                 if self.ib_connection.ib.isConnected():
-                    print("ConnectionError exception but client still connected. Retrying..")
+                    # This can happen when it was actually the other client instance that was disconnected but we catched 
+                    # the exception intended for that client. We can happily call the IB because this instance is in fact 
+                    # connected
+                    self.log.warn("ConnectionError exception but client still connected. Retrying..")
                 else:
-                    self.log.warn("Connection to gateway closed prematurely! Reconnecting..")
-                    while 1:
-                        attempts = 0
-                        try:
-                            self.ib_connection.connect()
-                            self.log.warn("Connection re-established!")
-                            # Connection succeeded! Lets wait a bit just in case client needs some time to start
-                            sleep(5)
-                            break
-                            
-                        except ConnectionRefusedError:
-                            # This exception is raised when gateway is not responding
-                            self.log.warn("Gateway not running! Retrying in 10 seconds..")
-                            sleep(10)
-                            attempts += 1
-                            if attempts == 60*5/10:
-                                # After 5 minutes log and notify user by e-mail
-                                self.log.critical("Error! Gateway still not running after 5 minutes of down time. Continuing to reconnect..")
+                    do_reconnect(self)
     return wrapper
 
 
