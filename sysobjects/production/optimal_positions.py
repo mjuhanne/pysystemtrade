@@ -298,13 +298,16 @@ class listOfOptimalPositionsAcrossInstrumentStrategies(list):
 
         return listOfOptimalPositionsAcrossInstrumentStrategies(filtered_list)
 
-    def as_verbose_pd(self) -> pd.DataFrame:
+    def as_verbose_pd(self, include_strategy_name=True) -> pd.DataFrame:
         list_of_optimal = [pos.optimal_position for pos in self]
         list_of_optimal_as_dict = [
             optimal_position.as_dict() for optimal_position in list_of_optimal
         ]
         as_pd = pd.DataFrame(list_of_optimal_as_dict)
-        list_of_keys = [pos.key() for pos in self]
+        if include_strategy_name:
+            list_of_keys = [pos.key() for pos in self]
+        else:
+            list_of_keys = [pos.instrument_strategy.instrument_code for pos in self]
         as_pd.index = list_of_keys
 
         return as_pd
