@@ -73,8 +73,11 @@ class ibPriceClient(ibContractsClient):
             )
             return missing_data
 
+        endDateTime = ""
+        if contract_object_with_ib_broker_config.expiry_date < datetime.datetime.now():
+            endDateTime = contract_object_with_ib_broker_config.expiry_date
         price_data = self._get_generic_data_for_contract(
-            ibcontract, log=specific_log, bar_freq=bar_freq, whatToShow="TRADES", startDateTime=startDateTime
+            ibcontract, log=specific_log, bar_freq=bar_freq, whatToShow="TRADES", startDateTime=startDateTime, endDateTime=endDateTime
         )
 
         return price_data
@@ -235,14 +238,16 @@ class ibPriceClient(ibContractsClient):
         bar_freq: Frequency = DAILY_PRICE_FREQ,
         whatToShow: str = "TRADES",
         startDateTime="",
+        endDateTime="",
     ) -> pd.DataFrame:
         """
         Get historical daily data
 
         :param contract_object_with_ib_data: contract where instrument has ib metadata
         :param freq: str; one of D, H, 5M, M, 10S, S
-        :param startDateTime: str/datetime; If "" then then one maximum chunk (1 year for daily frequency) is returned. Otherwise 
+        :param startDateTime: str/datetime (local time); If "" then then one maximum chunk (1 year for daily frequency) is returned. Otherwise 
             return data from the given date or the earliest available data point
+        :param endDateTime: datetime (local time) or "" for latest data
         :return: futuresContractPriceData
         """
         if log is None:
@@ -255,6 +260,9 @@ class ibPriceClient(ibContractsClient):
         except Exception as exception:
             log.warn(exception)
             return missing_data
+
+        if endDateTime=="":
+            endDateTime = datetime.datetime.now()
 
         if startDateTime=="":
             price_data_raw = self._ib_get_historical_data_of_duration_and_barSize(
@@ -292,24 +300,28 @@ class ibPriceClient(ibContractsClient):
                 ) )
 
             price_data_raw = None
+            chunkEndDateTime = endDateTime
 
-            while (startDateTime < datetime.datetime.now()):
+            # Start from the end and fetch sequentially older chunks 
+            while (chunkEndDateTime > startDateTime):
 
-                endDateTime = startDateTime + duration
                 price_data_chunk = self._ib_get_historical_data_of_duration_and_barSize(
                     ibcontract,
                     durationStr=durationStr,
                     barSizeSetting=barSizeSetting,
                     whatToShow=whatToShow,
-                    endDateTime=endDateTime,
+                    endDateTime=chunkEndDateTime,
                     log=log,
                 )
+                if price_data_chunk is None:
+                    break
+
                 if price_data_raw is None:
                     price_data_raw = price_data_chunk
                 else:
-                    price_data_raw = price_data_raw.append(price_data_chunk)
+                    price_data_raw = price_data_chunk.append(price_data_raw)
 
-                startDateTime = endDateTime + barSize
+                chunkEndDateTime = self._adjust_ib_time_to_local(price_data_raw['date'].iloc[0])
 
         if price_data_raw is None or len(price_data_raw) == 0:
             if self.get_last_error(ibcontract) == IB_ERROR__NO_MARKET_PERMISSIONS:
@@ -323,6 +335,9 @@ class ibPriceClient(ibContractsClient):
                 "Could not fetch %s for contract %s (startTime %s, freq %s)"
                 % (whatToShow, str(ibcontract), startDateTime, str(bar_freq))
             )
+
+        # remove duplicates
+        price_data_raw = price_data_raw.drop_duplicates(subset=['date'])
 
         price_data_as_df = self._raw_ib_data_to_df(
             price_data_raw=price_data_raw, log=log
@@ -368,6 +383,11 @@ class ibPriceClient(ibContractsClient):
         )
 
         return adjusted_ts
+
+
+    def _adjust_local_time_to_utc(self, local_time) -> Timestamp:
+        utc_time = Timestamp(local_time).astimezone(tz.tzutc())
+        return utc_time
 
     def _adjust_ib_time_to_local(self, timestamp_ib) -> datetime.datetime:
 
