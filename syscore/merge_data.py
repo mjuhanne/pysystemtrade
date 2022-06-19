@@ -204,8 +204,16 @@ def _first_spike_in_data(
         change_in_avg_units, first_date_in_new_data=first_date_in_new_data
     )
 
+    if len(data_to_check) < 2:
+        return no_spike
+    time_period = data_to_check.index[-1] - data_to_check.index[-2]
+    if time_period < datetime.timedelta(days=1):
+        # use different max spike for intraday prices
+        production_config = get_production_config()
+        max_spike = production_config.max_intraday_price_spike
+
     first_spike = _check_for_spikes_in_change_in_avg_units(change_in_avg_units_to_check,
-                                                           max_spike = max_spike)
+                                                            max_spike = max_spike)
 
     return first_spike
 
