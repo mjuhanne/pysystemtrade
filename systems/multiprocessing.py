@@ -76,4 +76,4 @@ def parallelize_stage_function_and_cache_results(stage, func, arg_array):
                     )
     else:
         stage.log.warn("Process count (n_processes) not specified in private config! Skipping parallelized caching..")
-    
+        invoke_stage_function_in_new_process(0, True, func.__func__.__name__, arg_array)
