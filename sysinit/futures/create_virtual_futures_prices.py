@@ -31,15 +31,6 @@ def create_virtual_futures_prices(instrument_code):
         except BaseException as exp:
             print("Error downloading prices (%s)! Omitting instrument" % (exp))
             return
-    
-    adj = virtualFuturesData.get_adjusted_prices(data, instrument_code)
-    adj_prices_data = arcticFuturesAdjustedPricesData()
-    adj_prices_data.add_adjusted_prices(instrument_code, adj, ignore_duplication=True)
-
-    mul = virtualFuturesData.get_multiple_prices(data, instrument_code)
-    mul_prices_data = arcticFuturesMultiplePricesData()
-    mul_prices_data.add_multiple_prices( instrument_code, mul, ignore_duplication=True)
-
 
 
 def create_all_virtual_futures_prices():
@@ -52,7 +43,7 @@ def create_all_virtual_futures_prices():
 
 
 if __name__ == "__main__":
-    print("Create dummy multiple/adjusted prices for virtual futures instrument from stock prices")
+    print("Create dummy prices for virtual futures instrument from stock prices")
     instrument_code = input("Instrument code? or 'ALL' <return to abort> ")
     if instrument_code == "":
         exit()
