@@ -17,13 +17,15 @@ class csvRollParametersData(rollParametersData):
     """
 
     def __init__(
-        self, log=logtoscreen("csvRollParametersData"), datapath=arg_not_supplied
+        self, log=logtoscreen("csvRollParametersData"), datapath=arg_not_supplied, filename=arg_not_supplied
     ):
 
         super().__init__(log=log)
         if datapath is arg_not_supplied:
             datapath = ROLLS_DATAPATH
-        config_file = get_filename_for_package(datapath, ROLLS_CONFIG_FILE)
+        if filename is arg_not_supplied:
+            filename = ROLLS_CONFIG_FILE
+        config_file = get_filename_for_package(datapath, filename)
 
         self._config_file = config_file
 

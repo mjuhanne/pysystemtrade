@@ -25,13 +25,14 @@ class csvFuturesInstrumentData(futuresInstrumentData):
         self,
         datapath=arg_not_supplied,
         log=logtoscreen("csvFuturesInstrumentData"),
+        filename=CONFIG_FILE_NAME,
     ):
 
         super().__init__(log=log)
 
         if datapath is arg_not_supplied:
             datapath = INSTRUMENT_CONFIG_PATH
-        config_file = get_filename_for_package(datapath, CONFIG_FILE_NAME)
+        config_file = get_filename_for_package(datapath, filename)
         self._config_file = config_file
 
     @property
