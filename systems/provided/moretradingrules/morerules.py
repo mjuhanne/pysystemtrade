@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
-from sysdata.config.defaults import system_defaults
+from sysdata.config.defaults import get_system_defaults_dict
+
 from copy import copy
 
+system_defaults = get_system_defaults_dict()
 
 def breakout(price, lookback=10, smooth=None):
     """
