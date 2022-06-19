@@ -4,7 +4,7 @@ from copy import copy
 import numpy as np
 import pandas as pd
 
-from syscore.objects import failure, success
+from syscore.objects import failure, success, missing_data
 from sysdata.data_blob import dataBlob
 from sysobjects.adjusted_prices import futuresAdjustedPrices
 from sysobjects.contracts import futuresContract
@@ -152,10 +152,14 @@ class rollingAdjustedAndMultiplePrices(object):
         # We want user input before we do anything
         compare_old_and_new_prices(
             [
-                self.current_multiple_prices,
-                self.updated_multiple_prices,
-                self.current_adjusted_prices,
-                self.new_adjusted_prices,
+                self.create_multiple_prices_df_with_volume(self.current_multiple_prices),
+                self.create_multiple_prices_df_with_volume(self.updated_multiple_prices),
+                self.create_adjusted_prices_df_with_volume(
+                    self.current_adjusted_prices,
+                    self.current_multiple_prices['PRICE_CONTRACT'] ),
+                self.create_adjusted_prices_df_with_volume(
+                    self.new_adjusted_prices,
+                    self.updated_multiple_prices['PRICE_CONTRACT'] ),
             ],
             [
                 "Current multiple prices",
@@ -165,6 +169,46 @@ class rollingAdjustedAndMultiplePrices(object):
             ],
         )
         print("")
+
+    def get_volumes_for_contracts(self, contract_timeseries:pd.Series):
+        unique_contracts = contract_timeseries.unique()
+        cached_contract_volumes = dict()
+        diag_volumes = diagVolumes(self.data)
+        for unique_contract in unique_contracts:
+            contract = futuresContract(self.instrument_code, unique_contract)
+            vol = diag_volumes.get_daily_volumes_for_contract(contract)
+            cached_contract_volumes[unique_contract] = vol
+        volumes = []
+        for index, contract in contract_timeseries.iteritems():
+            index_date = index.date()
+            contract_volumes = cached_contract_volumes[contract]
+            if contract_volumes is not missing_data:
+                try:
+                    volume = contract_volumes[index_date]
+                except:
+                    volume = np.NaN
+            else:
+                volume = np.NaN
+            volumes.append( volume )
+        return pd.Series(data=volumes, index=contract_timeseries.index)
+
+    def create_multiple_prices_df_with_volume(self, multiple_prices):
+        prices = multiple_prices.tail(10)
+        prices = prices.assign(
+            C_VOL=self.get_volumes_for_contracts(prices['CARRY_CONTRACT']),
+            P_VOL=self.get_volumes_for_contracts(prices['PRICE_CONTRACT']),
+            F_VOL=self.get_volumes_for_contracts(prices['FORWARD_CONTRACT']),
+        )
+        return prices
+
+    def create_adjusted_prices_df_with_volume(self, adjusted_prices, price_contracts ):
+        prices = adjusted_prices.tail(10)
+        contracts = price_contracts.tail(10)
+        volumes = self.get_volumes_for_contracts(contracts)
+        df = pd.DataFrame(
+            { 'PRICE':prices, 'VOLUME':volumes}
+        )
+        return df
 
     @property
     def current_multiple_prices(self):

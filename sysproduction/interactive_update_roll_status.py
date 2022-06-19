@@ -81,6 +81,7 @@ class RollDataWithStateReporting(object):
     position_priced_contract: int
     allowable_roll_states_as_list_of_str: list
     days_until_roll: int
+    days_until_price_expiry:int
     relative_volume: float
 
     @property
@@ -310,8 +311,12 @@ def auto_selected_roll_state_instrument(
 
     if no_position_held:
         print_with_landing_strips_around(
-            "No position held, auto rolling adjusted price for %s"
-            % roll_data.instrument_code
+            "No position held, %d/%d days until roll/price expiry and relative volume is %f.\nAuto rolling adjusted price for %s"
+            % (roll_data.days_until_roll, 
+                roll_data.days_until_price_expiry,
+                roll_data.relative_volume, 
+                roll_data.instrument_code
+            )
         )
         return roll_adj_state
 
@@ -436,6 +441,7 @@ def setup_roll_data_with_state_reporting(
     )
 
     days_until_roll = diag_contracts.days_until_roll(instrument_code)
+    days_until_price_expiry = diag_contracts.days_until_price_expiry(instrument_code)
 
     relative_volume = relative_volume_in_forward_contract_versus_price(
         data=data, instrument_code=instrument_code
@@ -449,6 +455,7 @@ def setup_roll_data_with_state_reporting(
         position_priced_contract=position_priced_contract,
         allowable_roll_states_as_list_of_str=allowable_roll_states,
         days_until_roll=days_until_roll,
+        days_until_price_expiry=days_until_price_expiry,
         relative_volume=relative_volume,
     )
 
