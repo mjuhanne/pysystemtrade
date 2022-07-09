@@ -241,11 +241,11 @@ class dataBlob(object):
 
         return log
 
-    def _resolve_names_and_add(self, resolved_instance, class_name: str, keep_original_prefix: bool):
+    def _resolve_names_and_add(self, resolved_instance, class_name: str, keep_original_prefix: bool=arg_not_supplied):
         attr_name = self._get_new_name(class_name, keep_original_prefix)
         self._add_new_class_with_new_name(resolved_instance, attr_name)
 
-    def _get_new_name(self, class_name: str, keep_original_prefix: bool) -> str:
+    def _get_new_name(self, class_name: str, keep_original_prefix: bool=arg_not_supplied) -> str:
         split_up_name = camel_case_split(class_name)
         if keep_original_prefix is not arg_not_supplied:
             attr_name = identifying_name(
