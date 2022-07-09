@@ -127,7 +127,8 @@ def update_roll_status_manual_cycle(data: dataBlob):
 
 def update_roll_status_auto_cycle_manual_decide(data: dataBlob):
     days_ahead = get_days_ahead_to_consider_when_auto_cycling()
-    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead)
+    roll_state_filter = get_filter_for_roll_state()
+    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead, roll_state_filter=roll_state_filter)
     for instrument_code in instrument_list:
         manually_report_and_update_roll_state_for_code(
             data=data, instrument_code=instrument_code
@@ -139,7 +140,8 @@ def update_roll_status_auto_cycle_manual_decide(data: dataBlob):
 def update_roll_status_auto_cycle_manual_confirm(data: dataBlob):
     days_ahead = get_days_ahead_to_consider_when_auto_cycling()
     auto_parameters = get_auto_roll_parameters()
-    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead)
+    roll_state_filter = get_filter_for_roll_state()
+    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead, roll_state_filter=roll_state_filter)
 
     for instrument_code in instrument_list:
         roll_data = setup_roll_data_with_state_reporting(data, instrument_code)
@@ -161,7 +163,8 @@ def update_roll_status_auto_cycle_manual_confirm(data: dataBlob):
 
 def update_roll_status_full_auto(data: dataBlob):
     days_ahead = get_days_ahead_to_consider_when_auto_cycling()
-    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead)
+    roll_state_filter = get_filter_for_roll_state()
+    instrument_list = get_list_of_instruments_to_auto_cycle(data, days_ahead=days_ahead, roll_state_filter=roll_state_filter)
     auto_parameters = get_auto_roll_parameters()
 
     for instrument_code in instrument_list:
@@ -194,7 +197,7 @@ def get_days_ahead_to_consider_when_auto_cycling() -> int:
     return days_ahead
 
 
-def get_list_of_instruments_to_auto_cycle(data: dataBlob, days_ahead: int = 10) -> list:
+def get_list_of_instruments_to_auto_cycle(data: dataBlob, days_ahead: int = 10, roll_state_filter=None) -> list:
 
     diag_prices = diagPrices()
     list_of_potential_instruments = (
@@ -204,7 +207,7 @@ def get_list_of_instruments_to_auto_cycle(data: dataBlob, days_ahead: int = 10) 
         instrument_code
         for instrument_code in list_of_potential_instruments
         if include_instrument_in_auto_cycle(
-            data=data, instrument_code=instrument_code, days_ahead=days_ahead
+            data=data, instrument_code=instrument_code, days_ahead=days_ahead, roll_state_filter=roll_state_filter
         )
     ]
 
@@ -217,12 +220,14 @@ def get_list_of_instruments_to_auto_cycle(data: dataBlob, days_ahead: int = 10) 
 
 
 def include_instrument_in_auto_cycle(
-    data: dataBlob, instrument_code: str, days_ahead: int = 10
+    data: dataBlob, instrument_code: str, days_ahead: int = 10, roll_state_filter=None
 ) -> bool:
     if virtualFuturesData.is_virtual(instrument_code):
         return False
     days_until_expiry = days_until_earliest_expiry(data, instrument_code)
-    return days_until_expiry <= days_ahead
+    diag_positions = diagPositions(data)
+    roll_state = diag_positions.get_roll_state(instrument_code)
+    return (days_until_expiry <= days_ahead) and (roll_state_filter is None or roll_state is roll_state_filter)
 
 
 def days_until_earliest_expiry(data: dataBlob, instrument_code: str) -> int:
@@ -271,6 +276,9 @@ def get_auto_roll_parameters() -> autoRollParameters:
 STATE_OPTIONS = [RollState.Passive, RollState.Force, RollState.Force_Outright, RollState.Close]
 STATE_OPTIONS_AS_STR = [str(state) for state in STATE_OPTIONS]
 
+STATE_FILTER_OPTIONS = [None, RollState.No_Roll, RollState.Passive, RollState.Force, RollState.Force_Outright, RollState.Close]
+STATE_FILTER_OPTIONS_AS_STR = [str(state) for state in STATE_FILTER_OPTIONS]
+
 
 def get_state_to_use_for_held_position() -> RollState:
 
@@ -287,6 +295,23 @@ def get_state_to_use_for_held_position() -> RollState:
     ]
 
     return state_when_position_held
+
+
+def get_filter_for_roll_state() -> RollState:
+
+    print(
+        "Choose filter for roll state"
+    )
+
+    roll_state_filter = print_menu_of_values_and_get_response(
+        STATE_FILTER_OPTIONS_AS_STR, default_str=STATE_FILTER_OPTIONS_AS_STR[0]
+    )
+
+    roll_state_filter = STATE_FILTER_OPTIONS[
+        STATE_FILTER_OPTIONS_AS_STR.index(roll_state_filter)
+    ]
+
+    return roll_state_filter
 
 
 def auto_selected_roll_state_instrument(
