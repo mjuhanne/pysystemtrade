@@ -2,18 +2,26 @@ from copy import copy
 
 from syscore.objects import ALL_ROLL_INSTRUMENTS
 from sysdata.config.production_config import get_production_config, Config
-from syscore.objects import missing_data
+from syscore.objects import missing_data, arg_not_supplied
 
 
 class reportConfig(object):
-    def __init__(self, title, function, output="console", formatting="plain", **kwargs):
+    def __init__(self, title, function, output="console", formatting=arg_not_supplied, **kwargs):
         assert output in ["console", "email", "file",
                           "emailfile"]
         self.title = title
         self.function = function
         self.output = output
         self.kwargs = kwargs
-        self.formatting = formatting
+        if formatting is arg_not_supplied:
+            config = get_production_config()
+            report_formatting = config.get_element_or_missing_data("report_formatting")
+            if report_formatting is not missing_data:
+                self.formatting = report_formatting[output]
+            else:
+                self.formatting = "plain"
+        else:
+            self.formatting = formatting
 
     def __repr__(self):
         return "%s %s %s %s" % (
