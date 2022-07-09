@@ -112,7 +112,7 @@ def parse_phrase(phrase: str, adjustment_hours: int = 0, additional_adjust: int 
 def get_conservative_trading_time_for_time_zone(time_zone_id: str) -> openingTimesAnyDay:
     # ALthough many things are liquid all day, we want to be conservative
     # confusingly, IB seem to have changed their time zone codes in 2020
-    # times returned are in UTC
+    # times below are listed in UTC+0 but converted to local time 
 
     start_times = {
         ## US
@@ -167,11 +167,19 @@ def get_conservative_trading_time_for_time_zone(time_zone_id: str) -> openingTim
         "Australia/NSW": 4,
     }
 
-    conservative_start_time = datetime.time(start_times[time_zone_id])
-    conservative_end_time = datetime.time(end_times[time_zone_id])
+    now = datetime.datetime.now()
+    conservative_start_time = datetime.datetime(year=now.year, month=now.month, day=now.day, hour=start_times[time_zone_id])
+    conservative_end_time = datetime.datetime(year=now.year, month=now.month, day=now.day, hour=end_times[time_zone_id])
 
-    return openingTimesAnyDay(conservative_start_time,
-                              conservative_end_time)
+    conservative_start_time = convert_utc_datetime_to_local( conservative_start_time )
+    conservative_end_time = convert_utc_datetime_to_local( conservative_end_time )
+
+    if (conservative_start_time.date() != now.date()) or (conservative_end_time.date() != now.date()):
+        raise Exception("Currently cannot handle conservative trading time correction spanning to previous/following day!")
+        
+
+    return openingTimesAnyDay(conservative_start_time.time(),
+                              conservative_end_time.time())
 
 
 def get_time_difference(time_zone_id: str) -> int:
