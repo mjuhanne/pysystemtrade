@@ -52,6 +52,8 @@ from systems.provided.dynamic_small_system_optimise.buffering import (
 )
 from systems.provided.dynamic_small_system_optimise.optimised_positions_stage import calculate_cost_per_notional_weight_as_proportion_of_capital
 
+from sysdata.futures.virtual_futures_data import virtualFuturesData
+
 ARBITRARILY_LARGE_CONTRACT_LIMIT = 999999999
 
 class orderGeneratorForDynamicPositions(orderGeneratorForStrategy):
@@ -172,6 +174,7 @@ class dataForObjectiveInstance:
     constraints: constraintsForDynamicOpt
     speed_control: speedControlForDynamicOpt
     constraints: constraintsForDynamicOpt
+    tiers: dict
 
     @property
     def weights_prior(self) -> portfolioWeights:
@@ -268,6 +271,8 @@ def get_data_for_objective_instance(
 
     speed_control = get_speed_control(data)
 
+    tiers = get_tiers(data, list_of_instruments)
+    
     data_for_objective = dataForObjectiveInstance(
         positions_optimal=positions_optimal,
         per_contract_value=per_contract_value,
@@ -280,9 +285,23 @@ def get_data_for_objective_instance(
         maximum_position_contracts=maximum_position_contracts,
         constraints=constraints,
         speed_control=speed_control,
+        tiers=tiers,
     )
 
     return data_for_objective
+
+
+def get_tiers(data, list_of_instruments: list):
+    system_config = get_config_parameters(data)
+    tiers = system_config.get("dynamic_optimization_tiers", missing_data)
+    if tiers is missing_data:
+        tiers = dict( { 0: [], 1: [] } )
+        for instr in list_of_instruments:
+            if virtualFuturesData.is_virtual(instr):
+                tiers[1].append(instr)
+            else:
+                tiers[0].append(instr)
+    return tiers
 
 
 def get_maximum_position_contracts(
@@ -498,6 +517,7 @@ def get_objective_instance(
         constraints=data_for_objective.constraints,
         maximum_positions=data_for_objective.maximum_position_contracts,
         per_contract_value=data_for_objective.per_contract_value,
+        tiers=data_for_objective.tiers,
     )
 
     return objective_function
