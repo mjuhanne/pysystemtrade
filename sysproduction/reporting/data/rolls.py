@@ -104,6 +104,7 @@ class rollingAdjustedAndMultiplePrices(object):
         self.data = data
         self.instrument_code = instrument_code
         self.allow_forward_fill = allow_forward_fill
+        self.contract_volume_cache = dict()
 
     def compare_old_and_new_prices(self):
         # We want user input before we do anything
@@ -129,19 +130,21 @@ class rollingAdjustedAndMultiplePrices(object):
 
     def get_volumes_for_contracts(self, contract_timeseries:pd.Series):
         unique_contracts = contract_timeseries.unique()
-        cached_contract_volumes = dict()
         diag_volumes = diagVolumes(self.data)
         for unique_contract in unique_contracts:
-            contract = futuresContract(self.instrument_code, unique_contract)
-            vol = diag_volumes.get_daily_volumes_for_contract(contract)
-            cached_contract_volumes[unique_contract] = vol
+            if unique_contract not in self.contract_volume_cache:
+                contract = futuresContract(self.instrument_code, unique_contract)
+                vol = diag_volumes.get_daily_volumes_for_contract(contract)
+                vol.index = pd.DatetimeIndex(vol.index).normalize() # drop the time if it's there
+                self.contract_volume_cache[unique_contract] = vol
         volumes = []
-        for index, contract in contract_timeseries.iteritems():
-            index_date = index.date()
-            contract_volumes = cached_contract_volumes[contract]
+        timeseries = contract_timeseries.copy()
+        timeseries.index = pd.DatetimeIndex(timeseries.index).normalize() # drop the time 
+        for index, contract in timeseries.iteritems():
+            contract_volumes = self.contract_volume_cache[contract]
             if contract_volumes is not missing_data:
                 try:
-                    volume = contract_volumes[index_date]
+                    volume = contract_volumes[index]
                 except:
                     volume = np.NaN
             else:
