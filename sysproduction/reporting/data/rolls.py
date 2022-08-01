@@ -135,7 +135,8 @@ class rollingAdjustedAndMultiplePrices(object):
             if unique_contract not in self.contract_volume_cache:
                 contract = futuresContract(self.instrument_code, unique_contract)
                 vol = diag_volumes.get_daily_volumes_for_contract(contract)
-                vol.index = pd.DatetimeIndex(vol.index).normalize() # drop the time if it's there
+                if vol is not missing_data:
+                    vol.index = pd.DatetimeIndex(vol.index).normalize() # drop the time if it's there
                 self.contract_volume_cache[unique_contract] = vol
         volumes = []
         timeseries = contract_timeseries.copy()
