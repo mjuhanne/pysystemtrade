@@ -2,7 +2,7 @@ from syscore.dateutils import Frequency
 from sysdata.config.configdata import Config
 from sysexecution.stack_handler.stackHandlerCore import stackHandlerCore
 from sysobjects.contracts import futuresContract
-from syscore.objects import missing_data, no_market_permissions
+from syscore.objects import missing_data, no_market_permissions, failure
 from sysdata.futures.virtual_futures_data import virtualFuturesData
 
 
@@ -88,7 +88,7 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
     def get_intraday_prices(self, contract: futuresContract):
         data_broker = self.data_broker
         intraday_prices = data_broker.get_prices_at_frequency_for_contract_object(contract, Frequency.Hour)
-        if intraday_prices is no_market_permissions:
+        if intraday_prices is no_market_permissions or intraday_prices is failure:
             return missing_data
         return intraday_prices
 
