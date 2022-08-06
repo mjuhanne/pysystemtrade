@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from syscore.algos import calculate_weighted_average_with_nans
 from syscore.genutils import str2Bool
@@ -9,6 +10,7 @@ from sysquant.estimators.turnover import turnoverDataForTradingRule
 
 from systems.system_cache import diagnostic, input
 from systems.accounts.account_inputs import accountInputs
+from sysobjects.instruments import instrumentCosts
 
 
 class accountCosts(accountInputs):
@@ -326,6 +328,29 @@ class accountCosts(accountInputs):
 
         return SR_cost
 
+    def cap_costs(self, instrument_code: str, raw_costs: instrumentCosts, recent_price):
+        if hasattr(self.config,"cap_slippage_perc"):
+            # Let's make sure we can simulate even if cost is too high or some cost data is missing
+            max_slippage = recent_price * self.config.cap_slippage_perc / 100
+            slippage = raw_costs.price_slippage
+            percentage_cost = raw_costs.percentage_cost
+            value_of_block_commission = raw_costs.value_of_block_commission
+            value_of_pertrade_commission = raw_costs.value_of_pertrade_commission
+            if raw_costs.price_slippage > max_slippage or np.isnan(raw_costs.price_slippage):
+                print("Warning! Capping",instrument_code,"slippage from",raw_costs.price_slippage,"to",max_slippage)
+                slippage = max_slippage
+            if np.isnan(percentage_cost):
+                percentage_cost = 0
+            if np.isnan(value_of_block_commission):
+                value_of_block_commission = 2
+            if np.isnan(value_of_pertrade_commission):
+                value_of_pertrade_commission = 0
+
+            raw_costs = instrumentCosts( price_slippage = slippage, value_of_block_commission=value_of_block_commission,
+                            percentage_cost=percentage_cost, value_of_pertrade_commission=value_of_pertrade_commission)
+
+        return raw_costs
+
     @diagnostic()
     def _get_SR_cost_per_trade_for_instrument_percentage(
         self, instrument_code: str
@@ -334,6 +359,8 @@ class accountCosts(accountInputs):
         block_price_multiplier = self.get_value_of_block_price_move(instrument_code)
         average_price = self._recent_average_price(instrument_code)
         notional_blocks_traded = 1
+        
+        raw_costs = self.cap_costs(instrument_code, raw_costs, average_price)
 
         cost_in_percentage_terms = raw_costs.calculate_cost_percentage_terms(
             blocks_traded=notional_blocks_traded,

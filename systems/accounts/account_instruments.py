@@ -199,6 +199,8 @@ class accountInstruments(accountCosts, accountBufferingSystemLevel):
         fx = self.get_fx_rate(instrument_code)
         value_of_price_point = self.get_value_of_block_price_move(instrument_code)
 
+        raw_costs = self.cap_costs(instrument_code, raw_costs, price[-1])
+
         capital = self.get_notional_capital()
 
         vol_normalise_currency_costs = self.config.vol_normalise_currency_costs
