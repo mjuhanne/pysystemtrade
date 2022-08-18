@@ -35,10 +35,13 @@ def invoke_stage_function_in_new_process(process_number, show_progressbar, func_
     return (process_number, results)
 
 
-def divide_jobs_for_processes(n_processes, args, jobs, include_process_number=False):
+def divide_jobs_for_processes(n_processes, args, jobs, include_process_number=False, max_jobs_per_process=None):
     job_count_per_process = int(len(jobs) / n_processes)
     if job_count_per_process * n_processes < len(jobs):
         job_count_per_process += 1
+    if max_jobs_per_process is not None:
+        if job_count_per_process > max_jobs_per_process:
+            job_count_per_process = max_jobs_per_process
 
     if include_process_number:
         return [ [int(i/job_count_per_process), *args, jobs[i:i + job_count_per_process]]
@@ -48,7 +51,7 @@ def divide_jobs_for_processes(n_processes, args, jobs, include_process_number=Fa
             for i in range(0, len(jobs), job_count_per_process) ]
 
 
-def parallelize_stage_function_and_cache_results(stage, func, arg_array):
+def parallelize_stage_function_and_cache_results(stage, func, arg_array, max_jobs_per_process=None):
     n_processes = stage.config.get_element_or_arg_not_supplied('n_processes')
     globals()['stage_reference'] = stage
     if n_processes is not arg_not_supplied:
@@ -63,9 +66,14 @@ def parallelize_stage_function_and_cache_results(stage, func, arg_array):
             if stage_reference.parent.cache._get_item_from_cache(cache_ref) is MISSING_FROM_CACHE:
                 jobs.append(args)
         
-        jobs_per_process = divide_jobs_for_processes(n_processes, [True, func.__func__.__name__], jobs, include_process_number=True)
+        if len(jobs) == 0:
+            # nothing left to do
+            return
         
-        with Pool(n_processes) as p:
+        jobs_per_process = divide_jobs_for_processes(n_processes, [True, func.__func__.__name__], jobs, 
+                                        include_process_number=True, max_jobs_per_process=max_jobs_per_process)
+        
+        with Pool(n_processes, maxtasksperchild=max_jobs_per_process) as p:
             for i, (process_number, result_dict) in enumerate(p.starmap(invoke_stage_function_in_new_process, jobs_per_process), 1):
                 print("Process %d finished with %d jobs" % (process_number, len(result_dict)))                    
                 for cache_ref, result in result_dict.items():

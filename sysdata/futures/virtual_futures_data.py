@@ -17,9 +17,6 @@ VIRTUAL_FUTURES_CONTRACT_EXPIRATION_DATE = "21000131"
 
 DEFAULT_LOT_VALUE = 3000
 
-
-mongodb = mongoFuturesInstrumentData()
-
 class virtualFuturesData(object):
 
     def __init__():
@@ -36,6 +33,7 @@ class virtualFuturesData(object):
 
     @classmethod
     def get_asset_class_tag(self, instrument_code:str):
+        mongodb = mongoFuturesInstrumentData()
         ac = mongodb.get_instrument_data(instrument_code).meta_data.AssetClass
         if self.is_virtual(instrument_code):
             return 'V_AC_' + ac
