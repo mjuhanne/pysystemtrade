@@ -1,6 +1,6 @@
 import pandas as pd
 from syscore.fileutils import get_filename_for_package
-from sysdata.data_blob import dataBlob
+#from sysdata.data_blob import dataBlob
 from sysdata.futures.adjusted_prices import futuresAdjustedPrices
 from sysobjects.instruments import futuresInstrument
 from sysobjects.contracts import futuresContract
@@ -80,7 +80,7 @@ class virtualFuturesData(object):
         return futuresContract( futuresInstrument(instrument_code), contractDate(VIRTUAL_FUTURES_CONTRACT_DATE) )
 
     @classmethod
-    def get_list_of_virtual_futures_instruments_with_price_data(self, data:dataBlob):
+    def get_list_of_virtual_futures_instruments_with_price_data(self, data):
         instrument_list = data.db_futures_contract_price.get_list_of_instrument_codes_with_price_data()
         virtual_instrument_list = []
         for instr in instrument_list:
@@ -90,7 +90,7 @@ class virtualFuturesData(object):
 
 
     @classmethod
-    def get_prices(self, data:dataBlob, instrument_code):
+    def get_prices(self, data, instrument_code):
         contract = self.get_virtual_futures_contract(instrument_code)
         price_series = data.db_futures_contract_price.get_prices_for_contract_object(contract)
         price_series = price_series[~price_series.index.duplicated()]
@@ -98,7 +98,7 @@ class virtualFuturesData(object):
 
 
     @classmethod
-    def get_intraday_prices(self, data:dataBlob, instrument_code):
+    def get_intraday_prices(self, data, instrument_code):
         contract = self.get_virtual_futures_contract(instrument_code)
         price_series = data.db_futures_contract_intraday_price.get_prices_for_contract_object(contract)
         price_series = price_series[~price_series.index.duplicated()]
@@ -106,13 +106,13 @@ class virtualFuturesData(object):
 
 
     @classmethod
-    def get_adjusted_prices(self, data:dataBlob, instrument_code):
+    def get_adjusted_prices(self, data, instrument_code):
         price_series = self.get_prices(data, instrument_code)
         return futuresAdjustedPrices(price_series['FINAL'])
 
 
     @classmethod
-    def get_multiple_prices(self, data:dataBlob, instrument_code):
+    def get_multiple_prices(self, data, instrument_code):
         price_series = self.get_prices(data, instrument_code)
         p = pd.DataFrame( index=price_series.index, columns=['PRICE', 'CARRY', 'FORWARD', 'PRICE_CONTRACT', 'CARRY_CONTRACT', 'FORWARD_CONTRACT'])
         p['PRICE'] = price_series['FINAL']
