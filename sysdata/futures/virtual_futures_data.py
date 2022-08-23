@@ -8,7 +8,6 @@ from sysobjects.instruments import futuresInstrument
 from sysobjects.contract_dates_and_expiries import contractDate
 from sysobjects.multiple_prices import futuresMultiplePrices
 from sysobjects.dict_of_named_futures_per_contract_prices import setOfNamedContracts
-from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
 from sysobjects.rolls import rollParameters
 from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
 
@@ -61,6 +60,7 @@ class virtualFuturesData(object):
 
     @classmethod
     def is_virtual_by_broker_code(self, broker_code: str) -> bool:
+        from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
         ib_data = ibFuturesInstrumentData(ibconnection=None)
         try: 
             instr_code = ib_data.get_instrument_code_from_broker_code(broker_code)
