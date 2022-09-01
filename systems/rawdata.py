@@ -42,7 +42,7 @@ class RawData(SystemStage):
         return self.parent.config
 
     @input
-    def get_daily_prices(self, instrument_code) -> pd.Series:
+    def get_daily_prices(self, instrument_code, get_full_date_range=False) -> pd.Series:
         """
         Gets daily prices
 
@@ -57,7 +57,7 @@ class RawData(SystemStage):
             "Calculating daily prices for %s" % instrument_code,
             instrument_code=instrument_code,
         )
-        dailyprice = self.data_stage.daily_prices(instrument_code)
+        dailyprice = self.data_stage.daily_prices(instrument_code, get_full_date_range=get_full_date_range)
 
         if len(dailyprice) == 0:
             raise Exception(
@@ -90,7 +90,7 @@ class RawData(SystemStage):
         return hourly_prices
 
     @output()
-    def daily_returns(self, instrument_code: str) -> pd.Series:
+    def daily_returns(self, instrument_code: str, get_full_date_range=False) -> pd.Series:
         """
         Gets daily returns (not % returns)
 
@@ -110,7 +110,7 @@ class RawData(SystemStage):
         2015-12-10 -0.0650
         2015-12-11  0.1075
         """
-        instrdailyprice = self.get_daily_prices(instrument_code)
+        instrdailyprice = self.get_daily_prices(instrument_code, get_full_date_range=get_full_date_range)
         dailyreturns = instrdailyprice.diff()
 
         return dailyreturns
@@ -171,8 +171,13 @@ class RawData(SystemStage):
             instrument_code=instrument_code,
         )
 
-        dailyreturns = self.daily_returns(instrument_code)
         volconfig = copy(self.config.volatility_calculation)
+        if 'full_date_range' in volconfig: 
+            full_date_range=volconfig['full_date_range']
+        else:
+            full_date_range = False
+
+        dailyreturns = self.daily_returns(instrument_code, full_date_range)
 
         # volconfig contains 'func' and some other arguments
         # we turn func which could be a string into a function, and then
@@ -180,6 +185,10 @@ class RawData(SystemStage):
 
         volfunction = resolve_function(volconfig.pop("func"))
         vol = volfunction(dailyreturns, **volconfig)
+
+        if full_date_range:
+            (start_date, end_date) = self.data_stage.date_range_for_data()
+            vol = vol[vol.index >= start_date]
 
         return vol
 

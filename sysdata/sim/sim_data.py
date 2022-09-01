@@ -98,7 +98,7 @@ class simData(baseData):
     def methods(self) -> list:
         return get_methods(self)
 
-    def daily_prices(self, instrument_code: str) -> pd.Series:
+    def daily_prices(self, instrument_code: str, get_full_date_range=False) -> pd.Series:
         """
         Gets daily prices
 
@@ -108,9 +108,9 @@ class simData(baseData):
         :returns: Tx1 pd.Series
 
         """
-        return self._get_daily_prices_for_directional_instrument(instrument_code)
+        return self._get_daily_prices_for_directional_instrument(instrument_code, get_full_date_range=get_full_date_range)
 
-    def _get_daily_prices_for_directional_instrument(self, instrument_code: str) -> pd.Series:
+    def _get_daily_prices_for_directional_instrument(self, instrument_code: str, get_full_date_range=False) -> pd.Series:
         """
         Gets daily prices
 
@@ -120,7 +120,7 @@ class simData(baseData):
         :returns: Tx1 pd.Series
 
         """
-        instrprice = self.get_raw_price(instrument_code)
+        instrprice = self.get_raw_price(instrument_code, get_full_date_range=get_full_date_range)
         if len(instrprice) == 0:
             raise Exception("No adjusted daily prices for %s" % instrument_code)
         dailyprice = prices_to_daily_prices(instrprice)
@@ -170,7 +170,7 @@ class simData(baseData):
 
         return fx_rate_series
 
-    def get_raw_price(self, instrument_code: str) -> pd.Series:
+    def get_raw_price(self, instrument_code: str, get_full_date_range=False) -> pd.Series:
         """
         Default method to get instrument price at 'natural' frequency
 
@@ -183,6 +183,9 @@ class simData(baseData):
 
         """
         (start_date, end_date) = self.date_range_for_data()
+
+        if get_full_date_range:
+            start_date = ARBITRARY_START
 
         return self.get_raw_price_for_date_range(
             instrument_code, start_date=start_date, end_date=end_date
