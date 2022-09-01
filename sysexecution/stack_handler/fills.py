@@ -65,6 +65,14 @@ class stackHandlerForFills(stackHandlerForCompletions):
             )
             return None
 
+        if matched_broker_order.parent is no_parent:
+            log = db_broker_order.log_with_attributes(self.log)
+            log.warn(
+                "Order in database %s has no parent: can't fill"
+                % db_broker_order
+            )
+            return None
+
         self.apply_broker_order_fills_to_database(
             broker_order_id=broker_order_id, broker_order=matched_broker_order
         )
