@@ -331,7 +331,7 @@ class accountCosts(accountInputs):
     def cap_costs(self, instrument_code: str, raw_costs: instrumentCosts, recent_price):
         if hasattr(self.config,"cap_slippage_perc"):
             # Let's make sure we can simulate even if cost is too high or some cost data is missing
-            max_slippage = recent_price * self.config.cap_slippage_perc / 100
+            max_slippage = abs(recent_price * self.config.cap_slippage_perc / 100)
             slippage = raw_costs.price_slippage
             percentage_cost = raw_costs.percentage_cost
             value_of_block_commission = raw_costs.value_of_block_commission
