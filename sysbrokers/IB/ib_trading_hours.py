@@ -157,7 +157,7 @@ def get_conservative_trading_time_for_time_zone(time_zone_id: str) -> openingTim
 
         ## Middle European
         "MET (Middle Europe Time)": 15,
-        "MET": 15,
+        "MET": 17, #15,
 
         ## Asia
         "JST (Japan Standard Time)": 6,
