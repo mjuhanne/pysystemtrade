@@ -246,10 +246,10 @@ class diagPositions(productionDataLayerGeneric):
         return list_of_current_positions
 
     def get_all_current_strategy_instrument_positions(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfInstrumentStrategyPositions:
         list_of_current_positions = (
-            self.db_strategy_position_data.get_all_current_positions_as_list_with_instrument_objects()
+            self.db_strategy_position_data.get_all_current_positions_as_list_with_instrument_objects(list_of_strategies)
         )
 
         return list_of_current_positions
@@ -395,11 +395,11 @@ class dataOptimalPositions(productionDataLayerGeneric):
         )
 
     def get_list_of_optimal_positions(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfOptimalPositionsAcrossInstrumentStrategies:
 
         list_of_optimal_positions_and_instrument_strategies = (
-            self.db_optimal_position_data.get_list_of_optimal_positions()
+            self.db_optimal_position_data.get_list_of_optimal_positions(list_of_strategies)
         )
 
         list_of_optimal_positions_and_instrument_strategies = (
@@ -410,27 +410,27 @@ class dataOptimalPositions(productionDataLayerGeneric):
 
         return list_of_optimal_positions_and_instrument_strategies
 
-    def get_pd_of_position_breaks(self) -> pd.DataFrame:
-        optimal_and_current = self.get_list_of_optimal_and_current_positions()
+    def get_pd_of_position_breaks(self, list_of_strategies=arg_not_supplied) -> pd.DataFrame:
+        optimal_and_current = self.get_list_of_optimal_and_current_positions(list_of_strategies)
         optimal_and_current_as_pd = optimal_and_current.as_pd_with_breaks()
 
         return optimal_and_current_as_pd
 
-    def get_list_of_optimal_position_breaks(self) -> list:
-        opt_positions = self.get_pd_of_position_breaks()
+    def get_list_of_optimal_position_breaks(self, list_of_strategies=arg_not_supplied) -> list:
+        opt_positions = self.get_pd_of_position_breaks(list_of_strategies)
         with_breaks = opt_positions[opt_positions.breaks]
         items_with_breaks = list(with_breaks.index)
 
         return items_with_breaks
 
     def get_list_of_optimal_and_current_positions(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfOptimalAndCurrentPositionsAcrossInstrumentStrategies:
 
-        optimal_positions = self.get_list_of_optimal_positions()
+        optimal_positions = self.get_list_of_optimal_positions(list_of_strategies)
         position_data = diagPositions(self.data)
         current_positions = (
-            position_data.get_all_current_strategy_instrument_positions()
+            position_data.get_all_current_strategy_instrument_positions(list_of_strategies)
         )
         optimal_and_current = optimal_positions.add_positions(current_positions)
 

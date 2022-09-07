@@ -3,8 +3,9 @@ from sysproduction.data.positions import dataOptimalPositions, diagPositions
 
 
 def get_optimal_positions(data):
+    list_of_strategies = get_list_of_strategies_from_config(data)
     data_optimal = dataOptimalPositions(data)
-    opt_positions = data_optimal.get_pd_of_position_breaks()
+    opt_positions = data_optimal.get_pd_of_position_breaks(list_of_strategies)
 
     return opt_positions
 
@@ -23,12 +24,14 @@ def get_broker_positions(data):
     broker_positions = broker_positions.sort_values("instrument_code")
     return broker_positions
 
+from sysproduction.data.strategies import get_list_of_strategies_from_config
 
 def get_position_breaks(data):
 
+    list_of_strategies = get_list_of_strategies_from_config(data)
     data_optimal = dataOptimalPositions(data)
     breaks_str0 = "Breaks Optimal vs actual %s" % str(
-        data_optimal.get_list_of_optimal_position_breaks()
+        data_optimal.get_list_of_optimal_position_breaks(list_of_strategies)
     )
 
     diag_positions = diagPositions(data)

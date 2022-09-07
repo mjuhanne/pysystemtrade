@@ -8,8 +8,7 @@ A basic class is an optimal position with buffers around it.
 A mean reversion style class would include price buffers
 
 """
-
-from syscore.objects import failure
+from syscore.objects import failure, arg_not_supplied
 from sysdata.production.timed_storage import (
     listOfEntriesData,
 )
@@ -96,10 +95,10 @@ class optimalPositionData(listOfEntriesData):
         return list_of_instrument_strategies_with_positions
 
     def get_list_of_optimal_positions(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfOptimalPositionsAcrossInstrumentStrategies:
         list_of_instrument_strategies = (
-            self.get_list_of_instrument_strategies_with_optimal_position()
+            self.get_list_of_instrument_strategies_with_optimal_position(list_of_strategies)
         )
 
         list_of_optimal_positions_and_instrument_strategies = (
@@ -212,15 +211,16 @@ class optimalPositionData(listOfEntriesData):
         return list_of_instrument_strategies_for_strategy
 
     def get_list_of_instrument_strategies_with_optimal_position(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfInstrumentStrategies:
 
         list_of_args_dict = self._get_list_of_args_dict()
         list_of_instrument_strategies = []
         for arg_entry in list_of_args_dict:
-            list_of_instrument_strategies.append(
-                instrumentStrategy.from_dict(arg_entry)
-            )
+            if list_of_strategies is arg_not_supplied or arg_entry['strategy_name'] in list_of_strategies:
+                list_of_instrument_strategies.append(
+                    instrumentStrategy.from_dict(arg_entry)
+                )
         list_of_instrument_strategies = listOfInstrumentStrategies(
             list_of_instrument_strategies
         )

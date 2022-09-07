@@ -774,11 +774,13 @@ def delete_entire_stack(data):
 
 def view_positions(data):
     data_broker = dataBroker(data)
+    from sysproduction.data.strategies import get_list_of_strategies_from_config
+    list_of_strategies = get_list_of_strategies_from_config()
 
     diag_positions = diagPositions(data)
     data_optimal = dataOptimalPositions(data)
-    ans0 = data_optimal.get_pd_of_position_breaks()
-    ans1 = diag_positions.get_all_current_strategy_instrument_positions()
+    ans0 = data_optimal.get_pd_of_position_breaks(list_of_strategies)
+    ans1 = diag_positions.get_all_current_strategy_instrument_positions()#list_of_strategies)
     ans2 = data_broker.get_db_contract_positions_with_IB_expiries()
     ans3 = data_broker.get_all_current_contract_positions()
     print("Optimal vs actual")

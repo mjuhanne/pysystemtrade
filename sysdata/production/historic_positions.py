@@ -163,7 +163,7 @@ class strategyPositionData(listOfEntriesData):
         self._delete_last_entry_for_args_dict(args_dict, are_you_sure=are_you_sure)
 
     def get_all_current_positions_as_list_with_instrument_objects(
-        self,
+        self, list_of_strategies=arg_not_supplied
     ) -> listOfInstrumentStrategyPositions:
         """
         Current positions are returned in a different class
@@ -171,7 +171,7 @@ class strategyPositionData(listOfEntriesData):
         :return: listOfInstrumentStrategyPositions
         """
 
-        list_of_instrument_strategies = self.get_list_of_instrument_strategies()
+        list_of_instrument_strategies = self.get_list_of_instrument_strategies(list_of_strategies)
         current_positions = []
         for instrument_strategy in list_of_instrument_strategies:
             position = self.get_current_position_for_instrument_strategy_object(
@@ -193,12 +193,13 @@ class strategyPositionData(listOfEntriesData):
             self.get_all_current_positions_as_list_with_instrument_objects().as_pd_df()
         )
 
-    def get_list_of_instrument_strategies(self) -> listOfInstrumentStrategies:
+    def get_list_of_instrument_strategies(self, list_of_strategies=arg_not_supplied) -> listOfInstrumentStrategies:
         all_positions_dict = self._get_list_of_args_dict()
         list_of_instrument_strategies = []
         for dict_entry in all_positions_dict:
-            instrument_strategy = instrumentStrategy.from_dict(dict_entry)
-            list_of_instrument_strategies.append(instrument_strategy)
+            if list_of_strategies is arg_not_supplied or dict_entry['strategy_name'] in list_of_strategies:
+                instrument_strategy = instrumentStrategy.from_dict(dict_entry)
+                list_of_instrument_strategies.append(instrument_strategy)
 
         list_of_instrument_strategies = listOfInstrumentStrategies(
             list_of_instrument_strategies
