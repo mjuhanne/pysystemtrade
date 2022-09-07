@@ -54,7 +54,7 @@ def divide_jobs_for_processes(n_processes, args, jobs, include_process_number=Fa
 def parallelize_stage_function_and_cache_results(stage, func, arg_array, max_jobs_per_process=None):
     n_processes = stage.config.get_element_or_arg_not_supplied('n_processes')
     globals()['stage_reference'] = stage
-    if n_processes is not arg_not_supplied:
+    if n_processes is not arg_not_supplied and n_processes > 1:
         
         # Select only those jobs that haven't been cached already
         jobs = []
