@@ -37,13 +37,13 @@ CNH-onshore,500000,0,1.8,0,FX,USD,SGX onshore Chinese Renminbi (CNY) in US Dolla
 COCOA,10,0,3,0,Ags,USD,Cocoa NY,0.5
 COCOA_LDN,10,0,1.7,0,Ags,GBP,Cocoa London,0.5
 COCOA_NY,10,,,,Ags,USD,Cocoa  NY,
-COFFEE,37500,0,3,0,Ags,USD,Coffee,0.001
+COFFEE,37500,0,3,0,Ags,USD,Coffee,0.0001
 COPPER,25000,0,2.31,0,Metals,USD,Copper,0.000423883318893
 COPPER-mini,12500,0,0.85,0,Metals,USD,COMEX MINY Copper,0.002
 CORN,50,0,2.9,0,Ags,USD,Corn,0.125
 CORN_mini,10,0,2.9,0,Ags,USD,Corn mini,0.125
 COTTON,50000,0,0.85,0,Ags,USD,NYMEX Cotton index,0.2
-COTTON2,50000,0,3,0,Ags,USD,Cotton #2,0.0005
+COTTON2,50000,0,3,0,Ags,USD,Cotton #2,0.00005
 CRUDE_W,1000,0,2.31,0,OilGas,USD,Light sweet crude Winter,0.009711689350737
 CRUDE_W_mini,500,0,1.5,0,OilGas,USD,Light sweet crude Winter mini,0.025
 CZK,4000000,0,0.85,0,FX,USD,Czech koruna,9.2E-05
@@ -183,13 +183,13 @@ NASDAQ,20,0,2.05,0,Equity,USD,US equity index Nasdaq ,0.3
 NASDAQ_micro,2,0,0.25,0,Equity,USD,NASDAQ micro,0.25
 NIFTY,2,0,2.85,0,Equity,USD,CNX Nifty Index,1.2
 NIKKEI,100,0,40,0,Equity,JPY,Nikkei 225 Mini,2.5
-NIKKEI-JPY,100,0,0.85,0,Equity,JPY,Yen Denominated Nikkei 225 Index,2100
+NIKKEI-JPY,100,0,0.85,0,Equity,JPY,Yen Denominated Nikkei 225 Index,210
 NIKKEI400,100,0,50,0,Equity,JPY,JPX-Nikkei Index 400,2.5
 NOK,2000000,0,1.5,0,FX,USD,NOKUSD currency,3E-05
 NZD,100000,0,2.46,0,FX,USD,NZDUSD currency,5.8E-05
 OAT,1000,0,2,0,Bond,EUR,French 10 year bond OAT,0.005
 OATIES,50,0,1.5,0,Ags,USD,Oat Futures,1.5
-OJ,15000,0,3,0,Ags,USD,Orange Juice (FCOJ-A),0.0015
+OJ,15000,0,3,0,Ags,USD,Orange Juice (FCOJ-A),0.00015
 OMX,10,0,2,0,Equity,EUR,OMX Helsinki 25 Index,0.5
 PALLAD,100,0,2.31,0,Metals,USD,Palladium,2
 PIPELINE,42000,0,0.85,0,OilGas,USD,Gulf Coast ULSD (Platts) Up-Down Futures,
@@ -228,7 +228,7 @@ SSTERL,1250,,,,STIR,GBP,UK STIR Short Sterling,
 STEEL,20,0,0.85,0,Metals,USD,Hot-Rolled Coil Steel Index,5.5
 STERLING3,1250,0,1.7,0,Bond,GBP,3 month Sterling interest rate,0.0025
 SUGAR,112000,,,,Ags,USD,Sugar,
-SUGAR11,112000,0,3,0,Ags,USD,Sugar #11,5E-05
+SUGAR11,112000,0,3,0,Ags,USD,Sugar #11,1E-05
 TOPIX,1000,0,50,0,Equity,JPY,Japan Mini Topix,0.2
 TOPIX30,1000,0,50,0,Equity,JPY,Topix Core30,
 TSX,5,,,,Equity,CAD,Canadian equity index TSX composite,
