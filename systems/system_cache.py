@@ -650,9 +650,10 @@ def resolve_args_to_code_and_key(args, list_of_codes,
 
         # we only take the first arg that is an instrument code
         if instrument_code is None:
-            if individual_arg in list_of_codes:
-                instrument_code = individual_arg
-                continue
+            if isinstance(individual_arg, str):
+                if individual_arg in list_of_codes:
+                    instrument_code = individual_arg
+                    continue
         # otherwise add to keynames
         keyname_list.append(str(individual_arg))
 
