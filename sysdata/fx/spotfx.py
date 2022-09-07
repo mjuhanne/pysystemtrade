@@ -35,6 +35,24 @@ class fxPricesData(baseData):
 
     def __getitem__(self, code):
         return self.get_fx_prices(code)
+    
+    def invert_fx_code(self, fx_code) -> str:
+        currency1, currency2 = get_fx_tuple_from_code(fx_code)
+        return currency2 + currency1         
+    
+    def is_inverted(self, fx_code: str) -> bool:
+        currency1, currency2 = get_fx_tuple_from_code(fx_code)
+        if currency1 == DEFAULT_CURRENCY:
+            return True
+        return False
+        
+    def get_and_invert_fx_prices(self, fx_code:str) -> (fxPrices, str):
+        if not self.is_inverted(fx_code):
+            return self.get_fx_prices(fx_code), fx_code
+        else:
+            return self._get_and_restore_inverted_fx_prices(fx_code)
+                    
+            
 
     def get_fx_prices(self, fx_code: str) -> fxPrices:
         """
@@ -91,6 +109,31 @@ class fxPricesData(baseData):
         inverted_fx_data = 1.0 / raw_fx_data
 
         return inverted_fx_data
+
+
+    def _get_and_restore_inverted_fx_prices(self, fx_code: str) -> (fxPrices, str):
+        """
+        Get a historical series of FX prices, must be USDXXX
+
+        :param currency2
+        :return: fxData
+        """
+        currency1, currency2 = get_fx_tuple_from_code(fx_code)
+        assert currency1 == DEFAULT_CURRENCY
+
+        code = DEFAULT_CURRENCY + currency2
+        raw_fx_data = self._get_fx_prices(code)
+        if raw_fx_data.empty:
+            self.log.warn(
+                "Data for %s is missing, needed to calculate %s"
+                % (DEFAULT_CURRENCY + currency2, currency2 + DEFAULT_CURRENCY)
+            )
+            return raw_fx_data, currency2 + DEFAULT_CURRENCY
+
+        inverted_fx_data = 1.0 / raw_fx_data
+
+        return inverted_fx_data, currency2 + DEFAULT_CURRENCY
+
 
     def _get_fx_cross(self, fx_code: str) -> fxPrices:
         """
