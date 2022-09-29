@@ -6,22 +6,14 @@ from syscore.objects import missing_data, arg_not_supplied
 
 
 class reportConfig(object):
-    def __init__(self, title, function, output="console", formatting=arg_not_supplied, **kwargs):
+    def __init__(self, title, function, output="console", **kwargs):
         assert output in ["console", "email", "file",
                           "emailfile"]
         self.title = title
         self.function = function
         self.output = output
         self.kwargs = kwargs
-        if formatting is arg_not_supplied:
-            config = get_production_config()
-            report_formatting = config.get_element_or_missing_data("report_formatting")
-            if report_formatting is not missing_data:
-                self.formatting = report_formatting[output]
-            else:
-                self.formatting = "plain"
-        else:
-            self.formatting = formatting
+        self.formatting_function = get_formatting_function_from_config(output)
 
     def __repr__(self):
         return "%s %s %s %s" % (
@@ -34,11 +26,7 @@ class reportConfig(object):
     def new_config_with_modified_output(self, output):
         new_config = copy(self)
         new_config.output = output
-        config = get_production_config()
-        report_formatting = config.get_element_or_missing_data("report_formatting")
-        if report_formatting is not missing_data:
-            new_config.formatting = report_formatting[output]        
-
+        new_config.formatting_function = get_formatting_function_from_config(output)
         return new_config
 
     def new_config_with_modify_kwargs(self, **kwargs):
@@ -53,6 +41,14 @@ class reportConfig(object):
 
         return self
 
+def get_formatting_function_from_config(output):
+    config = get_production_config()
+    formatting_function = None
+    report_formatting = config.get_element_or_missing_data("report_formatting")
+    if report_formatting is not missing_data:
+        if output in report_formatting:
+            formatting_function = report_formatting[output]
+    return formatting_function
 
 status_report_config = reportConfig(
     title="Status report",

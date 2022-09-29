@@ -53,8 +53,14 @@ def _resolve_config_for_named_report(report_name: str,
                                     default_config: dict
                                     )-> reportConfig:
 
-    default_config_for_report = default_config[report_name]
     new_config_for_report = config_dict_from_yaml[report_name]
+    if report_name not in default_config:
+        default_config_for_report = reportConfig(
+            title=report_name, function=new_config_for_report['function']
+        )
+        # let the code below fill out the rest
+    else:
+        default_config_for_report = default_config[report_name]
 
     if type(new_config_for_report) is str:
         ### no config, just report name
