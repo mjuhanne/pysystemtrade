@@ -2,7 +2,7 @@
 This is the original 'best execution' algo I used in my legacy system
 """
 from copy import copy
-from syscore.objects import missing_order
+from syscore.objects import missing_order, missing_data
 
 from sysdata.data_blob import dataBlob
 from sysexecution.algos.algo import Algo, limit_price_from_offside_price
@@ -301,6 +301,12 @@ def adverse_size_issue(
         )
     else:
         current_tick_analysis = ticker_object.current_tick_analysis
+
+    if current_tick_analysis is missing_data:
+        log.msg(
+            "adverse_size_issue: Missing data while waiting for tick. Return True by default"
+        )
+        return True
 
     latest_imbalance_ratio_exceeded = _is_imbalance_ratio_exceeded(
         current_tick_analysis, log=log
