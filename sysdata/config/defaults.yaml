@@ -257,7 +257,9 @@ risk_overlay:
   max_risk_fraction_stdev_risk: 99999
   max_risk_limit_sum_abs_risk: 99999
   max_risk_leverage: 99999
-#
+  show_progressbar: False
+
+  #
 instrument_returns_correlation:
   func: sysquant.estimators.correlation_over_time.correlation_over_time_for_returns
   interval_frequency: "W"
@@ -278,13 +280,6 @@ small_system:
   shadow_cost: 50
   cost_multiplier: 1.0
   tracking_error_buffer: 0.0125
-
-# default formatting styles for reports 
-report_formatting:
-  console: "plain"
-  file: "html"
-  email: "html"
-
 
 #
 # duplicated/excluded instruments are ignored in backtests
