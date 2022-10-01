@@ -51,6 +51,7 @@ class dataBroker(productionDataLayerGeneric):
 
         broker_class_list = get_broker_class_list(data)
         data.add_class_list(broker_class_list)
+        self.no_market_permissions_cache = []
         return data
 
     @property
@@ -139,12 +140,16 @@ class dataBroker(productionDataLayerGeneric):
     def get_prices_at_frequency_for_contract_object(
         self, contract_object: futuresContract, frequency: Frequency
     ) -> futuresContractPrices:
-
-        prices = self.broker_futures_contract_price_data.get_prices_at_frequency_for_contract_object(
-            contract_object, frequency,
-            return_empty=False ##want to return a failure if no prices available
-        )
+        if contract_object.instrument_code not in self.no_market_permissions_cache:
+            prices = self.broker_futures_contract_price_data.get_prices_at_frequency_for_contract_object(
+                contract_object, frequency,
+                return_empty=False ##want to return a failure if no prices available
+            )
+        else:
+            prices = no_market_permissions
         if prices is no_market_permissions:
+            if contract_object.instrument_code not in self.no_market_permissions_cache:
+                self.no_market_permissions_cache.append(contract_object.instrument_code)
             prices = self.broker_futures_contract_delayed_price_data.get_prices_at_frequency_for_contract_object(
                 contract_object, frequency
             )
@@ -153,13 +158,18 @@ class dataBroker(productionDataLayerGeneric):
     def get_recent_bid_ask_tick_data_for_contract_object(
         self, contract: futuresContract
     ) -> dataFrameOfRecentTicks:
-        tick_data = self.broker_futures_contract_price_data.get_recent_bid_ask_tick_data_for_contract_object(
-            contract
-        )
-        if tick_data is no_market_permissions:
-            tick_data = self.broker_futures_contract_delayed_price_data.get_recent_bid_ask_tick_data_for_contract_object(
+        if contract.instrument_code not in self.no_market_permissions_cache:
+            tick_data = self.broker_futures_contract_price_data.get_recent_bid_ask_tick_data_for_contract_object(
                 contract
             )
+        else:
+            tick_data = no_market_permissions
+        if tick_data is no_market_permissions:
+            if contract.instrument_code not in self.no_market_permissions_cache:
+                self.no_market_permissions_cache.append(contract.instrument_code)
+            tick_data = self.broker_futures_contract_delayed_price_data.get_recent_bid_ask_tick_data_for_contract_object(
+                contract
+            )            
         return tick_data
 
     def get_actual_expiry_date_for_single_contract(
