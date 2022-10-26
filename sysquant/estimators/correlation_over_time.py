@@ -32,6 +32,7 @@ def correlation_over_time(
     date_method="expanding",
     rollyears=20,
     interval_frequency: str = "12M",
+    verbose=True,
     **kwargs
 ) -> CorrelationList:
 
@@ -45,7 +46,8 @@ def correlation_over_time(
         interval_frequency=interval_frequency,
     )
 
-    progress = progressBar(len(fit_dates), "Estimating correlations")
+    if verbose:
+        progress = progressBar(len(fit_dates), "Estimating correlations")
 
     correlation_estimator_for_one_period = correlationEstimator(
         data_for_correlation, **kwargs
@@ -54,7 +56,8 @@ def correlation_over_time(
     corr_list = []
     # Now for each time period, estimate correlation
     for fit_period in fit_dates:
-        progress.iterate()
+        if verbose:
+            progress.iterate()
         corrmat = correlation_estimator_for_one_period.calculate_estimate_for_period(
             fit_period
         )

@@ -932,6 +932,8 @@ class Portfolios(SystemStage):
         list_of_correlations = self.get_list_of_instrument_returns_correlations()
         pd_of_stdev = self.get_stdev_df(shocked=use_shocked_vol)
         show_progressbar = self.config.get_element_or_arg_not_supplied("show_progressbar")
+        if show_progressbar is arg_not_supplied:
+            show_progressbar = False
         n_processes = self.config.get_element_or_arg_not_supplied("n_processes")
         risk_series = calc_portfolio_risk_series(portfolio_weights=portfolio_weights,
                                                  list_of_correlations=list_of_correlations,

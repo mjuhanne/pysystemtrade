@@ -1,3 +1,4 @@
+from cmath import nan
 from collections import namedtuple
 
 import pandas as pd
@@ -185,7 +186,10 @@ def get_list_of_last_futures_price_updates(data):
 def get_last_futures_price_update_for_instrument(data, instrument_code):
     diag_prices = diagPrices(data)
     px = diag_prices.get_adjusted_prices(instrument_code)
-    last_timestamp = px.index[-1]
+    if len(px) > 0:
+        last_timestamp = px.index[-1]
+    else:
+        last_timestamp = nan
     update = genericUpdate(instrument_code, last_timestamp)
 
     return update

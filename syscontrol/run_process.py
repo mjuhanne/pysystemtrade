@@ -93,11 +93,22 @@ class processToRun(object):
     @property
     def wait_reporter(self) -> reportProcessStatus:
         return self._wait_reporter
+    
+    def force_startup(self,args):
+        if len(args)==0:
+            return False
 
-    def run_process(self):
-        result_of_starting = _start_or_wait(self)
-        if result_of_starting is failure:
-            return None
+        if '-f' in args[0]:
+            return True
+        return False
+        
+
+    def run_process(self, *args):
+        print("run process args:",args)
+        if not self.force_startup(args):
+            result_of_starting = _start_or_wait(self)
+            if result_of_starting is failure:
+                return None
 
         self._run_on_start()
         self._main_loop_over_methods()

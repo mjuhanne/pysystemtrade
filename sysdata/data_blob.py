@@ -1,7 +1,6 @@
 from copy import copy
 from time import sleep
 
-from sysbrokers.IB.ib_connection import connectionIB, ClientIdAlreadyInUseError
 from syscore.objects import arg_not_supplied, get_class_name, missingData
 from syscore.text import camel_case_split
 from sysdata.config.production_config import get_production_config, Config
@@ -17,8 +16,8 @@ class dataBlob(object):
         class_list: list = arg_not_supplied,
         log_name: str = "",
         csv_data_paths: dict = arg_not_supplied,
-        ib_conn: connectionIB = arg_not_supplied,
-        ib_alt_conn: connectionIB=arg_not_supplied,
+        ib_conn = arg_not_supplied,
+        ib_alt_conn=arg_not_supplied,
         mongo_db: mongoDb = arg_not_supplied,
         log: logger = arg_not_supplied,
         keep_original_prefix: bool = False,
@@ -303,7 +302,7 @@ class dataBlob(object):
         # No need to explicitly close Mongo connections; handled by Python garbage collection
 
     @property
-    def ib_conn(self) -> connectionIB:
+    def ib_conn(self):
         ib_conn = getattr(self, "_ib_conn", arg_not_supplied)
         if ib_conn is arg_not_supplied:
             ib_conn = self._get_new_ib_connection()
@@ -312,7 +311,7 @@ class dataBlob(object):
         return ib_conn
 
     @property
-    def ib_alt_conn(self) -> connectionIB:
+    def ib_alt_conn(self):
         ib_alt_conn = getattr(self, "_ib_alt_conn", arg_not_supplied)
         if ib_alt_conn is arg_not_supplied:
             ib_alt_conn = self._get_new_ib_connection(alternative_connection=True)
@@ -321,8 +320,9 @@ class dataBlob(object):
         return ib_alt_conn
 
 
-    def _get_new_ib_connection(self, alternative_connection=False) -> connectionIB:
+    def _get_new_ib_connection(self, alternative_connection=False):
         # Try this 5 times...
+        from sysbrokers.IB.ib_connection import connectionIB, ClientIdAlreadyInUseError
         attempts = 0
         failed_ids = []
         client_id = self._get_next_client_id_for_ib(alternative_connection=alternative_connection)

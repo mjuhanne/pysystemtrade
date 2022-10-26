@@ -73,6 +73,12 @@ def calc_portfolio_risk_series(
         show_progressbar: bool) -> pd.Series:
 
     common_index = list(portfolio_weights.index)
+    
+    if len(list_of_correlations.column_names) < 2:
+        risk_series = pd.Series(index=common_index)
+        risk_series[:] = 0
+        return risk_series
+    
     if n_processes is arg_not_supplied:
         risk_series = _do_calc_portfolio_risk_series(portfolio_weights, list_of_correlations, pd_of_stdev, show_progressbar, common_index)
     else:

@@ -356,10 +356,10 @@ def get_list_of_contracts_held_for_an_instrument_in_date_range(
     return contract_list
 
 
-def get_list_of_instruments_held_for_a_strategy(data, strategy_name):
+def get_list_of_instruments_held_for_a_strategy(data, strategy_name, ignore_zero_positions=True):
     diag_positions = diagPositions(data)
     instrument_list = diag_positions.get_list_of_instruments_for_strategy_with_position(
-        strategy_name
+        strategy_name, ignore_zero_positions=ignore_zero_positions
     )
 
     return instrument_list

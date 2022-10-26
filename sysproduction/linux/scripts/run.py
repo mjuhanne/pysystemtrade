@@ -61,5 +61,6 @@ if __name__ == "__main__":
     # get arguments
     args, kwargs = fill_args_and_run_func(func, func_reference_name)
 
+    print("args",args,"kwargs",kwargs)
     # call the function
     func(*args, **kwargs)

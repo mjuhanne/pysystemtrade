@@ -307,6 +307,9 @@ def _resolve_date(sim_data: simData, date_type:str):
     else:
         date = getattr(config, date_type, missing_data)
 
+    if date is None:
+        return None
+    
     if date is not missing_data:
         if isinstance(date, datetime.date):
             # yaml parses unquoted date like 2000-01-01 to datetime.date
